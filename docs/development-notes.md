@@ -1,0 +1,180 @@
+# Development Notes
+
+This document records useful commands, configuration lessons, and engineering
+practices discovered while building WrestleVerse.
+
+## Everyday Commands
+
+Run these commands from the project root.
+
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Start the Astro development server. |
+| `pnpm check` | Run `astro check` for Astro and TypeScript diagnostics. |
+| `pnpm lint` | Run ESLint without modifying files. |
+| `pnpm lint:fix` | Run ESLint and apply fixes for rules that support auto-fixing. |
+| `pnpm build` | Type-check and create the production build. |
+| `pnpm preview` | Serve the production build locally. |
+| `pnpm exec tsc --showConfig` | Show the final TypeScript config after inherited presets and local overrides are merged. |
+
+## Check Versus Lint Versus Fix
+
+These commands solve related but different problems.
+
+### `astro check`
+
+Checks whether Astro and TypeScript code is valid. It catches type errors such
+as assigning a number to a variable declared as a string.
+
+```astro
+---
+const title: string = 123;
+---
+
+<h1>{title}</h1>
+```
+
+`astro check` reports that `number` cannot be assigned to `string`.
+
+### `eslint .`
+
+Checks whether files obey configured code-quality and accessibility rules. For
+example, it may report an unused variable:
+
+```ts
+const unused = "not used anywhere";
+```
+
+ESLint is rule-based. It does not automatically report every possible
+TypeScript or Astro issue unless a relevant rule is configured.
+
+### `eslint . --fix`
+
+Runs ESLint and automatically repairs issues that have safe fixes. It does not
+fix type errors and it cannot repair lint rules that require a human decision.
+
+For example, with an appropriate formatting rule it could change:
+
+```ts
+const greeting = "hello"
+```
+
+to:
+
+```ts
+const greeting = "hello";
+```
+
+## Astro And TypeScript Configuration
+
+The project TypeScript configuration starts from Astro's strict preset:
+
+```json
+{
+  "extends": "astro/tsconfigs/strict"
+}
+```
+
+An `extends` entry means the visible `tsconfig.json` is not the whole config.
+Astro's preset contributes settings, and this project's `compilerOptions`
+override or add to them.
+
+Use this command when an editor error and the command-line checks disagree:
+
+```sh
+pnpm exec tsc --showConfig
+```
+
+It prints the resolved configuration actually used by TypeScript.
+
+### Importing TypeScript Components
+
+This project currently overrides Astro's default and disallows import paths
+ending in `.ts` or `.tsx`:
+
+```json
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": false
+  }
+}
+```
+
+Use extensionless imports for local TypeScript/Preact components:
+
+```astro
+---
+import CountdownTimer from "../components/CountdownTimer";
+---
+```
+
+This is conventional with Astro/Vite module resolution and avoids editor
+diagnostics about `.tsx` import extensions.
+
+## Astro Islands With Preact
+
+Interactive Preact components can be rendered as Astro islands. The hydration
+directive controls when browser JavaScript is loaded and executed.
+
+| Directive | Use when |
+| --- | --- |
+| `client:load` | The interaction is immediately important, such as a live countdown. |
+| `client:idle` | The component can wait until the browser is less busy. |
+| `client:visible` | The component is below the fold and only needs hydration when seen. |
+
+Example:
+
+```astro
+<CountdownTimer client:load />
+<RosterFilter client:idle />
+<FightPoll client:visible />
+```
+
+Prefer the least eager hydration mode that still gives users the expected
+experience. Static Astro markup ships less JavaScript than hydrating every
+component immediately.
+
+## Engineering Practices
+
+### Use The Right Tool For The Question
+
+- Use `astro check` for Astro and TypeScript correctness.
+- Use `eslint` for configured code-quality and accessibility rules.
+- Use `tsc --showConfig` when inheritance or editor behavior is confusing.
+- Use `pnpm build` before publishing because it verifies the production path.
+
+### Verify Effective Configuration
+
+A config file may extend another preset, and an editor may use stale settings
+or a different TypeScript service. Before changing code to satisfy a confusing
+diagnostic, inspect the resolved configuration and run the repository checks.
+
+### Keep Runtime Dependencies Focused
+
+Packages used only during development, linting, or checking belong in
+`devDependencies`. Packages needed by the application at runtime, such as
+Astro and the Preact integration for built UI, belong in `dependencies`.
+
+### Make Small, Purposeful Commits
+
+Separate tooling/configuration changes from UI implementation when practical.
+Small commits are easier to review, revert, and reason about later.
+
+### Validate Before Pushing
+
+For normal application work, a useful minimum loop is:
+
+```sh
+pnpm check
+pnpm lint
+pnpm build
+```
+
+If one fails, fix the cause and rerun it before committing or pushing.
+
+## Notes To Add Later
+
+- Environment variable conventions once external services are introduced.
+- Content collection patterns if the project adds editorial content.
+- Test strategy when interactions or business logic grow.
+- Deployment and adapter decisions if the site moves beyond static output.
