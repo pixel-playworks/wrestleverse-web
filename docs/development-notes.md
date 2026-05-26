@@ -255,6 +255,19 @@ pnpm exec astro build
 - `pnpm exec astro build` proves the site can generate a production build
   without rerunning the check already reported as its own CI step.
 
+The project also explicitly allows the install scripts required by Astro's
+transitive build tooling in `pnpm-workspace.yaml`:
+
+```yaml
+allowBuilds:
+  esbuild: true
+  sharp: true
+```
+
+With pnpm 11, an unreviewed dependency install script fails installation by
+default. Keep this allowlist narrow: if a future install reports another
+package, review why it needs to run a script before approving it.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
