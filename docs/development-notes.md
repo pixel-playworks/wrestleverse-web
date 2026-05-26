@@ -202,6 +202,39 @@ Prefer the least eager hydration mode that still gives users the expected
 experience. Static Astro markup ships less JavaScript than hydrating every
 component immediately.
 
+## Static Astro Page Sections
+
+Keep route files such as `src/pages/index.astro` focused on composing the page.
+Static sections like navigation and hero content can live in
+`src/components/*.astro` without adding browser-side JavaScript. Keep local
+section data and section-specific `<style>` rules in the owning component.
+
+Astro component styles are scoped by default: a style in `Navbar.astro` does
+not apply to similarly named markup rendered by a footer or another component.
+When a visual element becomes genuinely shared, extract that element or make
+the shared styling explicit rather than relying on parent component styles.
+
+## Web Typography
+
+Do not web-host or load Apple's SF Pro font files for the public site without
+an appropriate Apple license. Referring to local system fonts is different:
+Apple devices can render their native UI font without the site downloading it.
+
+For a lightweight body font that feels native on each platform, use:
+
+```css
+--font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+  sans-serif;
+```
+
+- `system-ui` uses the operating system's interface font, including SF on
+  Apple devices, without shipping a font file.
+- `"SF Pro Icons"` is an icon font, not a suitable fallback for body text.
+- Naming `"SF Pro Display"` alone does not provide SF Pro to Windows, Android,
+  or browsers where that font is not installed.
+- For identical branded typography across devices, choose a separately
+  licensed web font and serve optimized `woff2` files instead.
+
 ## Engineering Practices
 
 ### Use The Right Tool For The Question
