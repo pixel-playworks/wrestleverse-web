@@ -17,6 +17,45 @@ Run these commands from the project root.
 | `pnpm preview` | Serve the production build locally. |
 | `pnpm exec tsc --showConfig` | Show the final TypeScript config after inherited presets and local overrides are merged. |
 
+## Formatting With Prettier
+
+The Astro VS Code extension includes Prettier formatting for an open `.astro`
+file. In VS Code, use **Format Document** or enable format-on-save to format
+files as you edit them.
+
+To format the whole application consistently from the terminal, install the
+formatter in the project:
+
+```sh
+pnpm add --save-dev --save-exact prettier prettier-plugin-astro
+```
+
+Create a `.prettierrc` in the project root:
+
+```json
+{
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}
+```
+
+Then format all supported project files:
+
+```sh
+pnpm exec prettier . --write
+```
+
+`--write` changes files in place, so review the diff after the first project-
+wide formatting run and keep that formatting-only change separate from feature
+work.
+
 ## Check Versus Lint Versus Fix
 
 These commands solve related but different problems.
@@ -110,6 +149,35 @@ import CountdownTimer from "../components/CountdownTimer";
 
 This is conventional with Astro/Vite module resolution and avoids editor
 diagnostics about `.tsx` import extensions.
+
+### Import Types Explicitly
+
+Types exist only during TypeScript checking; they are not runtime JavaScript.
+Use `import type` for imports used only as types in `.astro`, `.ts`, and `.tsx`
+files:
+
+```ts
+import { useState } from "preact/hooks";
+import type { FunctionalComponent } from "preact";
+```
+
+For a module containing both runtime values and types, inline notation is also
+valid:
+
+```ts
+import { formatWrestlerName, type Wrestler } from "./wrestler";
+```
+
+Benefits:
+
+- Tells Astro and the bundler that the import must disappear from runtime code.
+- Prevents attempts to load a type-only export as if it were JavaScript.
+- Avoids runtime export errors caused by erased TypeScript interfaces or types.
+- Makes it obvious which imports affect the application bundle.
+- Matches strict TypeScript behavior such as `verbatimModuleSyntax`.
+
+Summary: use normal `import` for code that runs, and `import type` for names
+used only in annotations, interfaces, or generic type positions.
 
 ## Astro Islands With Preact
 
