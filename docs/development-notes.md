@@ -240,6 +240,21 @@ pnpm build
 
 If one fails, fix the cause and rerun it before committing or pushing.
 
+### Pull Request Validation
+
+GitHub Actions validates every pull request with three checks:
+
+```sh
+pnpm lint
+pnpm check
+pnpm exec astro build
+```
+
+- `pnpm lint` catches configured quality and accessibility rule violations.
+- `pnpm check` catches Astro and TypeScript diagnostics.
+- `pnpm exec astro build` proves the site can generate a production build
+  without rerunning the check already reported as its own CI step.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
