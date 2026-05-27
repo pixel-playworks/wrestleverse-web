@@ -281,6 +281,22 @@ pnpm build
 
 If one fails, fix the cause and rerun it before committing or pushing.
 
+### Validate Before Committing
+
+Husky runs the repository's `.husky/pre-commit` hook whenever `git commit` is
+attempted:
+
+```sh
+pnpm lint
+pnpm check
+```
+
+If either command fails, Git does not create the commit. The `prepare` script
+in `package.json` installs the hook configuration after `pnpm install`, so it
+is shared with developers who clone the repository and install dependencies.
+Use `git commit --no-verify` only for an intentional exceptional case, because
+it skips this protection.
+
 ### Pull Request Validation
 
 GitHub Actions validates every pull request with three checks:
