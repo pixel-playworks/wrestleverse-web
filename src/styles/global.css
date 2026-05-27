@@ -27,10 +27,13 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* universal selector */
 *,
 *::before,
 *::after {
+  /* border-box ensures that the padding and border are included in the element's total width and height */
   box-sizing: border-box;
+  /* removes default margin and padding from all elements */
   margin: 0;
   padding: 0;
 }

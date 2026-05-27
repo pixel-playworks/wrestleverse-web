@@ -214,6 +214,14 @@ not apply to similarly named markup rendered by a footer or another component.
 When a visual element becomes genuinely shared, extract that element or make
 the shared styling explicit rather than relying on parent component styles.
 
+For a simple mobile navigation toggle, a native `<details>` with a styled
+`<summary>` supplies disclosure state and keyboard activation without a
+framework island. When close-on-selection and `Escape` behavior is mobile-only,
+keep it in a dynamically imported module guarded by the matching mobile
+`matchMedia()` query. A tiny gate still runs on desktop so resizing into the
+mobile layout can load the enhancement.
+https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details
+
 ## Web Typography
 
 Do not web-host or load Apple's SF Pro font files for the public site without
