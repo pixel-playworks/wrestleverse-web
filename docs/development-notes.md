@@ -297,6 +297,18 @@ is shared with developers who clone the repository and install dependencies.
 Use `git commit --no-verify` only for an intentional exceptional case, because
 it skips this protection.
 
+Other useful Husky hooks, if the project needs them later:
+
+| Hook | Typical command or purpose | When it is worth adding |
+| --- | --- | --- |
+| `commit-msg` | Validate a commit message convention, such as Conventional Commits. | When changelogs or release automation depend on structured messages. |
+| `pre-push` | Run `pnpm exec astro build` or tests before pushing. | When a slower check should block remote updates, not every local commit. |
+| `pre-commit` with staged formatting | Run Prettier or staged-file lint fixes. | Once project-wide Prettier configuration has been adopted. |
+
+Avoid putting slow or auto-modifying tasks into `pre-commit` without a clear
+benefit. Fast checks encourage developers to keep hooks enabled; production
+build validation remains covered by pull request CI.
+
 ### Pull Request Validation
 
 GitHub Actions validates every pull request with three checks:
