@@ -1,11 +1,86 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from "@components/Hero.astro";
+import Header from "@components/Header.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <Header />
+
+  <main>
+    <Hero />
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="nav-logo" aria-label="WrestleVerse home">
+        <img
+          src="/PrimaryRounded_Web.png"
+          alt=""
+          class="nav-logo-icon"
+          aria-hidden="true"
+        />
+        <span class="nav-logo-text">WrestleVerse</span>
+      </a>
+      <p class="footer-copy">© 2026 WrestleVerse. Built with love.</p>
+    </div>
+  </footer>
 </Layout>
+
+<style>
+  /* ─── Container ─────────────────────────────── */
+  .container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 40px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+
+  .nav-logo-text {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  /* ─── Footer ─────────────────────────────────── */
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: 2.5rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+
+  /* ─── Responsive ─────────────────────────────── */
+  @media (max-width: 768px) {
+    .container {
+      padding-inline: 1.25rem;
+    }
+  }
+</style>
