@@ -5,6 +5,10 @@ const navLinks = [
   { label: "News", href: "#news" },
   { label: "Roadmap", href: "#roadmap" },
 ];
+
+const currentPath = Astro.url.pathname;
+const isActiveLink = (href: string) =>
+  href.startsWith("/") && currentPath === href;
 ---
 
 <header class="site-header">
@@ -21,7 +25,14 @@ const navLinks = [
     <nav class="primary-nav" aria-label="Main navigation">
       {
         navLinks.map((link) => (
-          <a href={link.href} class="primary-nav__link">
+          <a
+            href={link.href}
+            class:list={[
+              "primary-nav__link",
+              { "primary-nav__link--active": isActiveLink(link.href) },
+            ]}
+            aria-current={isActiveLink(link.href) ? "page" : undefined}
+          >
             {link.label}
           </a>
         ))
@@ -40,7 +51,15 @@ const navLinks = [
       <nav class="mobile-menu__panel" aria-label="Mobile navigation">
         {
           navLinks.map((link) => (
-            <a href={link.href} class="mobile-menu__link">
+            <a
+              href={link.href}
+              class:list={[
+                "mobile-menu__link",
+                // if the link is active, add the class "mobile-menu__link--active"
+                { "mobile-menu__link--active": isActiveLink(link.href) },
+              ]}
+              aria-current={isActiveLink(link.href) ? "page" : undefined}
+            >
               {link.label}
             </a>
           ))
@@ -112,6 +131,11 @@ const navLinks = [
 
   .primary-nav__link:hover {
     background: var(--accent-color-hover);
+  }
+
+  .primary-nav__link--active,
+  .primary-nav__link--active:hover {
+    background: var(--btn-bg-selected);
   }
 
   .play-button {
@@ -277,6 +301,11 @@ const navLinks = [
 
     .mobile-menu__link:hover {
       background: var(--accent-color-hover);
+    }
+
+    .mobile-menu__link--active,
+    .mobile-menu__link--active:hover {
+      background: var(--btn-bg-selected);
     }
 
     .mobile-menu__cta {
