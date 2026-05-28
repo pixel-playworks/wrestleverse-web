@@ -1,0 +1,56 @@
+---
+import Header from "@components/Header.astro";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout
+  title="About | WrestleVerse"
+  description="Learn more about WrestleVerse."
+>
+  <Header />
+
+  <main class="about-page">
+    <section class="about-intro" aria-labelledby="about-heading">
+      <p class="about-kicker">About</p>
+      <h1 id="about-heading">About WrestleVerse</h1>
+      <p>
+        Add the story, team, mission, or creator notes for WrestleVerse here.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .about-page {
+    min-height: calc(100svh - 96px);
+    padding: 96px 24px;
+    background: var(--color-bg);
+  }
+
+  .about-intro {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .about-kicker {
+    margin-bottom: 16px;
+    font-family: var(--font-rounded);
+    font-size: 1rem;
+    color: var(--btn-bg);
+  }
+
+  h1 {
+    margin-bottom: 24px;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  p {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+</style>
