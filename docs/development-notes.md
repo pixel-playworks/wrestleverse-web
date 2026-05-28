@@ -225,9 +225,9 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details
 ### Hero Background Sizing
 
 The home hero uses `/public/Hero_Desktop.jpeg` at its intrinsic `1938x920`
-dimensions. Keep the image fixed-size, centered on the x-axis, and clipped by
-the hero container so viewport width changes crop the sides instead of scaling
-the artwork.
+dimensions on desktop and mobile. Keep the image fixed-size, centered on the
+x-axis, and clipped by the hero container so viewport width changes crop the
+sides instead of scaling the artwork.
 
 ## Web Typography
 
