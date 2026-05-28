@@ -10,47 +10,172 @@ import Layout from "@layouts/Layout.astro";
   <Header />
 
   <main class="about-page">
-    <section class="about-intro" aria-labelledby="about-heading">
-      <p class="about-kicker">About</p>
-      <h1 id="about-heading">About WrestleVerse</h1>
-      <p>
-        Add the story, team, mission, or creator notes for WrestleVerse here.
-      </p>
-    </section>
+    <div class="about-shell">
+      <section class="about-intro" aria-labelledby="about-heading">
+        <p class="about-kicker">About</p>
+        <h1 id="about-heading">What is WrestleVerse?</h1>
+        <p>
+          WrestleVerse is a mobile-first professional wrestling management
+          simulation game where players run their own wrestling promotion, book
+          shows, create rivalries, manage talent, and compete for ratings and
+          popularity.
+        </p>
+        <p>
+          Inspired by classic wrestling booking simulators like Total Extreme
+          Wrestling and long-term management games like Football Manager,
+          WrestleVerse combines deep simulation systems with a modern,
+          streamlined interface designed specifically for mobile devices.
+        </p>
+        <p>
+          Players can create their own wrestling universe, build storylines over
+          months or years, push rising stars into the main event scene, manage
+          contracts and morale, and shape the future of their promotion however
+          they choose.
+        </p>
+      </section>
+
+      <section class="about-section" aria-labelledby="premium-heading">
+        <h2 id="premium-heading">
+          Just wrestling management simulation gameplay
+        </h2>
+        <p>
+          Unlike many mobile management games, WrestleVerse is a premium
+          experience built around wrestling management simulation gameplay.
+        </p>
+        <ul class="feature-list">
+          <li>No advertisements</li>
+          <li>No energy systems</li>
+          <li>No pay-to-win mechanics</li>
+          <li>No subscriptions</li>
+          <li>No microtransactions</li>
+        </ul>
+      </section>
+
+      <section class="about-section" aria-labelledby="booking-heading">
+        <h2 id="booking-heading">What do you do?</h2>
+        <p>
+          Create match cards, plan segments, and balance crowd reactions to
+          deliver the best possible wrestling show.
+        </p>
+        <ul class="feature-list">
+          <li>Book singles, tag team, and multi-person matches</li>
+          <li>Build weekly television cards and major events</li>
+          <li>Manage pacing and crowd energy</li>
+          <li>Chase show ratings and fan reactions</li>
+        </ul>
+        <p>
+          Every booking decision affects wrestler momentum, fan perception, and
+          long-term promotion growth.
+        </p>
+      </section>
+    </div>
   </main>
 </Layout>
 
 <style>
   .about-page {
     min-height: calc(100svh - 96px);
-    padding: 96px 24px;
+    padding: 96px 24px 120px;
     background: var(--color-bg);
   }
 
-  .about-intro {
-    max-width: 760px;
+  .about-shell {
+    width: min(100%, 980px);
     margin-inline: auto;
+  }
+
+  .about-intro,
+  .about-section {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 56px;
+  }
+
+  .about-intro {
+    padding-top: 0;
   }
 
   .about-kicker {
     margin-bottom: 16px;
     font-family: var(--font-rounded);
-    font-size: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--btn-bg);
   }
 
   h1 {
-    margin-bottom: 24px;
+    max-width: 820px;
+    margin-bottom: 32px;
     font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(3rem, 11vw, 8rem);
     line-height: 1;
+    color: rgb(255 255 255 / 92%);
+    text-shadow: 0 4px 18px rgb(184 200 255 / 18%);
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
     color: var(--color-text);
   }
 
   p {
+    max-width: 820px;
+    margin-top: 18px;
     font-family: var(--font-body);
     font-size: 1.25rem;
-    line-height: 1.6;
-    color: var(--color-muted);
+    line-height: 1.7;
+    color: rgb(255 255 255 / 68%);
+  }
+
+  .feature-list {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 820px;
+    margin-top: 28px;
+    list-style: none;
+  }
+
+  .feature-list li {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(184 200 255 / 16%);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    background: rgb(255 255 255 / 4%);
+    box-shadow: 0 16px 40px rgb(0 0 0 / 24%);
+    font-family: var(--font-rounded);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: rgb(255 255 255 / 84%);
+  }
+
+  @media (max-width: 720px) {
+    .about-page {
+      min-height: calc(100svh - 88px);
+      padding: 64px 20px 88px;
+    }
+
+    .about-intro,
+    .about-section {
+      padding-block: 40px;
+    }
+
+    .about-intro {
+      padding-top: 0;
+    }
+
+    p {
+      font-size: 1.125rem;
+    }
+
+    .feature-list {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
