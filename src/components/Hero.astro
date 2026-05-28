@@ -1,4 +1,13 @@
 <section class="hero" aria-labelledby="hero-heading">
+  <img
+    src="/Hero_Desktop.jpeg"
+    alt=""
+    class="hero-bg"
+    width="1938"
+    height="920"
+    aria-hidden="true"
+  />
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <h1 id="hero-heading" class="hero-title">Book It<br />Your Way</h1>
     <p class="hero-sub">
@@ -11,13 +20,34 @@
 <style>
   .hero {
     position: relative;
-    min-height: 92vh;
+    min-height: calc(100svh - 96px);
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     padding-block: 5rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1938px;
+    height: 920px;
+    max-width: none;
+    transform: translateX(-50%);
+    object-fit: none;
+    object-position: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
   }
 
   .hero-inner {
@@ -27,52 +57,94 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
     padding-inline: 1.5rem;
-    max-width: 800px;
+    max-width: 100%;
   }
 
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(4rem, 12vw, 8rem);
+    font-size: min(128px, 17vw);
     font-weight: 700;
-    line-height: 0.95;
-    letter-spacing: -2px;
-    color: #fff;
+    line-height: min(135px, 17.9vw);
+    letter-spacing: min(4px, 0.55vw);
+    color: rgb(255 255 255 / 90%);
     text-transform: uppercase;
+    text-shadow: 0 4px 16px rgb(255 255 255 / 20%);
   }
 
   .hero-sub {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    color: var(--color-muted);
+    margin-top: 20px;
+    font-family: var(--font-display);
+    font-size: min(40px, 5.8vw);
+    font-weight: 500;
+    color: rgb(255 255 255 / 70%);
     max-width: 100%;
-    line-height: 1.5;
-    letter-spacing: -0.1px;
+    line-height: 1.2;
   }
 
   .hero-cta {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    background: #b4c6fc;
-    color: #0a0a1a;
+    height: 96px;
+    margin-top: 40px;
+    padding-inline: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #b8c8ff, #a7b1ff);
+    color: #101433;
     border-radius: 12px;
     font-family: var(--font-rounded);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: -0.2px;
-    transition: background var(--transition), transform var(--transition);
-    margin-top: 0.25rem;
+    font-size: min(36px, 6vw);
+    font-weight: 500;
+    line-height: 1;
+    box-shadow: 0 4px 16px rgb(184 200 255 / 25%);
+    transition: transform var(--transition);
   }
 
   .hero-cta:hover {
-    background: #c4d4ff;
     transform: translateY(-2px);
   }
 
-  @media (max-width: 768px) {
+  @media (max-height: 820px) and (min-width: 769px) {
+    .hero {
+      padding-block: 2rem;
+    }
+
     .hero-title {
-      letter-spacing: -1px;
+      font-size: min(104px, 13vw);
+      line-height: min(110px, 14vw);
+      letter-spacing: min(3px, 0.45vw);
+    }
+
+    .hero-sub {
+      margin-top: 16px;
+      font-size: min(34px, 4.2vw);
+    }
+
+    .hero-cta {
+      height: 72px;
+      margin-top: 28px;
+      font-size: min(30px, 4vw);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: calc(100svh - 88px);
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 17vw, 7rem);
+      line-height: 1.05;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.5rem, 7vw, 3rem);
+    }
+
+    .hero-cta {
+      height: 72px;
+      font-size: clamp(1.75rem, 7vw, 2.5rem);
     }
   }
 </style>

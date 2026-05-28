@@ -222,6 +222,13 @@ keep it in a dynamically imported module guarded by the matching mobile
 mobile layout can load the enhancement.
 https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details
 
+### Hero Background Sizing
+
+The home hero uses `/public/Hero_Desktop.jpeg` at its intrinsic `1938x920`
+dimensions. Keep the image fixed-size, centered on the x-axis, and clipped by
+the hero container so viewport width changes crop the sides instead of scaling
+the artwork.
+
 ## Web Typography
 
 Do not web-host or load Apple's SF Pro font files for the public site without
