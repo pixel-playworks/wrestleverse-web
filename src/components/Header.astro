@@ -1,7 +1,12 @@
 ---
 const navLinks = [
   { label: "About", href: "/about" },
-  { label: "Features", href: "#features" },
+  {
+    label: "Features",
+    href: "https://apps.apple.com/us/app/wrestleverse-pro-wrestling-gm/id6502738747",
+    target: "_blank",
+    isCta: true,
+  },
   {
     label: "News",
     href: "https://www.instagram.com/wrestleverse.app",
@@ -37,6 +42,7 @@ const isActiveLink = (href: string) =>
             href={link.href}
             target={link.target}
             rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+            data-cta-link={link.isCta ? "" : undefined}
             class:list={[
               "primary-nav__link",
               { "primary-nav__link--active": isActiveLink(link.href) },
@@ -48,7 +54,13 @@ const isActiveLink = (href: string) =>
         ))
       }
     </nav>
-    <a href="#features" class="play-button">Play Now</a>
+    <a
+      href="https://apps.apple.com/us/app/wrestleverse-pro-wrestling-gm/id6502738747"
+      class="play-button"
+      data-cta-link
+      target="_blank"
+      rel="noopener noreferrer">Play Now</a
+    >
 
     <details class="mobile-menu">
       <summary class="mobile-menu__toggle">
@@ -65,6 +77,7 @@ const isActiveLink = (href: string) =>
               href={link.href}
               target={link.target}
               rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+              data-cta-link={link.isCta ? "" : undefined}
               class:list={[
                 "mobile-menu__link",
                 // if the link is active, add the class "mobile-menu__link--active"
@@ -76,7 +89,13 @@ const isActiveLink = (href: string) =>
             </a>
           ))
         }
-        <a href="#features" class="mobile-menu__cta">Play Now</a>
+        <a
+          href="https://apps.apple.com/us/app/wrestleverse-pro-wrestling-gm/id6502738747"
+          class="mobile-menu__cta"
+          data-cta-link
+          target="_blank"
+          rel="noopener noreferrer">Play Now</a
+        >
       </nav>
     </details>
   </div>

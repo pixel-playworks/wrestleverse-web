@@ -11,7 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,5 +24,17 @@ const {
   </head>
   <body>
     <slot />
+
+    <script>
+      const PLAY_STORE_URL =
+        "https://play.google.com/store/apps/details?id=com.jtsaeed.cobalt&hl=en";
+      if (/Android/i.test(navigator.userAgent)) {
+        document.querySelectorAll("[data-cta-link]").forEach((el) => {
+          if (el instanceof HTMLAnchorElement) {
+            el.href = PLAY_STORE_URL;
+          }
+        });
+      }
+    </script>
   </body>
 </html>
