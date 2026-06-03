@@ -179,6 +179,16 @@ Benefits:
 Summary: use normal `import` for code that runs, and `import type` for names
 used only in annotations, interfaces, or generic type positions.
 
+### Prefer Type Guards Over Type Casting
+
+When narrowing DOM element types (e.g., matching a selector like `[data-cta-link]`), prefer runtime type guards over compile-time casting:
+
+* **Type Guard (`instanceof HTMLAnchorElement`)**:
+  * **Safe at Runtime**: Confirms the browser actually has an `<a>` element before mutating its properties (like `.href`). Prevents page script crashes if elements are modified incorrectly in markup later.
+  * **Automatic Narrowing**: TypeScript automatically recognizes this condition and narrows the type within the block.
+* **Type Casting (`as HTMLAnchorElement` or `<HTMLAnchorElement>el`)**:
+  * **Compile-Time Only**: It has no effect at runtime (the cast code compiles away completely). If the element ends up not being an anchor, the script will crash or throw errors silently at runtime.
+
 ## Astro Islands With Preact
 
 Interactive Preact components can be rendered as Astro islands. The hydration

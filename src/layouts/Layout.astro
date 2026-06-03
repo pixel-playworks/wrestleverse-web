@@ -26,6 +26,7 @@ const {
     <slot />
 
     <script>
+      // based on the device we set the 'data-cta-link' href attribute to be ios/android
       const PLAY_STORE_URL =
         "https://play.google.com/store/apps/details?id=com.jtsaeed.cobalt&hl=en";
       if (/Android/i.test(navigator.userAgent)) {
