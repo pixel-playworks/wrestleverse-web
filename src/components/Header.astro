@@ -6,9 +6,9 @@ const navLinks = [
   { label: "Roadmap", href: "#roadmap" },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActiveLink = (href: string) =>
-  href.startsWith("/") && currentPath === href;
+  href.startsWith("/") && (href.replace(/\/$/, "") || "/") === currentPath;
 ---
 
 <header class="site-header">
@@ -244,7 +244,9 @@ const isActiveLink = (href: string) =>
       border-radius: 999px;
       background: var(--btn-bg);
       transform-origin: center;
-      transition: opacity var(--transition), transform var(--transition);
+      transition:
+        opacity var(--transition),
+        transform var(--transition);
     }
 
     /* The details element opens and closes  */
