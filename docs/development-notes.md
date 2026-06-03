@@ -250,12 +250,16 @@ For a lightweight body font that feels native on each platform, use:
 When linking to external sites using `target="_blank"`, follow security best practices:
 
 * **`rel="noopener"`**: Prevents the newly opened tab from accessing the originating page's `window.opener` object. This blocks potential "tabnabbing" phishing attacks where an external page alters the original tab's location.
+  * *What is Tabnabbing?* A phishing vector where an untrusted target page uses `window.opener.location = "https://fake-login..."` to silently redirect the background tab (your original site) to a malicious page while the user's focus is on the new tab. When the user returns to the original tab, they see a fake login page and enter their credentials.
 * **`rel="noreferrer"`**: Implements all the protections of `noopener` and additionally prevents the browser from sending the `Referer` HTTP header to the destination site, protecting user privacy/origin info.
 
 #### Are they required explicitly?
 
 * **Modern Browsers**: Since 2021, all major modern browsers (Chrome 88+, Firefox 79+, Safari 12.1+) **implicitly apply `noopener` behavior** by default whenever `target="_blank"` is used.
 * **Best Practice**: Explicitly declaring `rel="noopener"` or `rel="noreferrer"` is still recommended if you need to support legacy browsers, satisfy strict automated security scanners (e.g., SonarQube, Lighthouse audit rules), or want to hide the HTTP referrer header (`noreferrer`).
+
+https://elementor.com/blog/noopener-noreferrer/
+https://css-tricks.com/targetblank/ -> Cool trick the new tab to be linked to the first tab. So once a new tab is opened, any updates via the original homepage will just update this newly opened tab.
 
 ## Engineering Practices
 
