@@ -243,6 +243,20 @@ For a lightweight body font that feels native on each platform, use:
 - For identical branded typography across devices, choose a separately
   licensed web font and serve optimized `woff2` files instead.
 
+## Security and External Links
+
+### `rel="noopener"` and `rel="noreferrer"`
+
+When linking to external sites using `target="_blank"`, follow security best practices:
+
+* **`rel="noopener"`**: Prevents the newly opened tab from accessing the originating page's `window.opener` object. This blocks potential "tabnabbing" phishing attacks where an external page alters the original tab's location.
+* **`rel="noreferrer"`**: Implements all the protections of `noopener` and additionally prevents the browser from sending the `Referer` HTTP header to the destination site, protecting user privacy/origin info.
+
+#### Are they required explicitly?
+
+* **Modern Browsers**: Since 2021, all major modern browsers (Chrome 88+, Firefox 79+, Safari 12.1+) **implicitly apply `noopener` behavior** by default whenever `target="_blank"` is used.
+* **Best Practice**: Explicitly declaring `rel="noopener"` or `rel="noreferrer"` is still recommended if you need to support legacy browsers, satisfy strict automated security scanners (e.g., SonarQube, Lighthouse audit rules), or want to hide the HTTP referrer header (`noreferrer`).
+
 ## Engineering Practices
 
 ### Use The Right Tool For The Question

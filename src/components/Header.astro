@@ -3,7 +3,11 @@ const navLinks = [
   { label: "About", href: "/about" },
   { label: "Features", href: "#features" },
   { label: "News", href: "#news" },
-  { label: "Roadmap", href: "#roadmap" },
+  {
+    label: "Roadmap",
+    href: "https://pixelplayworks.notion.site/wrestleverse-roadmap",
+    target: "_blank",
+  },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
