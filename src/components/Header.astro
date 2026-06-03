@@ -1,9 +1,11 @@
 ---
+import { APP_STORE_URL } from "@scripts/store-links";
+
 const navLinks = [
   { label: "About", href: "/about" },
   {
     label: "Features",
-    href: "https://apps.apple.com/us/app/wrestleverse-pro-wrestling-gm/id6502738747",
+    href: APP_STORE_URL,
     target: "_blank",
     isCta: true,
   },
@@ -55,7 +57,7 @@ const isActiveLink = (href: string) =>
       }
     </nav>
     <a
-      href="https://apps.apple.com/us/app/wrestleverse-pro-wrestling-gm/id6502738747"
+      href={APP_STORE_URL}
       class="play-button"
       data-cta-link
       target="_blank"
@@ -90,7 +92,7 @@ const isActiveLink = (href: string) =>
           ))
         }
         <a
-          href="https://apps.apple.com/us/app/wrestleverse-pro-wrestling-gm/id6502738747"
+          href={APP_STORE_URL}
           class="mobile-menu__cta"
           data-cta-link
           target="_blank"
@@ -359,6 +361,7 @@ const isActiveLink = (href: string) =>
 </style>
 
 <!-- TODO; Review later -->
+<!-- If in mobile mode, and user clicks, then we close the menu -->
 <script>
   const mobileViewport = window.matchMedia("(max-width: 720px)");
   let mobileMenuLoaded = false;
