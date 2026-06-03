@@ -7,8 +7,11 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname;
-const isActiveLink = (href: string) =>
-  href.startsWith("/") && currentPath === href;
+const isActiveLink = (href: string) => {
+  if (!href.startsWith("/")) return false;
+  const normalize = (p: string) => p.replace(/\/$/, "") || "/";
+  return normalize(currentPath) === normalize(href);
+};
 ---
 
 <header class="site-header">
@@ -244,7 +247,9 @@ const isActiveLink = (href: string) =>
       border-radius: 999px;
       background: var(--btn-bg);
       transform-origin: center;
-      transition: opacity var(--transition), transform var(--transition);
+      transition:
+        opacity var(--transition),
+        transform var(--transition);
     }
 
     /* The details element opens and closes  */
