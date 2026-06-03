@@ -11,7 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,5 +24,11 @@ const {
   </head>
   <body>
     <slot />
+
+    <script>
+      import { configureCtaLinks } from "@scripts/cta-links";
+
+      configureCtaLinks();
+    </script>
   </body>
 </html>

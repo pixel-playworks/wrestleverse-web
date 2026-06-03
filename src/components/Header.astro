@@ -1,9 +1,24 @@
 ---
+import { APP_STORE_URL } from "@scripts/store-links";
+
 const navLinks = [
   { label: "About", href: "/about" },
-  { label: "Features", href: "#features" },
-  { label: "News", href: "#news" },
-  { label: "Roadmap", href: "#roadmap" },
+  {
+    label: "Features",
+    href: APP_STORE_URL,
+    target: "_blank",
+    isCta: true,
+  },
+  {
+    label: "News",
+    href: "https://www.instagram.com/wrestleverse.app",
+    target: "_blank",
+  },
+  {
+    label: "Roadmap",
+    href: "https://pixelplayworks.notion.site/wrestleverse-roadmap",
+    target: "_blank",
+  },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -27,6 +42,9 @@ const isActiveLink = (href: string) =>
         navLinks.map((link) => (
           <a
             href={link.href}
+            target={link.target}
+            rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+            data-cta-link={link.isCta ? "" : undefined}
             class:list={[
               "primary-nav__link",
               { "primary-nav__link--active": isActiveLink(link.href) },
@@ -38,7 +56,13 @@ const isActiveLink = (href: string) =>
         ))
       }
     </nav>
-    <a href="#features" class="play-button">Play Now</a>
+    <a
+      href={APP_STORE_URL}
+      class="play-button"
+      data-cta-link
+      target="_blank"
+      rel="noopener noreferrer">Play Now</a
+    >
 
     <details class="mobile-menu">
       <summary class="mobile-menu__toggle">
@@ -53,6 +77,9 @@ const isActiveLink = (href: string) =>
           navLinks.map((link) => (
             <a
               href={link.href}
+              target={link.target}
+              rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+              data-cta-link={link.isCta ? "" : undefined}
               class:list={[
                 "mobile-menu__link",
                 // if the link is active, add the class "mobile-menu__link--active"
@@ -64,7 +91,13 @@ const isActiveLink = (href: string) =>
             </a>
           ))
         }
-        <a href="#features" class="mobile-menu__cta">Play Now</a>
+        <a
+          href={APP_STORE_URL}
+          class="mobile-menu__cta"
+          data-cta-link
+          target="_blank"
+          rel="noopener noreferrer">Play Now</a
+        >
       </nav>
     </details>
   </div>
@@ -328,6 +361,7 @@ const isActiveLink = (href: string) =>
 </style>
 
 <!-- TODO; Review later -->
+<!-- If in mobile mode, and user clicks, then we close the menu -->
 <script>
   const mobileViewport = window.matchMedia("(max-width: 720px)");
   let mobileMenuLoaded = false;

@@ -179,6 +179,16 @@ Benefits:
 Summary: use normal `import` for code that runs, and `import type` for names
 used only in annotations, interfaces, or generic type positions.
 
+### Prefer Type Guards Over Type Casting
+
+When narrowing DOM element types (e.g., matching a selector like `[data-cta-link]`), prefer runtime type guards over compile-time casting:
+
+* **Type Guard (`instanceof HTMLAnchorElement`)**:
+  * **Safe at Runtime**: Confirms the browser actually has an `<a>` element before mutating its properties (like `.href`). Prevents page script crashes if elements are modified incorrectly in markup later.
+  * **Automatic Narrowing**: TypeScript automatically recognizes this condition and narrows the type within the block.
+* **Type Casting (`as HTMLAnchorElement` or `<HTMLAnchorElement>el`)**:
+  * **Compile-Time Only**: It has no effect at runtime (the cast code compiles away completely). If the element ends up not being an anchor, the script will crash or throw errors silently at runtime.
+
 ## Astro Islands With Preact
 
 Interactive Preact components can be rendered as Astro islands. The hydration
@@ -242,6 +252,24 @@ For a lightweight body font that feels native on each platform, use:
   or browsers where that font is not installed.
 - For identical branded typography across devices, choose a separately
   licensed web font and serve optimized `woff2` files instead.
+
+## Security and External Links
+
+### `rel="noopener"` and `rel="noreferrer"`
+
+When linking to external sites using `target="_blank"`, follow security best practices:
+
+* **`rel="noopener"`**: Prevents the newly opened tab from accessing the originating page's `window.opener` object. This blocks potential "tabnabbing" phishing attacks where an external page alters the original tab's location.
+  * *What is Tabnabbing?* A phishing vector where an untrusted target page uses `window.opener.location = "https://fake-login..."` to silently redirect the background tab (your original site) to a malicious page while the user's focus is on the new tab. When the user returns to the original tab, they see a fake login page and enter their credentials.
+* **`rel="noreferrer"`**: Implements all the protections of `noopener` and additionally prevents the browser from sending the `Referer` HTTP header to the destination site, protecting user privacy/origin info.
+
+#### Are they required explicitly?
+
+* **Modern Browsers**: Since 2021, all major modern browsers (Chrome 88+, Firefox 79+, Safari 12.1+) **implicitly apply `noopener` behavior** by default whenever `target="_blank"` is used.
+* **Best Practice**: Explicitly declaring `rel="noopener"` or `rel="noreferrer"` is still recommended if you need to support legacy browsers, satisfy strict automated security scanners (e.g., SonarQube, Lighthouse audit rules), or want to hide the HTTP referrer header (`noreferrer`).
+
+https://elementor.com/blog/noopener-noreferrer/
+https://css-tricks.com/targetblank/ -> Cool trick the new tab to be linked to the first tab. So once a new tab is opened, any updates via the original homepage will just update this newly opened tab.
 
 ## Engineering Practices
 

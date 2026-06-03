@@ -1,3 +1,7 @@
+---
+import { APP_STORE_URL } from "@scripts/store-links";
+---
+
 <section class="hero" aria-labelledby="hero-heading">
   <img
     src="/Hero_Desktop.jpeg"
@@ -13,7 +17,13 @@
     <p class="hero-sub">
       Book shows, build rivalries, and run your own promotion
     </p>
-    <a href="#features" class="hero-cta">Start Playing</a>
+    <a
+      href={APP_STORE_URL}
+      class="hero-cta"
+      data-cta-link
+      target="_blank"
+      rel="noopener noreferrer">Start Playing</a
+    >
   </div>
 </section>
 
