@@ -70,9 +70,9 @@ const isActiveLink = (href: string) =>
         but it is still accessible to screen readers. This is a common technique used to provide additional information 
         to screen readers that is not visible to sighted users. -->
         <span class="sr-only">Navigation menu</span>
-        <span class="mobile-menu__line"></span>
-        <span class="mobile-menu__line"></span>
-        <span class="mobile-menu__line"></span>
+        <span class="mobile-menu__line mobile-menu__line--top"></span>
+        <span class="mobile-menu__line mobile-menu__line--middle"></span>
+        <span class="mobile-menu__line mobile-menu__line--bottom"></span>
       </summary>
 
       <nav class="mobile-menu__panel" aria-label="Mobile navigation">
@@ -241,11 +241,6 @@ const isActiveLink = (href: string) =>
       padding: 16px;
     }
 
-    .brand__icon {
-      width: 48px;
-      height: 48px;
-    }
-
     .brand__name {
       /* clamp() is a function that creates a fluid typography by taking three values: a minimum size, a preferred size, and a maximum size */
       /* Fluid typography without the use of media queries. */
@@ -267,6 +262,7 @@ const isActiveLink = (href: string) =>
       flex-direction: column;
       gap: 7px;
       cursor: pointer;
+      list-style: none;
     }
 
     .mobile-menu__toggle::-webkit-details-marker {
@@ -276,7 +272,6 @@ const isActiveLink = (href: string) =>
     .mobile-menu__line {
       width: 34px;
       height: 4px;
-      margin-inline-start: auto;
       border-radius: 999px;
       background: var(--btn-bg);
       transform-origin: center;
@@ -287,15 +282,15 @@ const isActiveLink = (href: string) =>
 
     /* The details element opens and closes  */
     /* eg <details class="mobile-menu" open> */
-    .mobile-menu[open] .mobile-menu__line:nth-of-type(2) {
+    .mobile-menu[open] .mobile-menu__line--top {
       transform: translateY(11px) rotate(45deg);
     }
 
-    .mobile-menu[open] .mobile-menu__line:nth-of-type(3) {
+    .mobile-menu[open] .mobile-menu__line--middle {
       opacity: 0;
     }
 
-    .mobile-menu[open] .mobile-menu__line:nth-of-type(4) {
+    .mobile-menu[open] .mobile-menu__line--bottom {
       transform: translateY(-11px) rotate(-45deg);
     }
 
