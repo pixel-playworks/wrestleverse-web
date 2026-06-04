@@ -1,0 +1,585 @@
+---
+import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
+---
+
+<footer class="wrestle-footer" aria-label="Site footer">
+  <div class="wrestle-footer__container">
+    <div class="wrestle-footer__grid">
+      <!-- Column 1: Brand & Socials -->
+      <div class="wrestle-footer__col wrestle-footer__col--brand">
+        <a
+          href="/"
+          class="wrestle-footer__brand"
+          aria-label="WrestleVerse home"
+        >
+          <img
+            src="/PrimaryRounded_Web.png"
+            alt="WrestleVerse logo"
+            class="wrestle-footer__logo"
+            width="40"
+            height="40"
+            loading="lazy"
+          />
+          <span class="wrestle-footer__brand-name">WrestleVerse</span>
+        </a>
+        <p class="wrestle-footer__tagline">
+          The ultimate pro wrestling management simulation. Build your
+          promotion, book legendary matches, and rule the ring.
+        </p>
+        <div class="wrestle-footer__socials">
+          <a
+            href="https://www.wrestleverse.app/blog"
+            class="wrestle-footer__social-link"
+            aria-label="WrestleVerse Blog"
+          >
+            <!-- Blog / Document Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="wrestle-footer__svg"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              ></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </a>
+          <a
+            href="https://www.youtube.com/@jtsaeed"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wrestle-footer__social-link"
+            aria-label="WrestleVerse on YouTube"
+          >
+            <!-- YouTube Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="wrestle-footer__svg"
+            >
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+              ></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+              ></polygon>
+            </svg>
+          </a>
+          <a
+            href="mailto:james@wrestle.works"
+            class="wrestle-footer__social-link"
+            aria-label="Email WrestleVerse Support"
+          >
+            <!-- Mail Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="wrestle-footer__svg"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+          <a
+            href="https://www.instagram.com/wrestleverse.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wrestle-footer__social-link"
+            aria-label="WrestleVerse on Instagram"
+          >
+            <!-- Instagram Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="wrestle-footer__svg"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a
+            href="https://discord.com/invite/GKbXVpS3jD"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wrestle-footer__social-link"
+            aria-label="Join our Discord community"
+          >
+            <!-- Discord Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 127.14 96.36"
+              fill="currentColor"
+              class="wrestle-footer__svg wrestle-footer__svg--discord"
+            >
+              <path
+                d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.88-.65,1.72-1.34,2.51-2a75.58,75.58,0,0,0,73,0c.79.71,1.63,1.4,2.51,2a68.16,68.16,0,0,1-10.5,5,77.89,77.89,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129,54.65,122.68,31.58,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.87,46,53.87,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.11,46,96.11,53,91,65.69,84.69,65.69Z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Download App -->
+      <div class="wrestle-footer__col">
+        <h2 class="wrestle-footer__heading">Get the App</h2>
+        <div class="wrestle-footer__app-links">
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wrestle-footer__app-btn"
+            aria-label="Download WrestleVerse for Android on Google Play Store"
+            data-cta-link
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="wrestle-footer__btn-icon"
+            >
+              <path
+                d="M3.609 1.814L13.78 12 3.609 22.186A2.22 2.22 0 0 1 3 20.596V3.404c0-.672.224-1.246.609-1.59zM15.195 13.414l3.197-1.826c1.077-.615 1.077-1.623 0-2.238l-3.197-1.826-2.261 2.261 2.261 2.261zm-2.484-2.484L4.854 3.078c-.378-.378-.992-.378-1.37 0L12.711 10.93zm0 2.14L3.484 20.922c.378.378.992.378 1.37 0l9.167-7.852-1.31-1.31z"
+              ></path>
+            </svg>
+            <div class="wrestle-footer__btn-text">
+              <span class="wrestle-footer__btn-subtitle">Download on</span>
+              <span class="wrestle-footer__btn-title">Android</span>
+            </div>
+          </a>
+
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wrestle-footer__app-btn"
+            aria-label="Download WrestleVerse for iOS on Apple App Store"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="wrestle-footer__btn-icon"
+            >
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.51-.64.74-1.2 1.88-1.05 2.99 1.12.09 2.27-.58 3-1.44z"
+              ></path>
+            </svg>
+            <div class="wrestle-footer__btn-text">
+              <span class="wrestle-footer__btn-subtitle">Download on</span>
+              <span class="wrestle-footer__btn-title">iOS</span>
+            </div>
+          </a>
+
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wrestle-footer__app-btn"
+            aria-label="Download WrestleVerse for macOS"
+          >
+            <!-- macOS Icon (Laptop/Apple) -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="wrestle-footer__btn-icon wrestle-footer__btn-icon--stroke"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="2" y1="20" x2="22" y2="20"></line>
+              <line x1="12" y1="17" x2="12" y2="20"></line>
+            </svg>
+            <div class="wrestle-footer__btn-text">
+              <span class="wrestle-footer__btn-subtitle">Download for</span>
+              <span class="wrestle-footer__btn-title">macOS</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 4: Community & Support -->
+      <div class="wrestle-footer__col">
+        <h2 class="wrestle-footer__heading">Community</h2>
+        <nav class="wrestle-footer__nav" aria-label="Community links">
+          <ul class="wrestle-footer__links-list">
+            <li>
+              <a
+                href="https://discord.com/invite/GKbXVpS3jD"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="wrestle-footer__link">Discord</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://pixelplayworks.notion.site/wrestleverse-roadmap"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="wrestle-footer__link">Roadmap</a
+              >
+            </li>
+            <li>
+              <a href="mailto:james@wrestle.works" class="wrestle-footer__link"
+                >Support</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Legal Bottom Bar -->
+    <div class="wrestle-footer__bottom">
+      <p class="wrestle-footer__copy">
+        &copy; {new Date().getFullYear()} WrestleVerse. All rights reserved.
+      </p>
+      <!-- TODO -->
+      <!-- <div class="wrestle-footer__legal-links">
+        <a href="/privacy" class="wrestle-footer__legal-link">Privacy Policy</a>
+        <a href="/terms" class="wrestle-footer__legal-link">Terms of Service</a>
+      </div> -->
+    </div>
+  </div>
+</footer>
+
+<style>
+  .wrestle-footer {
+    background-color: var(--color-bg, #000000);
+    border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
+    padding-block: 5rem 3rem;
+    font-family: var(--font-body, system-ui, sans-serif);
+    color: var(--color-text, #ffffff);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Subtle background radial glow to add premium energy */
+  .wrestle-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(26, 46, 93, 0.15) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .wrestle-footer__container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .wrestle-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .wrestle-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .wrestle-footer__col--brand {
+    max-width: 320px;
+  }
+
+  .wrestle-footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    outline: none;
+  }
+
+  .wrestle-footer__logo {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: transform var(--transition, 0.3s ease);
+  }
+
+  .wrestle-footer__brand:hover .wrestle-footer__logo {
+    transform: rotate(-8deg) scale(1.05);
+  }
+
+  .wrestle-footer__brand-name {
+    font-family: var(--font-display, system-ui, sans-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text, #ffffff);
+  }
+
+  .wrestle-footer__tagline {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-muted, #a0a0a0);
+  }
+
+  .wrestle-footer__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .wrestle-footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--color-surface, #0a0a0a);
+    border: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
+    color: var(--color-muted, #a0a0a0);
+    transition: all var(--transition, 0.3s ease);
+    outline: none;
+  }
+
+  .wrestle-footer__svg {
+    width: 20px;
+    height: 20px;
+    transition: transform var(--transition, 0.3s ease);
+  }
+
+  .wrestle-footer__svg--discord {
+    width: 22px;
+    height: 22px;
+  }
+
+  .wrestle-footer__social-link:hover {
+    color: var(--btn-bg, #b4c6fc);
+    background-color: var(--accent-color, #1a2e5d);
+    border-color: var(--btn-bg, #b4c6fc);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(180, 198, 252, 0.25);
+  }
+
+  .wrestle-footer__social-link:hover .wrestle-footer__svg {
+    transform: scale(1.1);
+  }
+
+  .wrestle-footer__social-link:focus-visible {
+    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline-offset: 2px;
+  }
+
+  .wrestle-footer__heading {
+    font-family: var(--font-rounded, system-ui, sans-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 0.5rem;
+  }
+
+  .wrestle-footer__app-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .wrestle-footer__app-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md, 12px);
+    background-color: var(--color-surface, #0a0a0a);
+    border: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
+    color: var(--color-text, #ffffff);
+    transition: all var(--transition, 0.3s ease);
+    text-decoration: none;
+    outline: none;
+  }
+
+  .wrestle-footer__btn-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .wrestle-footer__btn-icon--stroke {
+    color: var(--color-muted, #a0a0a0);
+    transition: color var(--transition, 0.3s ease);
+  }
+
+  .wrestle-footer__app-btn:hover .wrestle-footer__btn-icon--stroke {
+    color: #ffffff;
+  }
+
+  .wrestle-footer__btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+
+  .wrestle-footer__btn-subtitle {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted, #a0a0a0);
+  }
+
+  .wrestle-footer__btn-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .wrestle-footer__app-btn:hover {
+    background-color: var(--accent-color, #1a2e5d);
+    border-color: var(--btn-bg, #b4c6fc);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(26, 46, 93, 0.4);
+  }
+
+  .wrestle-footer__app-btn:focus-visible {
+    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline-offset: 2px;
+  }
+
+  .wrestle-footer__links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .wrestle-footer__link {
+    font-size: 1rem;
+    color: var(--color-muted, #a0a0a0);
+    transition: all var(--transition, 0.3s ease);
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+  }
+
+  .wrestle-footer__link:hover {
+    color: var(--color-text, #ffffff);
+    transform: translateX(4px);
+  }
+
+  .wrestle-footer__link:focus-visible {
+    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm, 8px);
+  }
+
+  .wrestle-footer__bottom {
+    border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .wrestle-footer__copy {
+    font-size: 0.875rem;
+    color: var(--color-muted, #a0a0a0);
+  }
+
+  .wrestle-footer__legal-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .wrestle-footer__legal-link {
+    font-size: 0.875rem;
+    color: var(--color-muted, #a0a0a0);
+    transition: color var(--transition, 0.3s ease);
+    text-decoration: none;
+    outline: none;
+  }
+
+  .wrestle-footer__legal-link:hover {
+    color: var(--color-text, #ffffff);
+  }
+
+  .wrestle-footer__legal-link:focus-visible {
+    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm, 8px);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1024px) {
+    .wrestle-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wrestle-footer {
+      padding-block: 4rem 2.5rem;
+    }
+
+    .wrestle-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .wrestle-footer__col--brand {
+      max-width: 100%;
+    }
+
+    .wrestle-footer__bottom {
+      flex-direction: column-reverse;
+      padding-top: 1.5rem;
+    }
+
+    .wrestle-footer__legal-links {
+      width: 100%;
+      justify-content: flex-start;
+      gap: 1.5rem;
+    }
+  }
+</style>
