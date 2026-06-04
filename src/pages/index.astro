@@ -2,6 +2,7 @@
 import Hero from "@components/Hero.astro";
 import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
+import Footer from "@components/Footer.astro";
 ---
 
 <Layout>
@@ -11,21 +12,7 @@ import Layout from "@layouts/Layout.astro";
     <Hero />
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="/" class="nav-logo" aria-label="WrestleVerse home">
-        <img
-          src="/PrimaryRounded_Web.png"
-          alt=""
-          class="nav-logo-icon"
-          aria-hidden="true"
-        />
-        <span class="nav-logo-text">WrestleVerse</span>
-      </a>
-      <p class="footer-copy">© 2026 WrestleVerse. Built with love.</p>
-    </div>
-  </footer>
+  <Footer />
 </Layout>
 
 <style>
@@ -55,26 +42,6 @@ import Layout from "@layouts/Layout.astro";
     font-weight: 700;
     color: #fff;
     letter-spacing: -0.3px;
-  }
-
-  /* ─── Footer ─────────────────────────────────── */
-  .footer {
-    border-top: 1px solid var(--color-border);
-    padding-block: 2.5rem;
-  }
-
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-copy {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    color: var(--color-muted);
   }
 
   /* ─── Responsive ─────────────────────────────── */
