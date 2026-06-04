@@ -232,6 +232,34 @@ keep it in a dynamically imported module guarded by the matching mobile
 mobile layout can load the enhancement.
 https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details
 
+### Decorative Media And Icons
+
+Use `aria-hidden="true"` for decorative SVGs or images when the surrounding
+element already has an accessible name. For example, an app-store link can use
+`aria-label="Download WrestleVerse for iOS on Apple App Store"` while its Apple
+SVG icon is hidden from assistive tech. This prevents screen readers from
+announcing duplicate or unhelpful content such as "image" or an icon name.
+
+General convention:
+
+- You should use aria-hidden="true" whenever an element on your screen is purely
+  decorative or redundant, meaning a visually impaired user gains absolutely zero
+  value from hearing it read aloud.
+- Hidden from screen readers, not from the human user.
+
+### Screen-Reader-Only Text
+
+Use `.sr-only` when visible UI is icon-only or visually obvious but still needs
+an accessible text label. In the header, the mobile menu `<summary>` shows three
+hamburger lines, but those lines do not describe the control to a screen reader.
+The hidden `<span class="sr-only">Navigation menu</span>` gives the control a useful accessible name without adding visible text.
+Another valid option would be putting aria-label="Navigation menu"
+directly on the <summary>, but the .sr-only text pattern is common and clear.
+
+Do not replace this with `display: none`, because that hides the text from
+assistive tech too. The `.sr-only` pattern visually clips the text to a tiny
+area while keeping it available to screen readers.
+
 ## Web Typography
 
 Do not web-host or load Apple's SF Pro font files for the public site without
