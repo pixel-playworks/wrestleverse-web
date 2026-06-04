@@ -50,6 +50,12 @@ body {
   background-color: var(--bg-color);
   color: var(--color-text);
   line-height: 1.6;
+  /* TODO */
+  /* 
+  changes how text is rendered in WebKit/Blink browsers, mainly Safari and Chrome on macOS.
+  In practice, it makes text look a bit lighter, cleaner, and less “thick” by using grayscale antialiasing instead of heavier subpixel antialiasing where supported.
+  antialiased gives the typography a smoother, more polished Apple-like rendering.
+ */
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
