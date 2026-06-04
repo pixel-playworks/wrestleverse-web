@@ -272,11 +272,11 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
 
 <style>
   .wrestle-footer {
-    background-color: var(--color-bg, #000000);
-    border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
     padding-block: 5rem 3rem;
-    font-family: var(--font-body, system-ui, sans-serif);
-    color: var(--color-text, #ffffff);
+    font-family: var(--font-body);
+    color: var(--color-text);
     overflow: hidden;
     position: relative;
   }
@@ -327,16 +327,13 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    text-decoration: none;
     outline: none;
   }
 
   .wrestle-footer__logo {
-    display: block;
     width: 40px;
     height: 40px;
-    object-fit: contain;
-    transition: transform var(--transition, 0.3s ease);
+    transition: transform var(--transition);
   }
 
   .wrestle-footer__brand:hover .wrestle-footer__logo {
@@ -344,17 +341,17 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
   }
 
   .wrestle-footer__brand-name {
-    font-family: var(--font-display, system-ui, sans-serif);
+    font-family: var(--font-display);
     font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: var(--color-text, #ffffff);
+    color: var(--color-text);
   }
 
   .wrestle-footer__tagline {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--color-muted, #a0a0a0);
+    color: var(--color-muted);
   }
 
   .wrestle-footer__socials {
@@ -370,17 +367,17 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-color: var(--color-surface, #0a0a0a);
-    border: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
-    color: var(--color-muted, #a0a0a0);
-    transition: all var(--transition, 0.3s ease);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    transition: all var(--transition);
     outline: none;
   }
 
   .wrestle-footer__svg {
     width: 20px;
     height: 20px;
-    transition: transform var(--transition, 0.3s ease);
+    transition: transform var(--transition);
   }
 
   .wrestle-footer__svg--discord {
@@ -389,9 +386,9 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
   }
 
   .wrestle-footer__social-link:hover {
-    color: var(--btn-bg, #b4c6fc);
-    background-color: var(--accent-color, #1a2e5d);
-    border-color: var(--btn-bg, #b4c6fc);
+    color: var(--btn-bg);
+    background-color: var(--accent-color);
+    border-color: var(--btn-bg);
     transform: translateY(-4px);
     box-shadow: 0 4px 15px rgba(180, 198, 252, 0.25);
   }
@@ -401,17 +398,17 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
   }
 
   .wrestle-footer__social-link:focus-visible {
-    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline: 2px solid var(--btn-bg);
     outline-offset: 2px;
   }
 
   .wrestle-footer__heading {
-    font-family: var(--font-rounded, system-ui, sans-serif);
+    font-family: var(--font-rounded);
     font-size: 1.125rem;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--color-text, #ffffff);
+    color: var(--color-text);
     margin-bottom: 0.5rem;
   }
 
@@ -426,12 +423,11 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
     align-items: center;
     gap: 0.875rem;
     padding: 0.625rem 1.25rem;
-    border-radius: var(--radius-md, 12px);
-    background-color: var(--color-surface, #0a0a0a);
-    border: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
-    color: var(--color-text, #ffffff);
-    transition: all var(--transition, 0.3s ease);
-    text-decoration: none;
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    transition: all var(--transition);
     outline: none;
   }
 
@@ -442,12 +438,12 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
   }
 
   .wrestle-footer__btn-icon--stroke {
-    color: var(--color-muted, #a0a0a0);
-    transition: color var(--transition, 0.3s ease);
+    color: var(--color-muted);
+    transition: color var(--transition);
   }
 
   .wrestle-footer__app-btn:hover .wrestle-footer__btn-icon--stroke {
-    color: #ffffff;
+    color: var(--color-text);
   }
 
   .wrestle-footer__btn-text {
@@ -461,7 +457,7 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-muted, #a0a0a0);
+    color: var(--color-muted);
   }
 
   .wrestle-footer__btn-title {
@@ -470,14 +466,14 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
   }
 
   .wrestle-footer__app-btn:hover {
-    background-color: var(--accent-color, #1a2e5d);
-    border-color: var(--btn-bg, #b4c6fc);
+    background-color: var(--accent-color);
+    border-color: var(--btn-bg);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(26, 46, 93, 0.4);
   }
 
   .wrestle-footer__app-btn:focus-visible {
-    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline: 2px solid var(--btn-bg);
     outline-offset: 2px;
   }
 
@@ -492,27 +488,25 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
 
   .wrestle-footer__link {
     font-size: 1rem;
-    color: var(--color-muted, #a0a0a0);
-    transition: all var(--transition, 0.3s ease);
-    text-decoration: none;
+    color: var(--color-muted);
+    transition: all var(--transition);
     outline: none;
     display: inline-block;
   }
 
   .wrestle-footer__link:hover {
-    color: var(--color-text, #ffffff);
+    color: var(--color-text);
     transform: translateX(4px);
   }
 
   .wrestle-footer__link:focus-visible {
-    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline: 2px solid var(--btn-bg);
     outline-offset: 2px;
-    border-radius: var(--radius-sm, 8px);
+    border-radius: var(--radius-sm);
   }
 
   .wrestle-footer__bottom {
-    border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.05));
-    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -522,7 +516,7 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
 
   .wrestle-footer__copy {
     font-size: 0.875rem;
-    color: var(--color-muted, #a0a0a0);
+    color: var(--color-muted);
   }
 
   .wrestle-footer__legal-links {
@@ -532,26 +526,25 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
 
   .wrestle-footer__legal-link {
     font-size: 0.875rem;
-    color: var(--color-muted, #a0a0a0);
-    transition: color var(--transition, 0.3s ease);
-    text-decoration: none;
+    color: var(--color-muted);
+    transition: color var(--transition);
     outline: none;
   }
 
   .wrestle-footer__legal-link:hover {
-    color: var(--color-text, #ffffff);
+    color: var(--color-text);
   }
 
   .wrestle-footer__legal-link:focus-visible {
-    outline: 2px solid var(--btn-bg, #b4c6fc);
+    outline: 2px solid var(--btn-bg);
     outline-offset: 2px;
-    border-radius: var(--radius-sm, 8px);
+    border-radius: var(--radius-sm);
   }
 
   /* Responsive styling */
   @media (max-width: 1024px) {
     .wrestle-footer__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 2rem;
     }
   }
