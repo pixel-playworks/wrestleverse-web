@@ -66,6 +66,9 @@ const isActiveLink = (href: string) =>
 
     <details class="mobile-menu">
       <summary class="mobile-menu__toggle">
+        <!-- The span with the sr-only class is hidden visually, 
+        but it is still accessible to screen readers. This is a common technique used to provide additional information 
+        to screen readers that is not visible to sighted users. -->
         <span class="sr-only">Navigation menu</span>
         <span class="mobile-menu__line"></span>
         <span class="mobile-menu__line"></span>
