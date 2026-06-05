@@ -262,9 +262,31 @@ area while keeping it available to screen readers.
 
 ## Web Typography
 
-Do not web-host or load Apple's SF Pro font files for the public site without
-an appropriate Apple license. Referring to local system fonts is different:
-Apple devices can render their native UI font without the site downloading it.
+Custom web fonts used by global CSS live in `public/fonts/` and are referenced
+with root-relative URLs such as `/fonts/SFPro-Display-Bold.woff2`. Keep the
+`@font-face` declarations in `src/styles/global.css`, then map components
+through the existing CSS variables:
+
+- `--font-display` for display headings and hero text.
+- `--font-body` for general site copy and navigation.
+- `--font-rounded` for rounded UI text such as CTA buttons.
+
+Multiple `@font-face` rules can share the same `font-family` name. The family
+name identifies the typeface, while `font-weight` and `font-style` select the
+specific file. For example, both Display Medium and Display Bold use
+`font-family: "SF Pro Display"`, but the browser chooses between them based on
+whether the element asks for `font-weight: 500` or `font-weight: 700`.
+
+If a component does not specify `font-weight`, normal text defaults to `400` or
+inherits from its parent. If there is no matching `@font-face` for that weight,
+the browser chooses the closest available face or synthesizes the missing
+weight, which can look inconsistent across browsers. Set `font-weight`
+explicitly where the design spec matters, and add the matching `.woff2` plus an
+`@font-face` rule when an exact weight is required.
+
+`font-style: normal` marks these files as upright rather than italic or oblique.
+`font-display: swap` lets fallback text render immediately and swaps in the
+custom font after it loads, avoiding invisible text during font loading.
 
 For a lightweight body font that feels native on each platform, use:
 
