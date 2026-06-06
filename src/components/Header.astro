@@ -363,20 +363,3 @@ const isActiveLink = (href: string) =>
     }
   }
 </style>
-
-<!-- TODO; Review later -->
-<!-- If in mobile mode, and user clicks, then we close the menu -->
-<script>
-  const mobileViewport = window.matchMedia("(max-width: 720px)");
-  let mobileMenuLoaded = false;
-
-  const loadMobileMenu = () => {
-    if (!mobileViewport.matches || mobileMenuLoaded) return;
-
-    mobileMenuLoaded = true;
-    void import("@scripts/mobile-menu");
-  };
-
-  loadMobileMenu();
-  mobileViewport.addEventListener("change", loadMobileMenu);
-</script>
