@@ -231,6 +231,15 @@ not apply to similarly named markup rendered by a footer or another component.
 When a visual element becomes genuinely shared, extract that element or make
 the shared styling explicit rather than relying on parent component styles.
 
+When rendering trusted inline SVG strings with `<Fragment set:html={...} />`,
+remember that the injected elements are not authored directly in the `.astro`
+template. Astro's scoped CSS attributes are not added to that injected markup,
+so ordinary scoped selectors such as `.wrestle-footer__svg` will not match the
+rendered SVG. Use `:global(.class-name)` inside the owning component's style
+block for classes that must style `set:html` output. Keep this limited to the
+specific injected classes, and only use `set:html` for trusted hardcoded or
+sanitized HTML.
+
 For a simple mobile navigation toggle, a native `<details>` with a styled
 `<summary>` supplies disclosure state and keyboard activation without a
 framework island. When close-on-selection and `Escape` behavior is mobile-only,

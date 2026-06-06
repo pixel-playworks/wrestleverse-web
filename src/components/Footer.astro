@@ -287,13 +287,13 @@ const communityLinks = [
     outline: none;
   }
 
-  .wrestle-footer__svg {
+  :global(.wrestle-footer__svg) {
     width: 20px;
     height: 20px;
     transition: transform var(--transition);
   }
 
-  .wrestle-footer__svg--discord {
+  :global(.wrestle-footer__svg--discord) {
     width: 22px;
     height: 22px;
   }
@@ -306,7 +306,7 @@ const communityLinks = [
     box-shadow: 0 4px 15px rgba(180, 198, 252, 0.25);
   }
 
-  .wrestle-footer__social-link:hover .wrestle-footer__svg {
+  .wrestle-footer__social-link:hover :global(.wrestle-footer__svg) {
     transform: scale(1.1);
   }
 
@@ -344,7 +344,7 @@ const communityLinks = [
     outline: none;
   }
 
-  .wrestle-footer__btn-icon {
+  :global(.wrestle-footer__btn-icon) {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
@@ -352,16 +352,16 @@ const communityLinks = [
     transition: color var(--transition);
   }
 
-  .wrestle-footer__app-btn:hover .wrestle-footer__btn-icon {
+  .wrestle-footer__app-btn:hover :global(.wrestle-footer__btn-icon) {
     color: var(--color-text);
   }
 
-  .wrestle-footer__btn-icon--stroke {
+  :global(.wrestle-footer__btn-icon--stroke) {
     color: var(--color-muted);
     transition: color var(--transition);
   }
 
-  .wrestle-footer__app-btn:hover .wrestle-footer__btn-icon--stroke {
+  .wrestle-footer__app-btn:hover :global(.wrestle-footer__btn-icon--stroke) {
     color: var(--color-text);
   }
 
