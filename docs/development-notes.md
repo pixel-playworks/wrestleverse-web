@@ -189,6 +189,29 @@ When narrowing DOM element types (e.g., matching a selector like `[data-cta-link
 * **Type Casting (`as HTMLAnchorElement` or `<HTMLAnchorElement>el`)**:
   * **Compile-Time Only**: It has no effect at runtime (the cast code compiles away completely). If the element ends up not being an anchor, the script will crash or throw errors silently at runtime.
 
+## Astro Islands With Preact
+
+Interactive Preact components can be rendered as Astro islands. The hydration
+directive controls when browser JavaScript is loaded and executed.
+
+| Directive | Use when |
+| --- | --- |
+| `client:load` | The interaction is immediately important, such as a live countdown. |
+| `client:idle` | The component can wait until the browser is less busy. |
+| `client:visible` | The component is below the fold and only needs hydration when seen. |
+
+Example:
+
+```astro
+<CountdownTimer client:load />
+<RosterFilter client:idle />
+<FightPoll client:visible />
+```
+
+Prefer the least eager hydration mode that still gives users the expected
+experience. Static Astro markup ships less JavaScript than hydrating every
+component immediately.
+
 ## Astro Interactivity
 
 This project currently does not use a UI framework integration. Prefer static
