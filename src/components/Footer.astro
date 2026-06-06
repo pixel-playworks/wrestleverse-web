@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
+import brandLogo from "@assets/images/PrimaryRounded_Web.png";
 ---
 
 <footer class="wrestle-footer" aria-label="Site footer">
@@ -12,12 +14,12 @@ import { PLAY_STORE_URL, APP_STORE_URL } from "@scripts/store-links";
           class="wrestle-footer__brand"
           aria-label="WrestleVerse home"
         >
-          <img
-            src="/PrimaryRounded_Web.png"
+          <Image
+            src={brandLogo}
             alt="WrestleVerse logo"
             class="wrestle-footer__logo"
-            width="40"
-            height="40"
+            width={40}
+            height={40}
             loading="lazy"
           />
           <span class="wrestle-footer__brand-name">WrestleVerse</span>

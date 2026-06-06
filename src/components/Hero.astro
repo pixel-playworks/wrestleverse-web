@@ -1,15 +1,19 @@
 ---
+import { Image } from "astro:assets";
 import { APP_STORE_URL } from "@scripts/store-links";
+import heroBg from "@assets/images/Hero_Desktop.jpeg";
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
-  <img
-    src="/Hero_Desktop.jpeg"
+  <Image
+    src={heroBg}
     alt=""
     class="hero-bg"
-    width="1938"
-    height="920"
+    width={1938}
+    height={920}
     aria-hidden="true"
+    loading="eager"
+    decoding="async"
   />
   <div class="hero-overlay"></div>
   <div class="hero-inner">

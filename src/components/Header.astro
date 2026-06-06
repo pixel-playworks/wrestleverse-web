@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { APP_STORE_URL } from "@scripts/store-links";
+import brandLogo from "@assets/images/PrimaryRounded_Web.png";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -29,10 +31,12 @@ const isActiveLink = (href: string) =>
 <header class="site-header">
   <div class="site-header__inner">
     <a href="/" class="brand" aria-label="WrestleVerse home">
-      <img
-        src="/PrimaryRounded_Web.png"
+      <Image
+        src={brandLogo}
         alt="WrestleVerse logo"
         class="brand__icon"
+        width={48}
+        height={48}
       />
       <span class="brand__name">WrestleVerse</span>
     </a>
