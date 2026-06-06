@@ -139,7 +139,7 @@ ending in `.ts` or `.tsx`:
 }
 ```
 
-Use extensionless imports for local TypeScript/Preact components:
+Use extensionless imports for local TypeScript modules:
 
 ```astro
 ---
@@ -148,7 +148,7 @@ import CountdownTimer from "../components/CountdownTimer";
 ```
 
 This is conventional with Astro/Vite module resolution and avoids editor
-diagnostics about `.tsx` import extensions.
+diagnostics about `.ts` import extensions.
 
 ### Import Types Explicitly
 
@@ -157,8 +157,8 @@ Use `import type` for imports used only as types in `.astro`, `.ts`, and `.tsx`
 files:
 
 ```ts
-import { useState } from "preact/hooks";
-import type { FunctionalComponent } from "preact";
+import { createStore } from "./store";
+import type { StoreState } from "./store";
 ```
 
 For a module containing both runtime values and types, inline notation is also
@@ -189,28 +189,12 @@ When narrowing DOM element types (e.g., matching a selector like `[data-cta-link
 * **Type Casting (`as HTMLAnchorElement` or `<HTMLAnchorElement>el`)**:
   * **Compile-Time Only**: It has no effect at runtime (the cast code compiles away completely). If the element ends up not being an anchor, the script will crash or throw errors silently at runtime.
 
-## Astro Islands With Preact
+## Astro Interactivity
 
-Interactive Preact components can be rendered as Astro islands. The hydration
-directive controls when browser JavaScript is loaded and executed.
-
-| Directive | Use when |
-| --- | --- |
-| `client:load` | The interaction is immediately important, such as a live countdown. |
-| `client:idle` | The component can wait until the browser is less busy. |
-| `client:visible` | The component is below the fold and only needs hydration when seen. |
-
-Example:
-
-```astro
-<CountdownTimer client:load />
-<RosterFilter client:idle />
-<FightPoll client:visible />
-```
-
-Prefer the least eager hydration mode that still gives users the expected
-experience. Static Astro markup ships less JavaScript than hydrating every
-component immediately.
+This project currently does not use a UI framework integration. Prefer static
+Astro markup and small browser scripts in `src/scripts/` for simple interactions
+such as the CTA link rewrite or mobile menu behavior. Add a framework integration
+only when the interaction grows beyond what a focused script can handle cleanly.
 
 ## Static Astro Page Sections
 
@@ -340,7 +324,7 @@ diagnostic, inspect the resolved configuration and run the repository checks.
 
 Packages used only during development, linting, or checking belong in
 `devDependencies`. Packages needed by the application at runtime, such as
-Astro and the Preact integration for built UI, belong in `dependencies`.
+Astro and Sharp's build-time image optimizer, belong in `dependencies`.
 
 ### Make Small, Purposeful Commits
 
