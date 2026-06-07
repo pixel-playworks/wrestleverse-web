@@ -7,14 +7,12 @@ import heroMobileBg from "@assets/images/Hero_mobile.jpeg";
 const desktopHero = await getImage({
   src: heroBg,
   format: "webp",
-  width: 1938,
-  height: 920,
+  widths: [960, 1280, 1600, 1938],
 });
 const mobileHero = await getImage({
   src: heroMobileBg,
   format: "webp",
-  width: 1080,
-  height: 920,
+  widths: [390, 640, 768, 1080],
 });
 ---
 
@@ -22,16 +20,20 @@ const mobileHero = await getImage({
   <picture class="hero-bg">
     <source
       media="(max-width: 768px)"
-      srcset={mobileHero.src}
+      srcset={mobileHero.srcSet.attribute}
+      sizes="calc((100svh - 96px) * 1.174)"
       type="image/webp"
     />
     <source
       media="(min-width: 769px)"
-      srcset={desktopHero.src}
+      srcset={desktopHero.srcSet.attribute}
+      sizes="100vw"
       type="image/webp"
     />
     <img
       src={desktopHero.src}
+      srcset={desktopHero.srcSet.attribute}
+      sizes="100vw"
       alt=""
       class="hero-bg__image"
       width={1938}

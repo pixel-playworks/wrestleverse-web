@@ -231,6 +231,17 @@ not apply to similarly named markup rendered by a footer or another component.
 When a visual element becomes genuinely shared, extract that element or make
 the shared styling explicit rather than relying on parent component styles.
 
+For art-directed images that need different source files at different
+breakpoints, use Astro's `getImage()` with a native `<picture>` and media-based
+`<source>` elements. Generate responsive candidates with `widths`, then render
+`srcset={image.srcSet.attribute}` and a `sizes` value that matches the rendered
+image slot. For `object-fit: cover`, the effective image width can be larger
+than `100vw` on tall viewports, so account for the crop/aspect ratio instead of
+defaulting to `100vw` everywhere. Astro audits may still suggest replacing the
+fallback `<img>` with `<Image>`, but this is an acceptable exception when
+`getImage()` is already producing optimized sources for mobile/desktop art
+direction.
+
 When rendering trusted inline SVG strings with `<Fragment set:html={...} />`,
 remember that the injected elements are not authored directly in the `.astro`
 template. Astro's scoped CSS attributes are not added to that injected markup,
