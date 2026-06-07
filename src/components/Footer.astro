@@ -130,6 +130,7 @@ const communityLinks = [
                 rel="noopener noreferrer"
                 class="wrestle-footer__app-btn"
                 aria-label={link.label}
+                data-umami-event={`Footer Download - ${link.title}`}
               >
                 <Fragment set:html={link.icon} />
                 <div class="wrestle-footer__btn-text">

@@ -50,6 +50,7 @@ const isActiveLink = (href: string) =>
             target={link.target}
             rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
             data-cta-link={link.isCta ? "" : undefined}
+            data-umami-event={link.isCta ? "CTA Click (iOS)" : undefined}
             class:list={[
               "primary-nav__link",
               { "primary-nav__link--active": isActiveLink(link.href) },
@@ -65,6 +66,7 @@ const isActiveLink = (href: string) =>
       href={APP_STORE_URL}
       class="play-button"
       data-cta-link
+      data-umami-event="CTA Click (iOS)"
       target="_blank"
       rel="noopener noreferrer">Play Now</a
     >
@@ -88,6 +90,7 @@ const isActiveLink = (href: string) =>
               target={link.target}
               rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
               data-cta-link={link.isCta ? "" : undefined}
+              data-umami-event={link.isCta ? "CTA Click (iOS)" : undefined}
               class:list={[
                 "mobile-menu__link",
                 // if the link is active, add the class "mobile-menu__link--active"
@@ -103,6 +106,7 @@ const isActiveLink = (href: string) =>
           href={APP_STORE_URL}
           class="mobile-menu__cta"
           data-cta-link
+          data-umami-event="CTA Click (iOS)"
           target="_blank"
           rel="noopener noreferrer">Play Now</a
         >
