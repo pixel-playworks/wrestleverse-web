@@ -19,7 +19,7 @@ learned while developing this project.
 
 - After a useful technical discussion or implementation discovery, update the
   document when the information will help future development in this repo.
-- Record commands, Astro/TypeScript/Preact behavior, project conventions,
+- Record commands, Astro/TypeScript behavior, project conventions,
   decisions, debugging lessons, and validation workflows.
 - Keep entries concise and project-relevant. Do not turn the document into a
   conversation transcript or duplicate routine implementation details.

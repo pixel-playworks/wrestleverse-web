@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { APP_STORE_URL } from "@scripts/store-links";
+import brandLogo from "@assets/images/PrimaryRounded_Web.png";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -28,11 +30,20 @@ const isActiveLink = (href: string) =>
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a href="/" class="brand" aria-label="WrestleVerse home">
-      <img
-        src="/PrimaryRounded_Web.png"
+    <a
+      href="/"
+      class="brand"
+      aria-label="WrestleVerse home"
+      data-umami-event="Nav Link - Logo"
+    >
+      <Image
+        src={brandLogo}
         alt="WrestleVerse logo"
         class="brand__icon"
+        width={48}
+        height={48}
+        densities={[1, 2]}
+        priority
       />
       <span class="brand__name">WrestleVerse</span>
     </a>
@@ -45,6 +56,9 @@ const isActiveLink = (href: string) =>
             target={link.target}
             rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
             data-cta-link={link.isCta ? "" : undefined}
+            data-umami-event={
+              link.isCta ? "CTA Click" : `Nav Link - ${link.label}`
+            }
             class:list={[
               "primary-nav__link",
               { "primary-nav__link--active": isActiveLink(link.href) },
@@ -60,6 +74,7 @@ const isActiveLink = (href: string) =>
       href={APP_STORE_URL}
       class="play-button"
       data-cta-link
+      data-umami-event="CTA Click"
       target="_blank"
       rel="noopener noreferrer">Play Now</a
     >
@@ -83,6 +98,9 @@ const isActiveLink = (href: string) =>
               target={link.target}
               rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
               data-cta-link={link.isCta ? "" : undefined}
+              data-umami-event={
+                link.isCta ? "CTA Click" : `Nav Link - ${link.label}`
+              }
               class:list={[
                 "mobile-menu__link",
                 // if the link is active, add the class "mobile-menu__link--active"
@@ -98,6 +116,7 @@ const isActiveLink = (href: string) =>
           href={APP_STORE_URL}
           class="mobile-menu__cta"
           data-cta-link
+          data-umami-event="CTA Click"
           target="_blank"
           rel="noopener noreferrer">Play Now</a
         >
@@ -358,20 +377,3 @@ const isActiveLink = (href: string) =>
     }
   }
 </style>
-
-<!-- TODO; Review later -->
-<!-- If in mobile mode, and user clicks, then we close the menu -->
-<script>
-  const mobileViewport = window.matchMedia("(max-width: 720px)");
-  let mobileMenuLoaded = false;
-
-  const loadMobileMenu = () => {
-    if (!mobileViewport.matches || mobileMenuLoaded) return;
-
-    mobileMenuLoaded = true;
-    void import("@scripts/mobile-menu");
-  };
-
-  loadMobileMenu();
-  mobileViewport.addEventListener("change", loadMobileMenu);
-</script>
