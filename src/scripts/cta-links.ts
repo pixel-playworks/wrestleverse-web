@@ -7,10 +7,8 @@ export const configureCtaLinks = () => {
     if (el instanceof HTMLAnchorElement) {
       if (isAndroid) {
         el.href = PLAY_STORE_URL;
-        el.setAttribute("data-umami-event", "CTA Click (Android)");
-      } else {
-        el.setAttribute("data-umami-event", "CTA Click (iOS)");
       }
+      el.setAttribute("data-umami-event", "CTA Click");
     }
   });
 };

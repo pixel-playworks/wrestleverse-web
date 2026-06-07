@@ -56,7 +56,7 @@ const isActiveLink = (href: string) =>
             rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
             data-cta-link={link.isCta ? "" : undefined}
             data-umami-event={
-              link.isCta ? "CTA Click (iOS)" : `Nav Link - ${link.label}`
+              link.isCta ? "CTA Click" : `Nav Link - ${link.label}`
             }
             class:list={[
               "primary-nav__link",
@@ -73,7 +73,7 @@ const isActiveLink = (href: string) =>
       href={APP_STORE_URL}
       class="play-button"
       data-cta-link
-      data-umami-event="CTA Click (iOS)"
+      data-umami-event="CTA Click"
       target="_blank"
       rel="noopener noreferrer">Play Now</a
     >
@@ -98,7 +98,7 @@ const isActiveLink = (href: string) =>
               rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
               data-cta-link={link.isCta ? "" : undefined}
               data-umami-event={
-                link.isCta ? "CTA Click (iOS)" : `Nav Link - ${link.label}`
+                link.isCta ? "CTA Click" : `Nav Link - ${link.label}`
               }
               class:list={[
                 "mobile-menu__link",
@@ -115,7 +115,7 @@ const isActiveLink = (href: string) =>
           href={APP_STORE_URL}
           class="mobile-menu__cta"
           data-cta-link
-          data-umami-event="CTA Click (iOS)"
+          data-umami-event="CTA Click"
           target="_blank"
           rel="noopener noreferrer">Play Now</a
         >
