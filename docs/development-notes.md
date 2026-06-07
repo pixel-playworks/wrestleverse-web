@@ -139,7 +139,7 @@ ending in `.ts` or `.tsx`:
 }
 ```
 
-Use extensionless imports for local TypeScript/Preact components:
+Use extensionless imports for local TypeScript modules:
 
 ```astro
 ---
@@ -148,7 +148,7 @@ import CountdownTimer from "../components/CountdownTimer";
 ```
 
 This is conventional with Astro/Vite module resolution and avoids editor
-diagnostics about `.tsx` import extensions.
+diagnostics about `.ts` import extensions.
 
 ### Import Types Explicitly
 
@@ -157,8 +157,8 @@ Use `import type` for imports used only as types in `.astro`, `.ts`, and `.tsx`
 files:
 
 ```ts
-import { useState } from "preact/hooks";
-import type { FunctionalComponent } from "preact";
+import { createStore } from "./store";
+import type { StoreState } from "./store";
 ```
 
 For a module containing both runtime values and types, inline notation is also
@@ -212,6 +212,13 @@ Prefer the least eager hydration mode that still gives users the expected
 experience. Static Astro markup ships less JavaScript than hydrating every
 component immediately.
 
+## Astro Interactivity
+
+This project currently does not use a UI framework integration. Prefer static
+Astro markup and small browser scripts in `src/scripts/` for simple interactions
+such as the CTA link rewrite or mobile menu behavior. Add a framework integration
+only when the interaction grows beyond what a focused script can handle cleanly.
+
 ## Static Astro Page Sections
 
 Keep route files such as `src/pages/index.astro` focused on composing the page.
@@ -223,6 +230,26 @@ Astro component styles are scoped by default: a style in `Navbar.astro` does
 not apply to similarly named markup rendered by a footer or another component.
 When a visual element becomes genuinely shared, extract that element or make
 the shared styling explicit rather than relying on parent component styles.
+
+For art-directed images that need different source files at different
+breakpoints, use Astro's `getImage()` with a native `<picture>` and media-based
+`<source>` elements. Generate responsive candidates with `widths`, then render
+`srcset={image.srcSet.attribute}` and a `sizes` value that matches the rendered
+image slot. For `object-fit: cover`, the effective image width can be larger
+than `100vw` on tall viewports, so account for the crop/aspect ratio instead of
+defaulting to `100vw` everywhere. Astro audits may still suggest replacing the
+fallback `<img>` with `<Image>`, but this is an acceptable exception when
+`getImage()` is already producing optimized sources for mobile/desktop art
+direction.
+
+When rendering trusted inline SVG strings with `<Fragment set:html={...} />`,
+remember that the injected elements are not authored directly in the `.astro`
+template. Astro's scoped CSS attributes are not added to that injected markup,
+so ordinary scoped selectors such as `.wrestle-footer__svg` will not match the
+rendered SVG. Use `:global(.class-name)` inside the owning component's style
+block for classes that must style `set:html` output. Keep this limited to the
+specific injected classes, and only use `set:html` for trusted hardcoded or
+sanitized HTML.
 
 For a simple mobile navigation toggle, a native `<details>` with a styled
 `<summary>` supplies disclosure state and keyboard activation without a
@@ -340,7 +367,7 @@ diagnostic, inspect the resolved configuration and run the repository checks.
 
 Packages used only during development, linting, or checking belong in
 `devDependencies`. Packages needed by the application at runtime, such as
-Astro and the Preact integration for built UI, belong in `dependencies`.
+Astro and Sharp's build-time image optimizer, belong in `dependencies`.
 
 ### Make Small, Purposeful Commits
 
