@@ -1,12 +1,14 @@
 ---
+import "../styles/global.css";
 import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@scripts/store-links";
 // import Footer from "@components/Footer.astro";
 ---
 
 <Layout
   title="About | WrestleVerse"
-  description="Learn more about WrestleVerse — the mobile pro wrestling management and booking simulation game."
+  description="Discover WrestleVerse, the premium mobile pro wrestling booking & management simulator. Book matches, run your promotion, and experience live-called commentary."
 >
   <Header />
 
@@ -142,8 +144,15 @@ import Layout from "@layouts/Layout.astro";
       <section class="about-section" aria-labelledby="platforms-heading">
         <h2 id="platforms-heading">Platforms and Pricing</h2>
         <p>
-          WrestleVerse is currently available on the App Store for iOS, iPadOS,
-          macOS, and on the Google Play Store for Android.
+          WrestleVerse is currently available on the <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer">App Store</a
+          > for iOS, iPadOS, macOS, and on the <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer">Google Play Store</a
+          > for Android.
         </p>
         <p>
           WrestleVerse is a premium game with a one-time purchase price which
@@ -274,12 +283,22 @@ import Layout from "@layouts/Layout.astro";
     color: rgb(255 255 255 / 68%);
   }
 
+  a {
+    color: var(--hyperlinks);
+    text-decoration: underline;
+    transition: opacity var(--transition);
+  }
+
+  a:hover {
+    opacity: 0.85;
+  }
+
   .feature-list {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 14px;
     max-width: 820px;
-    margin-top: 28px;
+    margin-top: 8px;
     list-style: none;
   }
 
