@@ -135,12 +135,15 @@ const isActiveLink = (href: string) =>
     width: 100%;
     height: 100%;
     padding-inline: 24px;
-    display: grid; /* display: Grid creates a grid layout */
-    grid-template-columns: 1fr auto 1fr; /* spacing - left, center, right */
+    display: flex;
+    justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   .brand {
+    position: absolute;
+    left: 24px;
     display: inline-flex; /* display: flex creates a flexbox layout */
     align-items: center;
     gap: 12px;
@@ -156,7 +159,7 @@ const isActiveLink = (href: string) =>
     font-size: 2.25rem;
     font-weight: 500;
     line-height: 1;
-    letter-spacing: -0.05em;
+    letter-spacing: normal;
     color: var(--color-text);
   }
 
@@ -194,7 +197,8 @@ const isActiveLink = (href: string) =>
   }
 
   .play-button {
-    justify-self: end;
+    position: absolute;
+    right: 24px;
     padding-inline: 24px;
     background: var(--btn-bg);
     color: #101c40;
@@ -226,38 +230,20 @@ const isActiveLink = (href: string) =>
     outline-offset: 3px;
   }
 
-  /* This media query applies styles for screens smaller than 1080px */
-  @media (max-width: 1080px) {
-    .site-header__inner {
-      gap: 1.25rem;
-    }
-
-    .brand__name {
-      font-size: 1.5rem;
-    }
-
-    .primary-nav {
-      gap: 10px;
-    }
-
-    .primary-nav__link,
-    .play-button {
-      height: 48px;
-      padding-inline: 16px;
-      font-size: 1.125rem;
-    }
-  }
-
-  @media (max-width: 720px) {
+  @media (max-width: 1140px) {
     .site-header {
-      height: 88px;
       position: relative;
       z-index: 10;
     }
 
     .site-header__inner {
-      grid-template-columns: 1fr auto;
-      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding: 24px;
+    }
+
+    .brand {
+      position: static;
     }
 
     .brand__name {
@@ -273,7 +259,6 @@ const isActiveLink = (href: string) =>
 
     .mobile-menu {
       display: block;
-      justify-self: end;
     }
 
     .mobile-menu__toggle {
@@ -324,7 +309,7 @@ const isActiveLink = (href: string) =>
       top: 100%;
       /* Spacing when mobile menu is open, does not get affected by the .site-header__inner padding */
       inset-inline: 0;
-      min-height: calc(100svh - 88px);
+      min-height: calc(100svh - 96px);
       padding: 20px 16px 40px;
       display: flex;
       flex-direction: column;
