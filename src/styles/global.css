@@ -25,10 +25,11 @@
 :root {
   /* Colors */
   --bg-color: #000000;
-  --accent-color: #1a2e5d;
+  --accent-color: #1B2B5F;
   /* Dark Blue Pill Background */
-  --accent-color-hover: #223c7a;
-  --btn-bg: #b4c6fc;
+  --accent-color-hover: #24397C;
+  --btn-bg: #b8c8ff;
+  --hyperlinks: #b8c8ff;
   /* Light Lavender/Blue for Play Now / Start Playing */
   --btn-bg-hover: #c4d4ff;
   --btn-bg-selected: #743358;
