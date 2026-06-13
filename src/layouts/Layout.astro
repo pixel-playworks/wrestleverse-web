@@ -6,8 +6,8 @@ interface Props {
   description?: string;
 }
 const {
-  title = "WrestleVerse | The Ultimate Wrestling Management Game",
-  description = "Experience the most immersive wrestling management game on iOS and Android. No lootboxes. No subs. No bullshit.",
+  title = "WrestleVerse | The Top Mobile Wrestling GM Game",
+  description = "Discover WrestleVerse, the premium mobile pro wrestling booking & management simulator. Book matches, run your promotion, and experience live-called commentary.",
 } = Astro.props;
 ---
 
@@ -21,7 +21,11 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="c3c440f7-e621-44dc-8d65-3c933840a447"></script>
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="fe8cb804-897e-4b8e-8d0a-c08c34d0a655"></script>
   </head>
   <body>
     <slot />
