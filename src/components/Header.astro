@@ -21,12 +21,10 @@ const navLinks = [
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
-// Internal links are "active" on an exact match OR when the current page is a
-// child of the link path. This keeps the News nav item highlighted on both
-// `/news` and individual article pages like `/news/february-update`.
+// Highlight `/news` on both `/news` and `/news/[slug]`.
 const isActiveLink = (href: string) =>
   href.startsWith("/") &&
-  `${currentPath}/`.startsWith(`${href.replace(/\/$/, "") || "/"}/`);;
+  `${currentPath}/`.startsWith(`${href.replace(/\/$/, "") || "/"}/`);
 ---
 
 <header class="site-header">

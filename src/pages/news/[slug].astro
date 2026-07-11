@@ -6,7 +6,6 @@ import { formatNewsDate } from "@scripts/format-date";
 import { getCollection, render } from "astro:content";
 
 // `getStaticPaths` tells Astro every URL this route should generate at build time.
-// One detail page is created per Markdown file in the `news` collection.
 export async function getStaticPaths() {
   const posts = await getCollection("news");
   return posts.map((post) => ({
@@ -95,8 +94,7 @@ const { title, date } = post.data;
     color: rgb(255 255 255 / 68%);
   }
 
-  /* `:global()` is required because the Markdown-rendered elements are injected
-     at runtime and are not children Astro can scope style selectors to directly. */
+  /* `:global()` is needed because Markdown-rendered elements are injected at runtime. */
   .article-body :global(h1) {
     margin-bottom: 24px;
     font-family: var(--font-display);
@@ -131,12 +129,37 @@ const { title, date } = post.data;
   }
 
   .article-body :global(ul) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 820px;
+    margin-top: 8px;
     margin-bottom: 24px;
-    padding-left: 24px;
+    padding-left: 0;
+    list-style: none;
   }
 
   .article-body :global(li) {
-    margin-bottom: 8px;
+    min-height: 56px;
+    border: 1px solid rgb(184 200 255 / 16%);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    background: rgb(255 255 255 / 4%);
+    box-shadow: 0 16px 40px rgb(0 0 0 / 24%);
+    font-family: var(--font-rounded);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: rgb(255 255 255 / 84%);
+  }
+
+  .article-body :global(li p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .article-body :global(em),
+  .article-body :global(i) {
+    font-style: italic;
+    color: rgb(255 255 255 / 92%);
   }
 
   .article-body :global(img) {

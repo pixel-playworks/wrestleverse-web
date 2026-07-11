@@ -13,8 +13,7 @@ WrestleVerse 26.2 is now live on the App Store for iOS and iPadOS! The headline 
 ### The motivation
 The _Auto Booker_ in WrestleVerse is fundamental towards 2 things:
 * allowing the player to quickly put together a card
-* simulating the shows of the rival promotions
-So it's crucial for us to continuously evolve the functionality of the _Auto Booker_. We want you to bring your ideas to life quickly and easily, inside a more realistic wider universe.
+* simulating the shows of the rival promotions, so it's crucial for us to continuously evolve the functionality of the _Auto Booker_. We want you to bring your ideas to life quickly and easily, inside a more realistic wider universe.
 
 ### The focuses
 

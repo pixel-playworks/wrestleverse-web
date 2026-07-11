@@ -31,8 +31,6 @@ const { title, date, image } = post.data;
 </a>
 
 <style>
-  /* The card is a 1:1 block that scales down on narrow viewports but never
-     exceeds the 348px design spec. `overflow: hidden` clips the image zoom. */
   .news-card {
     position: relative;
     display: block;
@@ -59,10 +57,7 @@ const { title, date, image } = post.data;
     transform: scale(1.05);
   }
 
-  /* 
-    #1B2B5F at 70% opacity on top fading to fully opaque at the bottom,
-    with a 2px backdrop blur. 
-  */
+  /* Bottom overlay: #1B2B5F gradient from 70% to 100% opacity with 2px blur. */
   .news-card__overlay {
     position: absolute;
     inset: auto 0 0 0;
