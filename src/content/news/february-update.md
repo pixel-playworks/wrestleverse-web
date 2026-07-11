@@ -23,7 +23,7 @@ Based on various feedback over the years, we thought of a few possible focus are
 * Balanced use of the roster
 * More variety
 And in the _December 2025 Player Survey_, we asked our players what their strongest priorities were from that list:
-![Graph of responses roughly evenly distributed](https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+![Graph of responses roughly evenly distributed](/mo.jpg)
 Although there were some definitive slight preferences, it was overall so balanced that we felt we should tackle all of them. 
 
 ### The new engine
