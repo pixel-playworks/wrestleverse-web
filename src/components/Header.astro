@@ -11,7 +11,7 @@ const navLinks = [
     target: "_blank",
     isCta: true,
   },
-  { label: "News", href: "/news"},
+  { label: "News", href: "/news" },
   {
     label: "Roadmap",
     href: "https://pixelplayworks.notion.site/wrestleverse-roadmap",
@@ -20,8 +20,13 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+// Internal links are "active" on an exact match OR when the current page is a
+// child of the link path. This keeps the News nav item highlighted on both
+// `/news` and individual article pages like `/news/february-update`.
 const isActiveLink = (href: string) =>
-  href.startsWith("/") && (href.replace(/\/$/, "") || "/") === currentPath;
+  href.startsWith("/") &&
+  `${currentPath}/`.startsWith(`${href.replace(/\/$/, "") || "/"}/`);;
 ---
 
 <header class="site-header">
