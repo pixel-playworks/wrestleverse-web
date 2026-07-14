@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { formatNewsDate } from "@scripts/format-date";
+
+interface Props {
+  post: CollectionEntry<"news">;
+}
+
+const { post } = Astro.props;
+const { title, date, image } = post.data;
+---
+
+<a href={`/news/${post.id}`} class="news-card">
+  <!-- `image` here is the resolved asset object from the schema's `image()` helper;
+      Astro optimizes it at build time and generates a responsive srcset. -->
+  <Image
+    src={image}
+    alt=""
+    width={348}
+    height={348}
+    densities={[1, 2]}
+    class="news-card__image"
+  />
+  <div class="news-card__overlay">
+    <div class="news-card__text">
+      <h2 class="news-card__title">{title}</h2>
+      <p class="news-card__subtitle">{formatNewsDate(date)}</p>
+    </div>
+  </div>
+</a>
+
+<style>
+  .news-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 348px;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: box-shadow var(--transition);
+  }
+
+  .news-card:hover {
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+  }
+
+  .news-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+  }
+
+  .news-card:hover .news-card__image {
+    transform: scale(1.05);
+  }
+
+  /* Bottom overlay: #1B2B5F gradient from 70% to 100% opacity with 2px blur. */
+  .news-card__overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 0 0 24px 24px;
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 43, 95, 0.7),
+      rgba(27, 43, 95, 1)
+    );
+    backdrop-filter: blur(2px);
+    transition: background var(--transition);
+  }
+
+  .news-card:hover .news-card__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 43, 95, 0.85),
+      rgba(27, 43, 95, 1)
+    );
+  }
+
+  .news-card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .news-card__title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .news-card__subtitle {
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>

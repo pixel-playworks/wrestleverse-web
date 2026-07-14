@@ -442,9 +442,17 @@ With pnpm 11, an unreviewed dependency install script fails installation by
 default. Keep this allowlist narrow: if a future install reports another
 package, review why it needs to run a script before approving it.
 
+## Netlify Deploy Previews
+
+Netlify builds and deploys the site on every pull request.
+
+- `netlify.toml` configures the build command (`astro build`) and publish directory (`dist`).
+- `NODE_VERSION` is pinned to `22` to match `package.json` engines.
+- Deploy previews are provided by Netlify's native Git integration. The repo must be imported/connected in the Netlify UI for previews to appear on PRs.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
 - Content collection patterns if the project adds editorial content.
 - Test strategy when interactions or business logic grow.
-- Deployment and adapter decisions if the site moves beyond static output.
+- Adapter decisions if the site moves beyond static output.
