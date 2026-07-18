@@ -44,6 +44,11 @@ const { title, date, image } = post.data;
     border-radius: 24px;
     overflow: hidden;
     isolation: isolate;
+    transition: transform 0.2s ease;
+  }
+
+  .news-card:hover {
+    transform: scale(1.03);
   }
 
   .news-card__image {
