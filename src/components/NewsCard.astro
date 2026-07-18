@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import { formatNewsDate } from "@scripts/format-date";
+import { formatRelativeDate } from "@scripts/format-date";
 
 interface Props {
   post: CollectionEntry<"news">;
@@ -24,8 +24,12 @@ const { title, date, image } = post.data;
   />
   <div class="news-card__overlay">
     <div class="news-card__text">
+      <time
+        class="news-card__subtitle"
+        datetime={date.toISOString()}
+        data-relative>{formatRelativeDate(date)}</time
+      >
       <h2 class="news-card__title">{title}</h2>
-      <p class="news-card__subtitle">{formatNewsDate(date)}</p>
     </div>
   </div>
 </a>
@@ -39,6 +43,7 @@ const { title, date, image } = post.data;
     aspect-ratio: 1 / 1;
     border-radius: 24px;
     overflow: hidden;
+    isolation: isolate;
     transition: box-shadow var(--transition);
   }
 
@@ -47,8 +52,11 @@ const { title, date, image } = post.data;
   }
 
   .news-card__image {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: -1px;
+    display: block;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
     object-fit: cover;
     transition: transform var(--transition);
   }
@@ -56,42 +64,52 @@ const { title, date, image } = post.data;
   .news-card:hover .news-card__image {
     transform: scale(1.05);
   }
-
-  /* Bottom overlay: #1B2B5F gradient from 70% to 100% opacity with 2px blur. */
   .news-card__overlay {
     position: absolute;
-    inset: auto 0 0 0;
-    height: 84px;
+    inset: 0;
     display: flex;
-    align-items: center;
-    padding-left: 20px;
-    border-radius: 0 0 24px 24px;
+    align-items: flex-end;
     background: linear-gradient(
-      to bottom,
-      rgba(27, 43, 95, 0.7),
-      rgba(27, 43, 95, 1)
-    );
+        to bottom,
+        rgba(27, 43, 95, 0.7),
+        rgba(27, 43, 95, 1)
+      )
+      bottom / 100% 84px no-repeat;
+  }
+
+  .news-card__overlay::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 -4px 0;
+    height: 88px;
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    transition: background var(--transition);
+    pointer-events: none;
   }
 
   .news-card:hover .news-card__overlay {
     background: linear-gradient(
-      to bottom,
-      rgba(27, 43, 95, 0.85),
-      rgba(27, 43, 95, 1)
-    );
+        to bottom,
+        rgba(27, 43, 95, 0.85),
+        rgba(27, 43, 95, 1)
+      )
+      bottom / 100% 84px no-repeat;
   }
 
   .news-card__text {
+    position: relative;
+    height: 84px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2px;
+    padding-left: 20px;
   }
 
   .news-card__title {
     font-family: var(--font-display);
     font-size: 24px;
+    font-weight: 600;
     line-height: 1.2;
     color: #ffffff;
   }
@@ -103,3 +121,15 @@ const { title, date, image } = post.data;
     color: rgba(255, 255, 255, 0.6);
   }
 </style>
+
+<!-- Re-compute the relative date in the browser so "ago" is measured from the
+     visit, not the last build  -->
+<script>
+  import { formatRelativeDate } from "@scripts/format-date";
+
+  for (const el of document.querySelectorAll<HTMLTimeElement>(
+    "time[data-relative]",
+  )) {
+    el.textContent = formatRelativeDate(new Date(el.dateTime));
+  }
+</script>

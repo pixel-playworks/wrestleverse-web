@@ -9,7 +9,7 @@ import { getCollection } from "astro:content";
 // We sort by `date` descending so the newest article appears first.
 const posts = await getCollection("news");
 const sortedPosts = posts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---
 
@@ -69,7 +69,8 @@ const sortedPosts = posts.sort(
 
   @media (max-width: 1400px) {
     .news-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 348px));
+      justify-content: center;
     }
   }
 
