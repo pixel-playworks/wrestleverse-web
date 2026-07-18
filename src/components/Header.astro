@@ -5,12 +5,6 @@ import brandLogo from "@assets/images/PrimaryRounded_Web.png";
 
 const navLinks = [
   { label: "About", href: "/about" },
-  {
-    label: "Features",
-    href: APP_STORE_URL,
-    target: "_blank",
-    isCta: true,
-  },
   { label: "News", href: "/news" },
   {
     label: "Roadmap",
@@ -54,10 +48,7 @@ const isActiveLink = (href: string) =>
             href={link.href}
             target={link.target}
             rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
-            data-cta-link={link.isCta ? "" : undefined}
-            data-umami-event={
-              link.isCta ? "CTA Click" : `Nav Link - ${link.label}`
-            }
+            data-umami-event={`Nav Link - ${link.label}`}
             class:list={[
               "primary-nav__link",
               { "primary-nav__link--active": isActiveLink(link.href) },
@@ -96,10 +87,7 @@ const isActiveLink = (href: string) =>
               href={link.href}
               target={link.target}
               rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
-              data-cta-link={link.isCta ? "" : undefined}
-              data-umami-event={
-                link.isCta ? "CTA Click" : `Nav Link - ${link.label}`
-              }
+              data-umami-event={`Nav Link - ${link.label}`}
               class:list={[
                 "mobile-menu__link",
                 // if the link is active, add the class "mobile-menu__link--active"
