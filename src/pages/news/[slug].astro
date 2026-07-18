@@ -32,7 +32,8 @@ const { title, date } = post.data;
         <p class="article-kicker">News</p>
         <h1 class="article-title">{title}</h1>
         <time class="article-date" datetime={date.toISOString()}
-          >{formatNewsDate(date)}</time>
+          >{formatNewsDate(date)}</time
+        >
       </header>
 
       <div class="article-body">
@@ -70,14 +71,16 @@ const { title, date } = post.data;
     color: var(--btn-bg);
   }
 
+  /* Matches the About page's h1 styling. */
   .article-title {
     max-width: 820px;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-size: clamp(3rem, 11vw, 8rem);
     font-weight: 500;
-    line-height: 1.05;
+    line-height: 1;
     color: rgb(255 255 255 / 92%);
+    text-shadow: 0 4px 18px rgb(184 200 255 / 18%);
   }
 
   .article-date {
@@ -96,12 +99,17 @@ const { title, date } = post.data;
 
   /* `:global()` is needed because Markdown-rendered elements are injected at runtime. */
   .article-body :global(h1) {
-    margin-bottom: 24px;
+    margin-top: 56px;
+    margin-bottom: 20px;
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.25rem, 5vw, 4rem);
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 1.05;
     color: var(--color-text);
+  }
+
+  .article-body :global(h1:first-child) {
+    margin-top: 0;
   }
 
   .article-body :global(h2) {
@@ -115,11 +123,12 @@ const { title, date } = post.data;
   }
 
   .article-body :global(h3) {
-    margin-top: 32px;
+    margin-top: 40px;
     margin-bottom: 12px;
     font-family: var(--font-display);
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     font-weight: 500;
+    line-height: 1.2;
     color: rgb(255 255 255 / 80%);
   }
 
