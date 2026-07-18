@@ -44,25 +44,14 @@ const { title, date, image } = post.data;
     border-radius: 24px;
     overflow: hidden;
     isolation: isolate;
-    transition: box-shadow var(--transition);
-  }
-
-  .news-card:hover {
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
   }
 
   .news-card__image {
     position: absolute;
     inset: -1px;
-    display: block;
     width: calc(100% + 2px);
     height: calc(100% + 2px);
     object-fit: cover;
-    transition: transform var(--transition);
-  }
-
-  .news-card:hover .news-card__image {
-    transform: scale(1.05);
   }
   .news-card__overlay {
     position: absolute;
@@ -84,16 +73,6 @@ const { title, date, image } = post.data;
     height: 88px;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    pointer-events: none;
-  }
-
-  .news-card:hover .news-card__overlay {
-    background: linear-gradient(
-        to bottom,
-        rgba(27, 43, 95, 0.85),
-        rgba(27, 43, 95, 1)
-      )
-      bottom / 100% 84px no-repeat;
   }
 
   .news-card__text {
