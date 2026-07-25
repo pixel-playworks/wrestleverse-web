@@ -1,6 +1,7 @@
 ---
 import "../../styles/global.css";
 import Header from "@components/Header.astro";
+// import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import { formatNewsDate } from "@scripts/format-date";
 import { getCollection, render } from "astro:content";
@@ -17,12 +18,28 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 // `render()` converts the Markdown body into an Astro component (`Content`).
 const { Content } = await render(post);
-const { title, date } = post.data;
+const { title, date, description } = post.data;
+
+const metaDescription =
+  description ?? `Read the latest WrestleVerse news: ${title}.`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  headline: title,
+  description: metaDescription,
+  datePublished: date.toISOString(),
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  author: { "@id": new URL("/#organization", Astro.site).href },
+  publisher: { "@id": new URL("/#organization", Astro.site).href },
+};
 ---
 
 <Layout
   title={`${title} | WrestleVerse`}
-  description={`Read the latest WrestleVerse news: ${title}.`}
+  description={metaDescription}
+  type="article"
+  structuredData={[articleSchema]}
 >
   <Header />
 
@@ -41,6 +58,8 @@ const { title, date } = post.data;
       </div>
     </article>
   </main>
+
+  {/* <Footer /> */}
 </Layout>
 
 <style>
@@ -98,7 +117,9 @@ const { title, date } = post.data;
   }
 
   /* `:global()` is needed because Markdown-rendered elements are injected at runtime. */
-  .article-body :global(h1) {
+  /* Markdown `#` headings are demoted to h2 at build time (see astro.config.mjs)
+     so the article title stays the page's only h1. */
+  .article-body :global(h2) {
     margin-top: 56px;
     margin-bottom: 20px;
     font-family: var(--font-display);
@@ -108,18 +129,8 @@ const { title, date } = post.data;
     color: var(--color-text);
   }
 
-  .article-body :global(h1:first-child) {
+  .article-body :global(h2:first-child) {
     margin-top: 0;
-  }
-
-  .article-body :global(h2) {
-    margin-top: 48px;
-    margin-bottom: 16px;
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 500;
-    line-height: 1.2;
-    color: rgb(255 255 255 / 90%);
   }
 
   .article-body :global(h3) {

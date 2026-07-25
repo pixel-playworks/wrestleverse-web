@@ -2,11 +2,12 @@
 title: "Introducing Auto Booker v3"
 date: "2026-07-17"
 image: "./images/february-update.png"
+description: "Auto Booker v3 rebuilds the engine around five generators — rivalry progression, roster balance, talent pushes, title spotlights — plus new match paces."
 ---
 
-# The February Update
+# The July Update
 
-WrestleVerse 26.2 is now live on the App Store for iOS and iPadOS! The headline feature in this month's update is an overhaul we've been wanting to do for a while, and that's the brand new _Auto Booker_.
+WrestleVerse 26.7 is now live on the App Store for iOS and iPadOS! The headline feature in this month's update is an overhaul we've been wanting to do for a while, and that's the brand new _Auto Booker_.
 
 # Auto Booker v3
 

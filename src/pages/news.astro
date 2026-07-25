@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
+// import Footer from "@components/Footer.astro";
 import NewsCard from "@components/NewsCard.astro";
 import { getCollection } from "astro:content";
 
@@ -23,6 +24,9 @@ const sortedPosts = posts.sort(
     <div class="news-shell">
       <section class="news-intro" aria-labelledby="news-heading">
         <p class="news-kicker">News</p>
+        <h1 id="news-heading" class="sr-only">
+          WrestleVerse News &amp; Updates
+        </h1>
       </section>
 
       <section class="news-grid" aria-label="Latest news">
@@ -30,6 +34,8 @@ const sortedPosts = posts.sort(
       </section>
     </div>
   </main>
+
+  {/* <Footer /> */}
 </Layout>
 
 <style>
@@ -46,6 +52,19 @@ const sortedPosts = posts.sort(
 
   .news-intro {
     margin-bottom: 64px;
+  }
+
+  /* Visually hidden but available to screen readers and search engines. */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .news-kicker {

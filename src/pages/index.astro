@@ -1,16 +1,102 @@
 ---
 import Hero from "@components/Hero.astro";
 import Header from "@components/Header.astro";
-import Layout from "@layouts/Layout.astro";
 // import Footer from "@components/Footer.astro";
+import Layout from "@layouts/Layout.astro";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@scripts/store-links";
+
+// Declares the game itself as an entity for search and AI engines.
+const videoGameSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  name: "WrestleVerse: Pro Wrestling GM",
+  url: Astro.site?.href,
+  description:
+    "A premium mobile pro wrestling booking & management simulator. Book matches, create rivalries, run your own promotion, and experience live-called commentary.",
+  genre: ["Sports Management", "Simulation"],
+  gamePlatform: ["iOS", "iPadOS", "macOS", "Android"],
+  applicationCategory: "Game",
+  operatingSystem: "iOS, iPadOS, macOS, Android",
+  publisher: { "@id": new URL("/#organization", Astro.site).href },
+  sameAs: [APP_STORE_URL, PLAY_STORE_URL],
+};
 ---
 
-<Layout>
+<Layout structuredData={[videoGameSchema]}>
   <Header />
 
   <main>
     <Hero />
+
+    <section class="home-intro" aria-labelledby="home-intro-heading">
+      <div class="home-intro__shell">
+        <h2 id="home-intro-heading">The Mobile Wrestling GM Game</h2>
+        <p>
+          <em>WrestleVerse</em> is a premium pro wrestling booking &amp; management
+          simulator for iOS, iPadOS, macOS, and Android. Book matches, plan angles,
+          create rivalries, and grow your promotion in a living wrestling world —
+          with every moment called live by our unique Commentary Engine.
+        </p>
+        <p>
+          One purchase, no ads, no microtransactions. Learn more <a
+            href="/about">about WrestleVerse</a
+          > or catch up on the <a href="/news">latest news and updates</a>.
+        </p>
+      </div>
+    </section>
   </main>
 
-  <!-- <Footer /> -->
+  {/* <Footer /> */}
 </Layout>
+
+<style>
+  .home-intro {
+    background: var(--color-bg);
+    padding: 80px 24px;
+  }
+
+  .home-intro__shell {
+    width: min(100%, 980px);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .home-intro h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin-bottom: 20px;
+  }
+
+  .home-intro p {
+    max-width: 720px;
+    margin-inline: auto;
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: rgb(255 255 255 / 68%);
+  }
+
+  .home-intro a {
+    color: var(--hyperlinks);
+    text-decoration: underline;
+    transition: opacity var(--transition);
+  }
+
+  .home-intro a:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .home-intro {
+      padding: 56px 24px;
+    }
+
+    .home-intro p {
+      font-size: 1.125rem;
+    }
+  }
+</style>
