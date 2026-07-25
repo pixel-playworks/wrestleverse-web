@@ -1,0 +1,42 @@
+<section class="slogan">
+  <p class="slogan__text">
+    <span class="slogan__line">No ads.</span>
+    <span class="slogan__line">No microtransactions.</span>
+    <span class="slogan__line">No subscriptions.</span>
+    <span class="slogan__line">No pay-to-win.</span>
+    <strong class="slogan__line slogan__line--strong">No bullshit.</strong>
+  </p>
+</section>
+
+<style>
+  .slogan {
+    padding-inline: 24px;
+    background: var(--color-bg);
+    text-align: center;
+  }
+
+  .slogan__text {
+    width: min(100%, 1240px);
+    margin-inline: auto;
+    font-family: var(--font-display);
+    font-size: min(84px, 6.4vw);
+    line-height: min(104px, 7.92vw);
+    color: var(--color-text);
+  }
+
+  .slogan__line {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .slogan__line--strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .slogan__text {
+      font-size: min(44px, calc((100vw - 72px) / 9.5));
+      line-height: 1.2;
+    }
+  }
+</style>
