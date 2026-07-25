@@ -1,7 +1,7 @@
 ---
 title: "Introducing Auto Booker v1"
 date: "2026-02-24"
-image: "./images/february-update.png"
+image: "./images/FebruaryUpdate.jpg"
 ---
 
 # The February Update
