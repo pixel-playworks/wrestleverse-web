@@ -1,0 +1,38 @@
+---
+// https://www.youtube.com/watch?v=ZE8O1UCUIfY
+const videoId = "ZE8O1UCUIfY";
+---
+
+<section class="video">
+  <iframe
+    class="video__frame"
+    src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+    title="WrestleVerse: Pro Wrestling GM"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen></iframe>
+</section>
+
+<style>
+  .video {
+    padding: 96px 24px;
+  }
+
+  .video__frame {
+    display: block;
+    width: min(100%, 1240px);
+    height: auto;
+    margin-inline: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 20px;
+    background: var(--color-surface);
+  }
+
+  @media (max-width: 768px) {
+    .video {
+      padding: 36px 24px 64px;
+    }
+  }
+</style>
