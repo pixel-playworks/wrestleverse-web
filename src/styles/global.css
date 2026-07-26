@@ -36,7 +36,6 @@
 
   --color-bg: #000000;
   --color-surface: #0a0a0a;
-  --color-surface-2: #111111;
   /* Raised panels that sit on the black page, such as the review pills */
   --color-surface-raised: #191c2e;
   --color-border: rgba(255, 255, 255, 0.05);
@@ -57,8 +56,6 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-panel: 20px;
-  --radius-lg: 24px;
-  --radius-xl: 40px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
