@@ -1,13 +1,23 @@
 ---
 const reviews = [
-  "“This game is nothing like any other wrestling game I’ve come across on mobile” - ⭐️⭐️⭐️⭐️⭐️",
-  "“Without a doubt, the best booking game that exists … I could not be happier” - ⭐️⭐️⭐️⭐️⭐️",
-  "“One of the best purchases I’ve ever made” - ⭐️⭐️⭐️⭐️⭐️",
+  "“This game is nothing like any other wrestling game I’ve come across on mobile”",
+  "“Without a doubt, the best booking game that exists … I could not be happier”",
+  "“One of the best purchases I’ve ever made”",
 ];
+
+const stars = "⭐️⭐️⭐️⭐️⭐️";
 ---
 
 <section class="reviews" aria-label="Player reviews">
-  {reviews.map((review) => <p class="reviews__quote">{review}</p>)}
+  {
+    reviews.map((review) => (
+      <p class="reviews__quote">
+        {review} -{" "}
+        <span aria-hidden="true">{stars}</span>
+        <span class="sr-only">5 out of 5 stars</span>
+      </p>
+    ))
+  }
 </section>
 
 <style>
