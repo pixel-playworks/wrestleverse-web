@@ -13,8 +13,9 @@ const stars = "⭐️⭐️⭐️⭐️⭐️";
     reviews.map((review) => (
       <blockquote class="reviews__quote">
         {review} -{" "}
-        <span aria-hidden="true">{stars}</span>
-        <span class="sr-only">5 out of 5 stars</span>
+        <span role="img" aria-label="5 out of 5 stars">
+          {stars}
+        </span>
       </blockquote>
     ))
   }
