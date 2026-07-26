@@ -11,11 +11,11 @@ const stars = "⭐️⭐️⭐️⭐️⭐️";
 <section class="reviews" aria-label="Player reviews">
   {
     reviews.map((review) => (
-      <p class="reviews__quote">
+      <blockquote class="reviews__quote">
         {review} -{" "}
         <span aria-hidden="true">{stars}</span>
         <span class="sr-only">5 out of 5 stars</span>
-      </p>
+      </blockquote>
     ))
   }
 </section>
