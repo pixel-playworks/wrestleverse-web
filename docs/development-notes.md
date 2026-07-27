@@ -251,6 +251,65 @@ block for classes that must style `set:html` output. Keep this limited to the
 specific injected classes, and only use `set:html` for trusted hardcoded or
 sanitized HTML.
 
+### Third-Party Embeds
+
+`VideoEmbed.astro` is a plain `<iframe>` for the YouTube embed, loaded with the
+page and with no `autoplay` parameter. That combination is deliberate and was
+arrived at by elimination — read this before changing any of it.
+
+Safari (but never Chromium) plays this embed with the audio running seconds
+ahead of the picture. An isolation harness of side-by-side variants established
+that **two independent things trigger it**:
+
+1. `autoplay=1` on the embed URL. A bare `<iframe>` with no library, no
+   containment and no border-radius still lagged with it, and the plain
+   youtube.com watch page was always clean.
+2. Clipping the player. A rounded, paint-contained box around the iframe lagged
+   even with autoplay removed.
+
+Avoiding both is what makes it smooth, so the current component does: no
+autoplay parameter, and the radius sits on the iframe itself rather than on a
+wrapper with `overflow: hidden` or `contain`. Note WebKit does not clip an
+iframe to its own border-radius, so the corners are rounded in Chromium and
+square in Safari — cosmetic, and the price of not clipping the player.
+
+Loading eagerly is what makes one tap enough. A click-to-load poster facade
+costs a tap to mount the iframe and a second tap on YouTube's own play button,
+unless it passes `autoplay=1` — which is trigger 1. With the iframe already
+present, the first tap lands on YouTube's play button directly.
+
+The trade-off accepted here is that every visitor downloads the YouTube player
+(roughly a megabyte) whether or not they watch. `loading="lazy"` does not
+meaningfully help: it is supported everywhere that matters (Chrome 77, Safari
+16.4, Firefox 121), but Chrome treats anything within ~1250px of the viewport as
+near-viewport and fetches it anyway. Measured here, the video sits 836px below a
+900px viewport and the player was requested 22ms in, against a load event at
+416ms.
+
+`astro-embed` (`lite-youtube-embed`) was tried for this and removed. It is a
+good facade, but its `getParams()` appends `autoplay=1` unconditionally with no
+opt-out; `params="autoplay=0"` only yields `autoplay=0&autoplay=1`, whose
+precedence is undefined; and suppressing it needs a monkey-patch of the
+package's prototype that would silently regress on upgrade. Its own CSS also
+sets `contain: content`, which is trigger 2.
+
+**The real fix is to stop using the embed.** The clip is 33 seconds of footage we
+own, so self-hosting it as an MP4 behind a native `<video poster preload="none"
+playsinline controls>` removes every of these constraints at once: one tap,
+native WebKit playback, no third-party JavaScript, no dependency, and a sharp
+poster taken from the source instead of YouTube's 640x360 thumbnail. It needs
+the source file. Prefer this if it becomes available.
+
+If the poster facade is ever revisited, note that YouTube only serves the
+thumbnail sizes it generated for a video. Probe
+`https://i.ytimg.com/vi/<id>/<name>.jpg` first: `ZE8O1UCUIfY` has no
+`maxresdefault` or `hq720`, and `sddefault`/`hqdefault` arrive 4:3 with
+letterbox bars needing a crop to the real 16:9 frame. `sharp` can do that crop:
+
+```sh
+node -e "require('sharp')('in.jpg').extract({left:0,top:60,width:640,height:360}).toFile('out.jpg')"
+```
+
 For a simple mobile navigation toggle, a native `<details>` with a styled
 `<summary>` supplies disclosure state and keyboard activation without a
 framework island. When close-on-selection and `Escape` behavior is mobile-only,
