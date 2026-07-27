@@ -251,36 +251,6 @@ block for classes that must style `set:html` output. Keep this limited to the
 specific injected classes, and only use `set:html` for trusted hardcoded or
 sanitized HTML.
 
-### Third-Party Embeds
-
-`VideoEmbed.astro` is a plain `<iframe>` for the YouTube embed, loaded with the
-page and with no `autoplay` parameter. That combination is deliberate and was
-arrived at by elimination — read this before changing any of it.
-
-Safari (but never Chromium) plays this embed with the audio running seconds
-ahead of the picture. An isolation harness of side-by-side variants established
-that **two independent things trigger it**:
-
-### Third-Party Embeds
-
-`VideoEmbed.astro` is a plain `<iframe>` for the YouTube embed, loaded with the
-page and with no `autoplay` parameter. That combination is deliberate and was
-arrived at by elimination — read this before changing any of it.
-
-Safari (but never Chromium) plays this embed with the audio running seconds
-ahead of the picture. An isolation harness of side-by-side variants established
-that **two independent things trigger it**:
-
-### Third-Party Embeds
-
-`VideoEmbed.astro` is a plain `<iframe>` for the YouTube embed, loaded with the
-page and with no `autoplay` parameter. That combination is deliberate and was
-arrived at by elimination — read this before changing any of it.
-
-Safari (but never Chromium) plays this embed with the audio running seconds
-ahead of the picture. An isolation harness of side-by-side variants established
-that **two independent things trigger it**:
-
 ### Decorative Media And Icons
 
 Use `aria-hidden="true"` for decorative SVGs or images when the surrounding
