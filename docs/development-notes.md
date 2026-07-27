@@ -251,6 +251,14 @@ block for classes that must style `set:html` output. Keep this limited to the
 specific injected classes, and only use `set:html` for trusted hardcoded or
 sanitized HTML.
 
+For a simple mobile navigation toggle, a native `<details>` with a styled
+`<summary>` supplies disclosure state and keyboard activation without a
+framework island. When close-on-selection and `Escape` behavior is mobile-only,
+keep it in a dynamically imported module guarded by the matching mobile
+`matchMedia()` query. A tiny gate still runs on desktop so resizing into the
+mobile layout can load the enhancement.
+https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details
+
 ### Decorative Media And Icons
 
 Use `aria-hidden="true"` for decorative SVGs or images when the surrounding
