@@ -38,6 +38,8 @@
   --color-surface: #0a0a0a;
   /* Raised panels that sit on the black page, such as the review pills */
   --color-surface-raised: #191c2e;
+  /* Footer band that closes the page */
+  --color-surface-footer: #111322;
   --color-border: rgba(255, 255, 255, 0.05);
   --color-text: #ffffff;
   --color-muted: #a0a0a0;
