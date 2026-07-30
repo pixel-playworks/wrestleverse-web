@@ -25,7 +25,7 @@ Based on various feedback over the years, we thought of a few possible focus are
 * More variety
 
 And in the December 2025 Player Survey, we asked our players what their strongest priorities were from that list:
-![Graph of survey results showing a roughly even distribution between the 3 focus areas](/./images/february-update/survey_results_graph.png)
+![Graph of survey results showing a roughly even distribution between the 3 focus areas](./images/february-update/survey_results_graph.png)
 Although there were some slight preferences, the results were balanced overall, so we decided to tackle all three areas.
 
 ### The new engine

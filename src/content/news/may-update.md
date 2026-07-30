@@ -22,13 +22,13 @@ The problem is that the system wasn’t really built to handle some of the creat
 
 Our December 2025 Player Survey then also showed that a new Spots system was in fact, the highest priority for our players:
 
-![Graph of survey results showing Spots v4 as the overwhelmingly highest ranked choice over Sandbox Mode, Custom Incident Events, The Visual Engine, and Multiplayer](/./images/may-update/survey_results.png)
+![Graph of survey results showing Spots v4 as the overwhelmingly highest ranked choice over Sandbox Mode, Custom Incident Events, The Visual Engine, and Multiplayer](./images/may-update/survey_results.png)
 
 ### The result
 
 The end product is a more flexible and logical booking flow, allowing you to book hundreds of combinations of sequences, with a little help along the way:
 
-![Sequence of 3 screenshots showing the Match Scripts flow, using a springboard dive move as an example](/./images/may-update/scripts_flow.jpg)
+![Sequence of 3 screenshots showing the Match Scripts flow, using a springboard dive move as an example](./images/may-update/scripts_flow.jpg)
 
 ### The future
 
@@ -45,7 +45,7 @@ We've now also added the ability to select multiple wrestlers at once when booki
 
 This is also supported in any situation where you may need to select multiple wrestlers, such as when you’re creating rivalries.
 
-![Screenshot showing 3 wrestlers selected at once in the Roster screen](/./images/may-update/multi_select.png)
+![Screenshot showing 3 wrestlers selected at once in the Roster screen](./images/may-update/multi_select.png)
 
 # Everything Else
 

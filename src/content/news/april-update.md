@@ -12,7 +12,7 @@ WrestleVerse 26.4 is now live on the App Store for iOS, iPadOS and, for the firs
 
 The iPad version of WrestleVerse has been ported to macOS, along with additional features to take advantage of the desktop experience, such as denser layouts and keyboard shortcuts. And the best part? For those who have already purchased WrestleVerse on iOS or iPadOS, it's completely free to download on the Mac App Store!
 
-![An App Store screenshot of the WrestleVerse macOS app](/./images/april-update/mac_screenshot.png)
+![An App Store screenshot of the WrestleVerse macOS app](./images/april-update/mac_screenshot.png)
 
 # UI Improvements
 

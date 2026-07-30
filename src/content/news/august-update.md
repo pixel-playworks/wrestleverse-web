@@ -12,11 +12,11 @@ WrestleVerse 26.8 is now live on the App Store for iOS, iPadOS, macOS, and the P
 
 With Match & Angle Scripts (formerly Spots v4) reaching maturity, it was time for us to tackle the 2nd highest request from our December 2025 Player Survey:
 
-![Graph of survey results showing Spots v4 as the highest ranked choice, with Sandbox Mode as the 2nd choice, followed by Custom Incident Events, The Visual Engine, and Multiplayer](/./images/august-update/survey_results1.png)
+![Graph of survey results showing Spots v4 as the highest ranked choice, with Sandbox Mode as the 2nd choice, followed by Custom Incident Events, The Visual Engine, and Multiplayer](./images/august-update/survey_results1.png)
 
 We followed up in our June 2026 Player Survey to determine which mechanics players felt were restricting them the most in standard gameplay:
 
-![Graph of survey results showing Retirement as the highest ranked choice, followed by Contracts, Injuries, Morale, and Ratings](/./images/august-update/survey_results2.png)
+![Graph of survey results showing Retirement as the highest ranked choice, followed by Contracts, Injuries, Morale, and Ratings](./images/august-update/survey_results2.png)
 
 And we’ve now packaged the following into a holistic Sandbox Mode that players can enable when creating a new save file:
 
@@ -58,13 +58,13 @@ In addition to those mechanics being disabled, we’ve also added 2 pieces of ad
 
 In our June 2026 Player Survey, the 2 standout requests were for a Social Feed, and a #1 Contender system:
 
-![Graph of survey results showing Social Feed as the highest ranked choice, followed by #1 Contender, a tie between Fatigue & Roster Tags, then finally Training](/./images/august-update/survey_results3.png)
+![Graph of survey results showing Social Feed as the highest ranked choice, followed by #1 Contender, a tie between Fatigue & Roster Tags, then finally Training](./images/august-update/survey_results3.png)
 
 A Social Feed is a much more ambitious project that will begin development soon, so for now, we decided to tackle a #1 Contender’s system.
 
 We’ve now developed a Title Contenders Engine which is always running in the background of the game to determine who the top 5 contenders for each championship in your promotion are, and also tell you why:
 
-![Screenshot showing the #2 contender ranked because of their momentum, popularity, and card position, whereas the #3 contender is ranked because of their momentum, popularity and match record](/./images/august-update/contenders_screenshot.png)
+![Screenshot showing the #2 contender ranked because of their momentum, popularity, and card position, whereas the #3 contender is ranked because of their momentum, popularity and match record](./images/august-update/contenders_screenshot.png)
 
 # Everything Else
 

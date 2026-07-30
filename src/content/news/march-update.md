@@ -15,7 +15,7 @@ When the holders of a multi-person championship are part of an active stable, an
 # iPad Sidebar Navigation
 
 It's now a lot easier to navigate the iPad version of the app thanks to most menu items being moved into the system sidebar on the left:
-![Screenshot of the new sidebar navigation on the iPad version of WrestleVerse](/./images/march-update/sidebar_nav_screenshot.png)
+![Screenshot of the new sidebar navigation on the iPad version of WrestleVerse](./images/march-update/sidebar_nav_screenshot.png)
 
 # Additional Incidents
 
