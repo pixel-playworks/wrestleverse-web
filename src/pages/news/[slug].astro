@@ -46,7 +46,7 @@ const { title, date } = post.data;
 <style>
   .article-page {
     min-height: calc(100svh - 96px);
-    padding: 96px 24px 120px;
+    padding: 96px var(--page-gutter) 120px;
     background: var(--color-bg);
   }
 
@@ -190,7 +190,7 @@ const { title, date } = post.data;
 
   @media (max-width: 1140px) {
     .article-page {
-      padding: 64px 24px 96px;
+      padding: 64px var(--page-gutter) 96px;
     }
 
     .article-body {

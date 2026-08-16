@@ -35,7 +35,7 @@ const sortedPosts = posts.sort(
 <style>
   .news-page {
     min-height: calc(100svh - 96px);
-    padding: 96px 24px 120px;
+    padding: 96px var(--page-gutter) 120px;
     background: var(--color-bg);
   }
 
@@ -76,7 +76,7 @@ const sortedPosts = posts.sort(
 
   @media (max-width: 960px) {
     .news-page {
-      padding: 64px 24px 96px;
+      padding: 64px var(--page-gutter) 96px;
     }
 
     .news-intro {
