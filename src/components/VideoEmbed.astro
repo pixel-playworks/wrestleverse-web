@@ -4,21 +4,52 @@ const videoId = "ZE8O1UCUIfY";
 ---
 
 <section class="video">
-  <iframe
-    class="video__frame"
-    src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-    title="WrestleVerse gameplay video"
-    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen></iframe>
+  <!-- The embed pulls ~1 MB of third-party JS, so it is mounted once the
+       section comes into view rather than on initial page load. -->
+  <div class="video__frame" data-video={videoId}></div>
 </section>
+
+<script>
+  const mount = (slot: HTMLElement) => {
+    const iframe = document.createElement("iframe");
+    iframe.className = slot.className;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${slot.dataset.video}`;
+    iframe.title = "WrestleVerse gameplay video";
+    iframe.allow = "encrypted-media; picture-in-picture; fullscreen";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allowFullscreen = true;
+    slot.replaceWith(iframe);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        mount(entry.target as HTMLElement);
+      }
+    },
+    { rootMargin: "200px" },
+  );
+
+  document
+    .querySelectorAll<HTMLElement>("[data-video]")
+    .forEach((slot) => observer.observe(slot));
+</script>
 
 <style>
   .video {
     padding: 96px var(--page-gutter);
   }
 
-  .video__frame {
+  /* Shared by the placeholder and the iframe that replaces it, so the swap
+     cannot shift the page. Global because the injected iframe has no scope
+     hash. 
+     need for the iframe CSS selector at runtime
+     before: .video__frame[data-astro-cid-mrk3q7f7] { ... }
+     after: .video[data-astro-cid-mrk3q7f7] .video__frame { ... }
+     */
+  .video :global(.video__frame) {
     display: block;
     width: min(100%, var(--content-width));
     height: auto;
