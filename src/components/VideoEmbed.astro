@@ -1,43 +1,40 @@
 ---
-import { Image } from "astro:assets";
 // https://www.youtube.com/watch?v=ZE8O1UCUIfY
-import poster from "@assets/images/video-poster.jpg";
-
 const videoId = "ZE8O1UCUIfY";
-const title = "WrestleVerse gameplay video";
 ---
 
 <section class="video">
-  <button
-    class="video__frame"
-    data-video={videoId}
-    aria-label={`Play ${title}`}
-  >
-    <Image
-      src={poster}
-      alt=""
-      widths={[360, 480, 640]}
-      sizes="(max-width: 768px) 100vw, var(--content-width)"
-      loading="lazy"
-    />
-  </button>
+  <!-- The embed pulls ~1 MB of third-party JS, so it is mounted once the
+       section comes into view rather than on initial page load. -->
+  <div class="video__frame" data-video={videoId}></div>
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>("[data-video]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const iframe = document.createElement("iframe");
-      iframe.className = button.className;
-      iframe.src = `https://www.youtube-nocookie.com/embed/${button.dataset.video}?autoplay=1`;
-      iframe.title = button.getAttribute("aria-label")!.replace(/^Play /, "");
-      iframe.allow =
-        "autoplay; encrypted-media; picture-in-picture; fullscreen";
-      iframe.referrerPolicy = "strict-origin-when-cross-origin";
-      iframe.allowFullscreen = true;
-      button.replaceWith(iframe);
-      iframe.focus();
-    });
-  });
+  const mount = (slot: HTMLElement) => {
+    const iframe = document.createElement("iframe");
+    iframe.className = slot.className;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${slot.dataset.video}`;
+    iframe.title = "WrestleVerse gameplay video";
+    iframe.allow = "encrypted-media; picture-in-picture; fullscreen";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allowFullscreen = true;
+    slot.replaceWith(iframe);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        mount(entry.target as HTMLElement);
+      }
+    },
+    { rootMargin: "200px" },
+  );
+
+  document
+    .querySelectorAll<HTMLElement>("[data-video]")
+    .forEach((slot) => observer.observe(slot));
 </script>
 
 <style>
@@ -45,6 +42,9 @@ const title = "WrestleVerse gameplay video";
     padding: 96px var(--page-gutter);
   }
 
+  /* Shared by the placeholder and the iframe that replaces it, so the swap
+     cannot shift the page. Global because the injected iframe has no scope
+     hash. */
   .video :global(.video__frame) {
     display: block;
     width: min(100%, var(--content-width));
@@ -54,31 +54,6 @@ const title = "WrestleVerse gameplay video";
     border: 0;
     border-radius: var(--radius-panel);
     background: var(--color-surface);
-  }
-
-  button.video__frame {
-    position: relative;
-    padding: 0;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .video__frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .video__frame::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    border: 18px solid transparent;
-    border-right: 0;
-    border-left: 30px solid #fff;
-    filter: drop-shadow(0 2px 8px rgb(0 0 0 / 60%));
   }
 
   @media (max-width: 768px) {
