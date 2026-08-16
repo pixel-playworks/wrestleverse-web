@@ -19,8 +19,29 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    {
+      /* Fetch the webfonts alongside the CSS instead of after it, so the
+         above-the-fold text is laid out once rather than re-flowed on swap. */
+    }
+    {
+      [
+        "/fonts/SFPro-Display-Bold.woff2",
+        "/fonts/SFPro-Display-Medium.woff2",
+        "/fonts/SFPro-Rounded-Medium.woff2",
+      ].map((href) => (
+        <link
+          rel="preload"
+          href={href}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      ))
+    }
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="preconnect" href="https://cloud.umami.is" />
+    <link rel="preconnect" href="https://gateway.umami.is" />
     <script
       is:inline
       defer

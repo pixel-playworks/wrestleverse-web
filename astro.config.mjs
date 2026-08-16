@@ -3,6 +3,11 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+    // The whole site's CSS is a few KB, so inlining it removes two
+    // render-blocking requests that dominated the largest-contentful-paint.
+    inlineStylesheets: 'always',
+  },
   image: {
     // Generates a width-based `srcset`/`sizes` for every processed image,
     // including plain `<img>` tags produced from markdown.

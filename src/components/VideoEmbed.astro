@@ -1,32 +1,131 @@
 ---
+import { Image } from "astro:assets";
 // https://www.youtube.com/watch?v=ZE8O1UCUIfY
+import videoPoster from "@assets/images/video-poster.jpg";
+
 const videoId = "ZE8O1UCUIfY";
+const title = "WrestleVerse gameplay video";
 ---
 
 <section class="video">
-  <iframe
-    class="video__frame"
-    src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-    title="WrestleVerse gameplay video"
-    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen></iframe>
+  <!--
+    Click-to-load facade. The real embed pulls ~1 MB of third-party JavaScript,
+    so it is only mounted once the visitor actually asks to watch.
+  -->
+  <div class="video__player" data-video-id={videoId} data-video-title={title}>
+    <button class="video__trigger" type="button" aria-label={`Play ${title}`}>
+      <Image
+        src={videoPoster}
+        alt=""
+        class="video__poster"
+        widths={[360, 480, 640]}
+        sizes="(max-width: 768px) 100vw, min(100vw, 77.5rem)"
+        loading="lazy"
+      />
+      <span class="video__play" aria-hidden="true">
+        <svg viewBox="0 0 68 48" focusable="false">
+          <path
+            class="video__play-bg"
+            d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5C4 2.3 2.3 4.8 1.5 7.7 0 13.1 0 24 0 24s0 10.9 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C68 34.9 68 24 68 24s0-10.9-1.5-16.3z"
+          ></path>
+          <path class="video__play-arrow" d="M45 24 27 14v20"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
 </section>
+
+<script>
+  import { mountVideoFacades } from "@scripts/video-facade";
+
+  mountVideoFacades();
+</script>
 
 <style>
   .video {
     padding: 96px var(--page-gutter);
   }
 
-  .video__frame {
-    display: block;
+  .video__player {
+    position: relative;
     width: min(100%, var(--content-width));
-    height: auto;
     margin-inline: auto;
     aspect-ratio: 16 / 9;
-    border: 0;
     border-radius: var(--radius-panel);
+    overflow: hidden;
     background: var(--color-surface);
+  }
+
+  /* Both the facade button and the injected iframe fill the reserved box, so
+     swapping one for the other cannot shift the page. */
+  .video__player > :global(*) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .video__trigger {
+    display: block;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  .video__poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 68px;
+    height: 48px;
+    transition: scale var(--transition);
+  }
+
+  .video__play svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video__play-bg {
+    fill: #212121;
+    fill-opacity: 0.8;
+    transition: fill-opacity var(--transition);
+  }
+
+  .video__play-arrow {
+    fill: #fff;
+  }
+
+  .video__trigger:hover .video__play,
+  .video__trigger:focus-visible .video__play {
+    scale: 1.1;
+  }
+
+  .video__trigger:hover .video__play-bg,
+  .video__trigger:focus-visible .video__play-bg {
+    fill: #f00;
+    fill-opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video__play {
+      transition: none;
+    }
+
+    .video__trigger:hover .video__play,
+    .video__trigger:focus-visible .video__play {
+      scale: 1;
+    }
   }
 
   @media (max-width: 768px) {
