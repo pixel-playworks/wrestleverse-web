@@ -44,7 +44,11 @@ const videoId = "ZE8O1UCUIfY";
 
   /* Shared by the placeholder and the iframe that replaces it, so the swap
      cannot shift the page. Global because the injected iframe has no scope
-     hash. */
+     hash. 
+     need for the iframe CSS selector at runtime
+     before: .video__frame[data-astro-cid-mrk3q7f7] { ... }
+     after: .video[data-astro-cid-mrk3q7f7] .video__frame { ... }
+     */
   .video :global(.video__frame) {
     display: block;
     width: min(100%, var(--content-width));
