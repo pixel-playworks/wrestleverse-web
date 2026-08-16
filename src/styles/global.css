@@ -47,10 +47,7 @@
   --font-body: "SF Pro Display", system-ui, sans-serif;
   --font-rounded: "SF Pro Rounded", system-ui, sans-serif;
 
-  /* Horizontal breathing room between page content and the viewport edge */
   --page-gutter: 24px;
-  /* Shared width for the landing page's full-bleed sections. About and News
-     set their own narrower widths for reading measure. */
   --content-width: 77.5rem;
 
   --radius-sm: 8px;
