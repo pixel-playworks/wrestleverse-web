@@ -6,8 +6,6 @@ import appStoreBadge from "@assets/svg/app-store-badge.svg?url";
 import macAppStoreBadge from "@assets/svg/mac-app-store-badge.svg?url";
 import googlePlayBadge from "@assets/svg/google-play-badge.svg?url";
 
-// Badge widths keep each SVG's own aspect ratio at the 72px design height, so
-// the browser reserves the right box before the artwork loads.
 const badges = [
   {
     modifier: "ios",
@@ -95,8 +93,7 @@ const badges = [
     height: 100%;
     padding-inline: 44px;
     display: grid;
-    /* The icon spans both text rows; the trailing 1fr pushes the badges right. */
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-areas:
       "icon name badges"
       "icon copy badges";
@@ -107,26 +104,19 @@ const badges = [
 
   .site-footer__icon {
     grid-area: icon;
-    width: 72px;
-    height: 72px;
   }
 
   .site-footer__brand-name {
     grid-area: name;
     font-family: var(--font-rounded);
     font-size: 2.25rem;
-    font-weight: 500;
     line-height: 1.2;
-    color: var(--color-text);
   }
 
   .site-footer__copyright {
     grid-area: copy;
-    font-family: var(--font-body);
     font-size: 1.25rem;
-    font-weight: 500;
     line-height: 1.4;
-    color: var(--color-text);
     opacity: 0.32;
   }
 
@@ -140,17 +130,7 @@ const badges = [
 
   .site-footer__badge {
     display: flex;
-    flex: none;
     border-radius: var(--radius-sm);
-  }
-
-  .site-footer__badge img {
-    height: 72px;
-    width: auto;
-    /* The widest badge needs 243px; on phones narrower than that, scale the
-       artwork down proportionally rather than letting it squash. */
-    max-width: 100%;
-    object-fit: contain;
   }
 
   .site-footer__badge:focus-visible {
@@ -165,8 +145,6 @@ const badges = [
     }
 
     .site-footer__inner {
-      /* Tighter than --page-gutter so the 243px Google Play badge still fits
-         beside the icon at its full height on a 360px-wide phone. */
       padding-inline: 16px;
       grid-template-columns: auto auto;
       grid-template-rows: 1fr auto;
@@ -186,7 +164,6 @@ const badges = [
       padding-block: 24px;
     }
 
-    /* Only the badge matching the visitor's platform is shown. */
     .site-footer__badge--mac,
     .site-footer__badge--android {
       display: none;
