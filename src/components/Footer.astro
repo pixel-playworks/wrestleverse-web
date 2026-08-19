@@ -147,12 +147,11 @@ const badges = [
     .site-footer__inner {
       padding-inline: 16px;
       grid-template-columns: auto auto;
-      grid-template-rows: 1fr auto;
       grid-template-areas:
         "icon badges"
         "copy copy";
-      align-content: normal;
       justify-content: center;
+      row-gap: 24px;
     }
 
     .site-footer__brand-name {
@@ -161,7 +160,6 @@ const badges = [
 
     .site-footer__copyright {
       justify-self: center;
-      padding-block: 24px;
     }
 
     .site-footer__badge--mac,
