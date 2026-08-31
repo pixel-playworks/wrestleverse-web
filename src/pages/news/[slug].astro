@@ -1,7 +1,7 @@
 ---
 import "../../styles/global.css";
 import Header from "@components/Header.astro";
-// import Footer from "@components/Footer.astro";
+import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import { formatNewsDate } from "@scripts/format-date";
 import { getCollection, render } from "astro:content";
@@ -58,14 +58,13 @@ const articleSchema = {
       </div>
     </article>
   </main>
-
-  {/* <Footer /> */}
+  <Footer />
 </Layout>
 
 <style>
   .article-page {
     min-height: calc(100svh - 96px);
-    padding: 96px 24px 120px;
+    padding: 96px var(--page-gutter) 120px;
     background: var(--color-bg);
   }
 
@@ -201,7 +200,7 @@ const articleSchema = {
 
   @media (max-width: 1140px) {
     .article-page {
-      padding: 64px 24px 96px;
+      padding: 64px var(--page-gutter) 96px;
     }
 
     .article-body {

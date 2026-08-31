@@ -1,0 +1,60 @@
+---
+const reviews = [
+  "“This game is nothing like any other wrestling game I’ve come across on mobile”",
+  "“Without a doubt, the best booking game that exists … I could not be happier”",
+  "“One of the best purchases I’ve ever made”",
+];
+
+const stars = "⭐️⭐️⭐️⭐️⭐️";
+---
+
+<section class="reviews" aria-label="Player reviews">
+  {
+    reviews.map((review) => (
+      <blockquote class="reviews__quote">
+        {review} -{" "}
+        <span role="img" aria-label="5 out of 5 stars">
+          {stars}
+        </span>
+      </blockquote>
+    ))
+  }
+</section>
+
+<style>
+  .reviews {
+    margin-top: 96px;
+    padding-inline: var(--page-gutter);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .reviews__quote {
+    width: fit-content;
+    max-width: 100%;
+    padding: 20px 32px;
+    border-radius: var(--radius-panel);
+    background: var(--color-surface-raised);
+    font-family: var(--font-rounded);
+    font-weight: 500;
+    font-size: clamp(1.5rem, calc((100vw - 120px) / 41), 2.5rem);
+    line-height: 1.3;
+    color: var(--color-text);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .reviews {
+      margin-top: 36px;
+      gap: 24px;
+    }
+
+    .reviews__quote {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 1.5rem;
+    }
+  }
+</style>

@@ -1,8 +1,11 @@
 ---
 import Hero from "@components/Hero.astro";
 import Header from "@components/Header.astro";
-// import Footer from "@components/Footer.astro";
+import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
+import Reviews from "@components/Reviews.astro";
+import Slogan from "@components/Slogan.astro";
+import VideoEmbed from "@components/VideoEmbed.astro";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@scripts/store-links";
 
 // Declares the game itself as an entity for search and AI engines.
@@ -24,7 +27,6 @@ const videoGameSchema = {
 
 <Layout structuredData={[videoGameSchema]}>
   <Header />
-
   <main>
     <Hero />
 
@@ -45,9 +47,11 @@ const videoGameSchema = {
       </div>
     </section>
   </main>
-
-  {/* <Footer /> */}
+  <Slogan />
+  <Reviews />
+  <VideoEmbed />
 </Layout>
+<Footer />
 
 <style>
   .home-intro {

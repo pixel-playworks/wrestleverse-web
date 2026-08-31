@@ -36,7 +36,10 @@
 
   --color-bg: #000000;
   --color-surface: #0a0a0a;
-  --color-surface-2: #111111;
+  /* Raised panels that sit on the black page, such as the review pills */
+  --color-surface-raised: #191c2e;
+  /* Footer band that closes the page */
+  --color-surface-footer: #111322;
   --color-border: rgba(255, 255, 255, 0.05);
   --color-text: #ffffff;
   --color-muted: #a0a0a0;
@@ -46,10 +49,12 @@
   --font-body: "SF Pro Display", system-ui, sans-serif;
   --font-rounded: "SF Pro Rounded", system-ui, sans-serif;
 
+  --page-gutter: 24px;
+  --content-width: 77.5rem;
+
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 24px;
-  --radius-xl: 40px;
+  --radius-panel: 20px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

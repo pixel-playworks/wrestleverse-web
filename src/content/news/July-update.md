@@ -9,45 +9,51 @@ description: "Auto Booker v3 rebuilds the engine around five generators — riva
 
 WrestleVerse 26.7 is now live on the App Store for iOS and iPadOS! The headline feature in this month's update is an overhaul we've been wanting to do for a while, and that's the brand new _Auto Booker_.
 
-# Auto Booker v3
+# The Fastest Modern Wrestling Simulation
 
-### The motivation
-The _Auto Booker_ in WrestleVerse is fundamental towards 2 things:
-* allowing the player to quickly put together a card
-* simulating the shows of the rival promotions, so it's crucial for us to continuously evolve the functionality of the _Auto Booker_. We want you to bring your ideas to life quickly and easily, inside a more realistic wider universe.
+WrestleVerse is already an extremely performance efficient game. Advancing to the next day in the game, even on an older device like the iPhone 11, only takes a couple of seconds. Compared to other wrestling management simulation games, this simple operation can sometimes take over a minute, even on high-end desktop computers.
 
-### The focuses
+However, we can always do better. In an era where the AI bubble is driving hardware prices out of reach for many of us, it’s even more important than ever to deliver the best-performing software. It was a no-brainer for us to double down on our commitment to performance, so we got to work.
 
-Based on various feedback over the years, we thought of a few possible focus areas:
-* Rivalry progression
-* Balanced use of the roster
-* More variety
-And in the _December 2025 Player Survey_, we asked our players what their strongest priorities were from that list:
-![Graph of responses roughly evenly distributed](/mo.jpg)
-Although there were some definitive slight preferences, it was overall so balanced that we felt we should tackle all of them. 
+After all was said and done, we ran benchmarks on an iPhone 11 with a save file using one of the largest scenarios in the game after 2 in-game years, and measured the following speed improvements:
+* Loading the Roster screen is up to 3x faster
+* Advancing a single day is up to 4x faster
+* Advancing to the next month is up to 10x faster
 
-### The new engine
-In order to tackle this wide range of goals, we rebuilt the _Auto Booker_ engine to work as a set of 'generators':
-* Rivalry Progression Generator
-* Roster Balance Generator
-* Talent Push Generator
-* Title Spotlight Generator
-* Fallback Generator
+The fastest modern wrestling simulation game just got even faster.
 
-# Improved Auto Rivalries
+# Quality-of-Life
 
-When creating a new rivalry and tapping the 'Auto' button for choosing participants, the generator now supports triple threat and tag team formats.
+In addition, we’ve made a number quality of life improvements and polishes around the game:
+* Added a search field on the Contracts screen
+* Added the ability to disable Default Scenario promotions when using a Custom Scenario
+* Added a 'Wrestling Style' grouping option to the Roster
+* Added a Match Format label for more clarity
+* Added a 'tense heartbeat' haptic effect during contract negotiations
+* Adjusted the UI in various places to reduce the number of taps required
+* Increased the max show runtime from 240 minutes to 480 minutes
+* The single segment Auto Booker has been split into Matches and Angles
 
-# Additional Match Paces
+# Mountains of Bug Fixes
 
-After high demand, you can now book matches at 5m, 10m, 20m, 30m or 60m in length.
+This update also includes the most bug fixes we’ve ever shipped in a single update:
+* Drag and drop to re-order segments is less finicky to activate
+* The single segment Auto Booker fails less often under tight show runtimes
+* The Auto Booker now books title matches for vacant titles
+* The Scenario Creator now saves starting champions for non-singles titles
+* The Scenario Creator now limits starting champion and stable member options to wrestlers from the relevant promotion
+* The Commentary Engine now accounts for the environment set in an Angle Script
+* Newly created championships now register the 1st reign properly
+* Added a starting balance to new save files to improve the balancing of Finances
+* Scripts now progress rivalries in the same way that Spots do
+* Vacant titles can no longer be booked multiples times on a single card
+* Improved VoiceOver support in various places
+* Adjusted the 'selected' pink colour for better contrast & legibility
+* Wrestlers can no longer be edited from read-only contexts such as booking pickers, negotiations, inbox items, and incidents
+* Balanced the distribution of Wrestling Styles
 
-# Everything Else
+# Edit Community Scenarios
 
-Here's every other little detail that's new in this update:
-* Updated text in various places of the app to be more concise
-* Slightly faster generation speed for the Commentary Engine
-* Added a button to dismiss the keyboard when writing a custom promo
-* Fixed an issue where the 'other participants' in a match booking wouldn't clear when rebooking
-* Fixed an issue in the Scenario Creator where a duplicate Stable would sometimes get created
-* Improved the rate of heat progression in tag rivalries
+One more thing…
+
+One of the most requested features, the ability to edit a downloaded Community Scenario, is finally here.
