@@ -1,7 +1,7 @@
 ---
-title: "Introducing Auto Booker v3"
+title: "Introducing Auto Booker v1"
 date: "2026-02-24"
-image: "./images/february-update.png"
+image: "./images/february-update/thumbnail.jpg"
 description: "WrestleVerse 26.2 debuts the Auto Booker: instantly generate match cards for your shows and let rival promotions book their own."
 ---
 

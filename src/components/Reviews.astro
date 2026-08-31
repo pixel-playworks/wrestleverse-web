@@ -1,4 +1,6 @@
 ---
+import { APP_STORE_URL, APP_STORE_RATING } from "@scripts/store-links";
+
 const reviews = [
   "“This game is nothing like any other wrestling game I’ve come across on mobile”",
   "“Without a doubt, the best booking game that exists … I could not be happier”",
@@ -19,6 +21,13 @@ const stars = "⭐️⭐️⭐️⭐️⭐️";
       </blockquote>
     ))
   }
+
+  <p class="reviews__rating">
+    Rated {APP_STORE_RATING.value} out of 5 from {APP_STORE_RATING.count} ratings
+    on the <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer"
+      >App Store</a
+    >
+  </p>
 </section>
 
 <style>

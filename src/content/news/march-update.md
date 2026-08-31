@@ -1,7 +1,7 @@
 ---
 title: "Introducing Auto Booker v2"
 date: "2026-03-24"
-image: "./images/february-update.png"
+image: "./images/march-update/thumbnail.jpg"
 description: "The March update refines the Auto Booker with smarter matchups, better title match handling, and quality-of-life fixes across the app."
 ---
 

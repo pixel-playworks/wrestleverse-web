@@ -1,7 +1,7 @@
 ---
 title: "Introducing Auto Booker v3"
 date: "2026-07-17"
-image: "./images/february-update.png"
+image: "./images/july-update/thumbnail.jpg"
 description: "Auto Booker v3 rebuilds the engine around five generators — rivalry progression, roster balance, talent pushes, title spotlights — plus new match paces."
 ---
 

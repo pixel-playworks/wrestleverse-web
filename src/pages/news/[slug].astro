@@ -33,13 +33,28 @@ const articleSchema = {
   author: { "@id": new URL("/#organization", Astro.site).href },
   publisher: { "@id": new URL("/#organization", Astro.site).href },
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: Astro.site?.href },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "News",
+      item: new URL("/news", Astro.site).href,
+    },
+    { "@type": "ListItem", position: 3, name: title },
+  ],
+};
 ---
 
 <Layout
   title={`${title} | WrestleVerse`}
   description={metaDescription}
   type="article"
-  structuredData={[articleSchema]}
+  structuredData={[articleSchema, breadcrumbSchema]}
 >
   <Header />
 

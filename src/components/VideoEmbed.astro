@@ -1,9 +1,31 @@
 ---
 // https://www.youtube.com/watch?v=ZE8O1UCUIfY
 const videoId = "ZE8O1UCUIfY";
+
+// The iframe is mounted by client JS, so crawlers never see it. This declares
+// the video to search engines, which is also what makes it eligible for video
+// results.
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "WrestleVerse: Pro Wrestling GM",
+  description:
+    "What if you ran your own wrestling promotion? WrestleVerse is a Pro Wrestling GM game where you book matches, build rivalries, and run your own promotion.",
+  thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+  uploadDate: "2026-02-16T02:38:05-08:00",
+  embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}`,
+  contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+  publisher: { "@id": new URL("/#organization", Astro.site).href },
+};
 ---
 
-<section class="video">
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(videoSchema)}
+/>
+
+<section class="video" aria-label="WrestleVerse gameplay video">
   <!-- The embed pulls ~1 MB of third-party JS, so it is mounted once the
        section comes into view rather than on initial page load. -->
   <div class="video__frame" data-video={videoId}></div>
