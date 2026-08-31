@@ -2,6 +2,7 @@
 title: "Hello Macintosh"
 date: "2026-04-15"
 image: "./images/april-update/thumbnail.jpg"
+description: "WrestleVerse 26.4 lands on macOS — free for existing iOS owners — with drag-and-drop segment reordering and Scenario downloads up to 20x faster."
 ---
 
 # The April Update

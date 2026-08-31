@@ -2,6 +2,7 @@
 title: "Introducing Auto Booker v3"
 date: "2026-02-24"
 image: "./images/february-update/thumbnail.jpg"
+description: "WrestleVerse 26.2 rebuilds the Auto Booker around five specialised generators, plus auto rivalries for triple threat and tag formats and new match paces."
 ---
 
 # The February Update

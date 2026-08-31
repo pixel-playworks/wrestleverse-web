@@ -2,6 +2,7 @@
 title: "Polish, Polish, Polish"
 date: "2026-07-05"
 image: "./images/july-update/thumbnail.jpg"
+description: "WrestleVerse 26.7 brings Android in sync with Apple platforms, with up to 10x faster month advances, quality-of-life polish, and the most bug fixes yet."
 ---
 
 # The July Update

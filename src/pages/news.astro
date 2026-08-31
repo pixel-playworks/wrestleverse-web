@@ -24,6 +24,12 @@ const sortedPosts = posts.sort(
     <div class="news-shell">
       <section class="news-intro" aria-labelledby="news-heading">
         <p class="news-kicker">News</p>
+        <h1 id="news-heading">WrestleVerse Updates</h1>
+        <p class="news-lede">
+          Monthly update notes for <em>WrestleVerse</em> on iOS, iPadOS, macOS,
+          and Android — new features, balance changes, and fixes, straight from
+          the developers.
+        </p>
       </section>
 
       <section class="news-grid" aria-label="Latest news">
@@ -48,6 +54,31 @@ const sortedPosts = posts.sort(
 
   .news-intro {
     margin-bottom: 64px;
+  }
+
+  /* Matches the About page's h1 styling. */
+  .news-intro h1 {
+    max-width: 820px;
+    margin-bottom: 24px;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 11vw, 8rem);
+    font-weight: 500;
+    line-height: 1;
+    color: rgb(255 255 255 / 92%);
+    text-shadow: 0 4px 18px rgb(184 200 255 / 18%);
+  }
+
+  .news-lede {
+    max-width: 720px;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: rgb(255 255 255 / 68%);
+  }
+
+  .news-lede em {
+    font-style: italic;
+    color: rgb(255 255 255 / 88%);
   }
 
   .news-kicker {
@@ -83,6 +114,10 @@ const sortedPosts = posts.sort(
 
     .news-intro {
       margin-bottom: 40px;
+    }
+
+    .news-lede {
+      font-size: 1.125rem;
     }
 
     .news-grid {

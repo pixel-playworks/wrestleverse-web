@@ -4,11 +4,52 @@ import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@scripts/store-links";
 import Footer from "@components/Footer.astro";
+
+// Mirrors the FAQ section below so answer engines can extract Q&As directly.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is WrestleVerse similar to Total Extreme Wrestling?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "WrestleVerse is inspired by classic wrestling booking simulators like Total Extreme Wrestling, but is designed specifically for mobile devices with a more streamlined and modern interface, along with innovative features that push the boundaries of the genre.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is WrestleVerse similar to Football Manager?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Players manage long-term progression, talent development, strategy, and promotion growth in a similar way to sports management games like Football Manager.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I create my own wrestling promotion?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. WrestleVerse features a deep and integrated Creation Suite that allows players to create a whole custom universe of promotions, championships, shows, and wrestlers.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does WrestleVerse use real wrestlers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "WrestleVerse features original fictional content built into the game, but players can also explore community-created Custom Universes.",
+      },
+    },
+  ],
+};
 ---
 
 <Layout
   title="About | WrestleVerse"
-  description="Discover WrestleVerse, the premium mobile pro wrestling booking & management simulator. Book matches, run your promotion, and experience live-called commentary."
+  description="What is WrestleVerse? Learn about the premium wrestling GM game for iOS, macOS & Android — booking, rivalries, custom universes, and the Commentary Engine. No ads, one purchase."
+  structuredData={[faqSchema]}
 >
   <Header />
 
@@ -207,7 +248,6 @@ import Footer from "@components/Footer.astro";
       </section>
     </div>
   </main>
-
   <Footer />
 </Layout>
 
