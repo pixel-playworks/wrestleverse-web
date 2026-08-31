@@ -2,7 +2,7 @@
 title: "The Anniversary Update"
 date: "2026-08-03"
 image: "./images/august-update/thumbnail.jpg"
-description: "The Anniversary Update adds Sandbox Mode: no retirement, 99-year contracts, and freedom from the mechanics players said restricted them most."
+description: "The Anniversary Update introduces Sandbox Mode: no retirement, 99-year contracts, and freedom from the mechanics players said restricted them most."
 ---
 
 # The August Update

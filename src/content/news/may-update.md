@@ -2,7 +2,7 @@
 title: "The Next Evolution of Spots"
 date: "2026-05-27"
 image: "./images/may-update/thumbnail.jpg"
-description: "The May update introduces Match Scripts, a ground-up redesign of the Spots system for booking detailed finishes, moves, and match state."
+description: "WrestleVerse 26.5 introduces Match Scripts, a ground-up redesign of the Spots system for booking detailed finishes, moves, and match state."
 ---
 
 # The May Update

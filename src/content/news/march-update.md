@@ -1,24 +1,30 @@
 ---
-title: "Introducing Auto Booker v2"
-date: "2026-03-24"
+title: "Fly High, Free Bird"
+date: "2026-03-23"
 image: "./images/march-update/thumbnail.jpg"
-description: "The March update refines the Auto Booker with smarter matchups, better title match handling, and quality-of-life fixes across the app."
+description: "WrestleVerse 26.3 adds the long-requested Freebird Rule, iPad sidebar navigation, and a batch of new backstage incidents."
 ---
 
 # The March Update
 
-WrestleVerse 26.3 is now live! After the feedback on last month's debut of the _Auto Booker_, this update is all about making its bookings smarter.
+WrestleVerse 26.3 is now live on the App Store for iOS and iPadOS! The headline feature is one that players have requested for a long time: the Freebird Rule!
 
-# Auto Booker v2
+# The Freebird Rule
 
-Version 2 improves on the original engine with:
-* smarter matchups that respect ongoing rivalries
-* better handling of championship matches and contenders
-* fewer repeated pairings across consecutive shows
+When the holders of a multi-person championship are part of an active stable, any members of that stable are eligible to defend the championships.
 
-# Everything Else
+# iPad Sidebar Navigation
 
-Here's every other little detail that's new in this update:
-* Fixed an issue where the 'other participants' in a match booking wouldn't clear when rebooking
-* Fixed an issue in the Scenario Creator where a duplicate Stable would sometimes get created
-* Improved the rate of heat progression in tag rivalries
+It's now a lot easier to navigate the iPad version of the app thanks to most menu items being moved into the system sidebar on the left:
+![Screenshot of the new sidebar navigation on the iPad version of WrestleVerse](./images/march-update/sidebar_nav_screenshot.png)
+
+# Additional Incidents
+
+We've added new incidents, including:
+
+* A Wrestler forgets their gear
+* Fan support for a wrestler goes viral
+* A wrestler is invited onto a podcast
+* A wrestler goes off-script during a promo
+
+And much more!

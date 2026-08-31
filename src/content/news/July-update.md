@@ -1,13 +1,13 @@
 ---
-title: "Introducing Auto Booker v3"
-date: "2026-07-17"
+title: "Polish, Polish, Polish"
+date: "2026-07-05"
 image: "./images/july-update/thumbnail.jpg"
-description: "Auto Booker v3 rebuilds the engine around five generators — rivalry progression, roster balance, talent pushes, title spotlights — plus new match paces."
+description: "WrestleVerse 26.7 brings Android in sync with Apple platforms, with up to 10x faster month advances, quality-of-life polish, and the most bug fixes yet."
 ---
 
 # The July Update
 
-WrestleVerse 26.7 is now live on the App Store for iOS and iPadOS! The headline feature in this month's update is an overhaul we've been wanting to do for a while, and that's the brand new _Auto Booker_.
+WrestleVerse 26.7 is now live on the App Store for iOS, iPadOS, macOS, and the Play Store for Android! This marks the first time that updates for the Android version of the game are in sync with Apple platforms. Along with that, our focuses this month were to fix as many bugs as possible, deliver quality-of-life improvements, polish every possible surface, and massively improve performance.
 
 # The Fastest Modern Wrestling Simulation
 
