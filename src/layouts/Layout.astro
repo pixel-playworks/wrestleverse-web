@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { getImage } from "astro:assets";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@scripts/store-links";
+import { organization } from "@schema/organization";
 import heroBg from "@assets/images/Hero_Desktop.jpeg";
 import brandLogo from "@assets/images/PrimaryRounded_Web.png";
 
@@ -26,24 +26,7 @@ const ogImage = await getImage({ src: heroBg, format: "jpeg", width: 1200 });
 const ogImageURL = new URL(ogImage.src, Astro.site);
 const logoImage = await getImage({ src: brandLogo, format: "png", width: 512 });
 
-// Declares the WrestleVerse brand entity to search and AI engines.
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": new URL("/#organization", Astro.site).href,
-  name: "WrestleVerse",
-  url: Astro.site?.href,
-  logo: new URL(logoImage.src, Astro.site).href,
-  email: "james@wrestle.works",
-  sameAs: [
-    "https://www.instagram.com/wrestleverse.app",
-    "https://www.facebook.com/wrestleverseapp",
-    "https://www.youtube.com/@jtsaeed",
-    "https://discord.com/invite/GKbXVpS3jD",
-    APP_STORE_URL,
-    PLAY_STORE_URL,
-  ],
-};
+const organizationSchema = organization(Astro.site, logoImage.src);
 
 const jsonLd = [organizationSchema, ...structuredData];
 ---
