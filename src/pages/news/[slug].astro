@@ -5,6 +5,7 @@ import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import { formatNewsDate } from "@scripts/format-date";
 import { getCollection, render } from "astro:content";
+import { newsArticle, breadcrumbs } from "@schema/news-article";
 
 // `getStaticPaths` tells Astro every URL this route should generate at build time.
 export async function getStaticPaths() {
@@ -23,31 +24,13 @@ const { title, date, description } = post.data;
 const metaDescription =
   description ?? `Read the latest WrestleVerse news: ${title}.`;
 
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  headline: title,
+const articleSchema = newsArticle(Astro.site, Astro.url.pathname, {
+  title,
+  date,
   description: metaDescription,
-  datePublished: date.toISOString(),
-  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
-  author: { "@id": new URL("/#organization", Astro.site).href },
-  publisher: { "@id": new URL("/#organization", Astro.site).href },
-};
+});
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: Astro.site?.href },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "News",
-      item: new URL("/news", Astro.site).href,
-    },
-    { "@type": "ListItem", position: 3, name: title },
-  ],
-};
+const breadcrumbSchema = breadcrumbs(Astro.site, title);
 ---
 
 <Layout
