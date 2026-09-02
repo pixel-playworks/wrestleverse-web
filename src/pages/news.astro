@@ -5,6 +5,7 @@ import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import NewsCard from "@components/NewsCard.astro";
 import { getCollection } from "astro:content";
+import { newsIndexBreadcrumbs } from "@schema/news-article";
 
 // `getCollection` returns all entries in the `news` content collection.
 // We sort by `date` descending so the newest article appears first.
@@ -12,11 +13,14 @@ const posts = await getCollection("news");
 const sortedPosts = posts.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+const breadcrumbSchema = newsIndexBreadcrumbs(Astro.site);
 ---
 
 <Layout
   title="News | WrestleVerse"
   description="Stay up to date with the latest WrestleVerse news and updates."
+  structuredData={[breadcrumbSchema]}
 >
   <Header />
 
@@ -26,9 +30,8 @@ const sortedPosts = posts.sort(
         <p class="news-kicker">News</p>
         <h1 id="news-heading">WrestleVerse Updates</h1>
         <p class="news-lede">
-          Monthly update notes for <em>WrestleVerse</em> on iOS, iPadOS, macOS,
-          and Android — new features, balance changes, and fixes, straight from
-          the developers.
+          Monthly update notes for <em>WrestleVerse</em> on iOS, iPadOS, macOS, and
+          Android — new features, balance changes, and fixes, straight from the developers.
         </p>
       </section>
 

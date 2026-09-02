@@ -15,7 +15,18 @@ export const newsArticle = (
   publisher: organizationRef(site),
 });
 
-export const breadcrumbs = (site: URL | undefined, title: string) => ({
+/** Trail for the news index itself, where "News" is the current page and so
+    carries no `item` URL. */
+export const newsIndexBreadcrumbs = (site: URL | undefined) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site?.href },
+    { "@type": "ListItem", position: 2, name: "News" },
+  ],
+});
+
+export const articleBreadcrumbs = (site: URL | undefined, title: string) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
@@ -24,7 +35,7 @@ export const breadcrumbs = (site: URL | undefined, title: string) => ({
       "@type": "ListItem",
       position: 2,
       name: "News",
-      item: new URL("/news", site).href,
+      item: new URL("/news/", site).href,
     },
     { "@type": "ListItem", position: 3, name: title },
   ],
