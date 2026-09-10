@@ -25,17 +25,9 @@ export const videoGame = (
   // Must mirror the rating shown in the Reviews section: Google does not accept
   // structured data describing content users can't see on the page.
   // https://developers.google.com/search/docs/appearance/structured-data/sd-policies#structured-data-guidelines
-  // aggregateRating and offers.price are what make the Software App rich result possible.
-  // https://developers.google.com/search/docs/appearance/structured-data/software-app
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: rating.value,
     ratingCount: rating.count,
-  },
-  offers: {
-    "@type": "Offer",
-    price: rating.price,
-    priceCurrency: rating.currency,
-    url: APP_STORE_URL,
   },
 });

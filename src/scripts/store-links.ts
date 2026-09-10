@@ -7,6 +7,4 @@ export const PLAY_STORE_URL =
 export const APP_STORE_RATING = {
   value: 4.8,
   count: 158,
-  price: "9.99",
-  currency: "USD",
 } as const;
