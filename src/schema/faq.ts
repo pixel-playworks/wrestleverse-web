@@ -4,7 +4,7 @@ export const faqs = [
   {
     question: "Is WrestleVerse similar to Total Extreme Wrestling?",
     answer:
-      "WrestleVerse is inspired by classic wrestling booking simulators like Total Extreme Wrestling, but is designed specifically for mobile devices with a more streamlined and modern interface, along with innovative features that push the boundaries of the genre.",
+      "WrestleVerse is inspired by classic wrestling booking simulators like Total Extreme Wrestling and Extreme Warfare Revenge, but is designed specifically for mobile devices with a more streamlined and modern interface, along with innovative features that push the boundaries of the genre.",
   },
   {
     question: "Is WrestleVerse similar to Football Manager?",
@@ -19,7 +19,7 @@ export const faqs = [
   {
     question: "Does WrestleVerse use real wrestlers?",
     answer:
-      "WrestleVerse features original fictional content built into the game, but players can also explore community-created Custom Universes.",
+      "WrestleVerse features original fictional content built into the game, but players can also share and explore community-created Custom Scenarios.",
   },
 ];
 
