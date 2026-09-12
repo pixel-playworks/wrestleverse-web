@@ -5,11 +5,11 @@ image: "./images/february-update/thumbnail.jpg"
 description: "WrestleVerse 26.2 rebuilds the Auto Booker around five specialised generators, plus auto rivalries for triple threat and tag formats and new match paces."
 ---
 
-# The February Update
+## The February Update
 
 WrestleVerse 26.2 is now live on the App Store for iOS and iPadOS! The headline feature in this month's update is an overhaul we've been wanting to do for a while, and that's the brand-new Auto Booker.
 
-# Auto Booker v3
+## Auto Booker v3
 
 ### The motivation
 The Auto Booker in WrestleVerse is fundamental towards 2 things:
@@ -48,10 +48,10 @@ Each of these highly specialized generators creates a number of ‘segment candi
 This system is extremely performance efficient too, since all the generators are ran in parallel. So despite this system being a lot more advanced and complex than Auto Booker v2, it actually performs even faster.
 Overall, players should now expect to see more variety, a more balanced use of the roster, and more rivalry progression when using the Auto Booker.
 
-# Improved Auto Rivalries
+## Improved Auto Rivalries
 
 When creating a new rivalry and tapping the 'Auto' button for choosing participants, the generator now supports triple threat and tag team formats.
 
-# Additional Match Paces
+## Additional Match Paces
 
 By popular demand, you can now book matches at 5, 10, 20, 30 or 60 minutes in length.
