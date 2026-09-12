@@ -2,6 +2,7 @@
 title: "Fly High, Free Bird"
 date: "2026-03-23"
 image: "./images/march-update/thumbnail.jpg"
+description: "WrestleVerse 26.3 adds the long-requested Freebird Rule, iPad sidebar navigation, and a batch of new backstage incidents."
 ---
 
 # The March Update
