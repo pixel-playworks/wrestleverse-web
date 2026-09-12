@@ -2,6 +2,7 @@
 title: "Expanding Scripts"
 date: "2026-06-14"
 image: "./images/june-update/thumbnail.jpg"
+description: "WrestleVerse 26.6 extends Scripts to Angles — promos, brawls, contract signings and weddings — with smarter suggestions in Match Scripts."
 ---
 
 # The June Update

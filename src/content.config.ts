@@ -14,6 +14,8 @@ const news = defineCollection({
       title: z.string(),
       date: z.coerce.date(),
       image: image(),
+      // Unique per-post summary used for the meta description and social tags.
+      description: z.string().optional(),
     }),
 });
 

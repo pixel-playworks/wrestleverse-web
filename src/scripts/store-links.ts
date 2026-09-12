@@ -3,3 +3,8 @@ export const APP_STORE_URL =
 
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.jtsaeed.cobalt&hl=en";
+
+export const APP_STORE_RATING = {
+  value: 4.8,
+  count: 158,
+} as const;
