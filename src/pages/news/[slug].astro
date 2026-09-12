@@ -153,8 +153,7 @@ const breadcrumbSchema = articleBreadcrumbs(Astro.site, title);
   }
 
   /* `:global()` is needed because Markdown-rendered elements are injected at runtime. */
-  /* Markdown `#` headings are demoted to h2 at build time (see astro.config.mjs)
-     so the article title stays the page's only h1. */
+  /* News markdown headings use `##` (h2) so the article title stays the page's only h1. */
   .article-body :global(h2) {
     margin-top: 56px;
     margin-bottom: 20px;

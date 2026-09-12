@@ -442,6 +442,14 @@ With pnpm 11, an unreviewed dependency install script fails installation by
 default. Keep this allowlist narrow: if a future install reports another
 package, review why it needs to run a script before approving it.
 
+## Content Collections and Markdown Headings
+
+News posts live in `src/content/news/*.md` and are rendered by `src/pages/news/[slug].astro`.
+
+- **Single H1 Convention**: The page template renders `<h1 class="article-title">{title}</h1>`. To maintain valid heading hierarchy and SEO best practices (exactly one `<h1>` per page), news markdown files must author section headings starting at `##` (`<h2>`) and subsections at `###` (`<h3>`).
+- **Markdown Processor**: In Astro v7, the fast Rust-based Sätteri processor is the default pipeline and requires zero configuration or extra dependencies when standard Markdown syntax is used.
+- **Enforcement**: The `.husky/pre-commit` hook rejects any `# ` heading in `src/content/news/*.md`, so a post that would render a second `<h1>` cannot be committed.
+
 ## Netlify Deploy Previews
 
 Netlify builds and deploys the site on every pull request.
@@ -453,6 +461,5 @@ Netlify builds and deploys the site on every pull request.
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
-- Content collection patterns if the project adds editorial content.
 - Test strategy when interactions or business logic grow.
 - Adapter decisions if the site moves beyond static output.

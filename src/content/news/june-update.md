@@ -5,11 +5,11 @@ image: "./images/june-update/thumbnail.jpg"
 description: "WrestleVerse 26.6 extends Scripts to Angles — promos, brawls, contract signings and weddings — with smarter suggestions in Match Scripts."
 ---
 
-# The June Update
+## The June Update
 
 WrestleVerse 26.6 is now live on the App Store for iOS, iPadOS, and macOS! Our focus for this month's update was to further expand on the new experimental Match Scripts feature that we launched last month.
 
-# Angle Scripts
+## Angle Scripts
 
 The Scripts system has now been extended to support Angles. Many of the same Match Script sequences are available, along with new sequences such as:
 * Promos, along with the ability to specify an optional interviewer
@@ -20,7 +20,7 @@ The Scripts system has now been extended to support Angles. Many of the same Mat
 
 You can also specify whether an Angle takes place backstage or in the ring, and the sequences will automatically respect the environment.
 
-# Match Script Enhancements
+## Match Script Enhancements
 
 Most of the new sequences added as part of Angle Scripts are also available in Match Scripts too, along with the following additional enhancements:
 * Interfering participants now automatically make an entrance
@@ -28,7 +28,7 @@ Most of the new sequences added as part of Angle Scripts are also available in M
 * A pinfall finish is suggested after a signature or finisher move lands
 * Reversals are now suggested
 
-# Everything Else
+## Everything Else
 
 Here's every other little detail that's new in this update:
 * Fixed an issue where a Match Script could become stuck after a submission was ignored while the referee was down
