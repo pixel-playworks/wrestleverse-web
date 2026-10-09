@@ -1,2 +1,11 @@
+# News posts must start section headings at `##`. The article template renders
+# the page's only <h1>, so a `#` heading would produce a second one.
+# See docs/development-notes.md. `if` keeps the hook's `sh -e` from aborting
+# on grep's exit code 1, which is the no-match (passing) case.
+if grep -n "^# " src/content/news/*.md; then
+  echo "Above: news posts must start headings at '##' — the article title is the page's only <h1>."
+  exit 1
+fi
+
 pnpm lint
 pnpm check

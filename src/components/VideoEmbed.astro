@@ -1,9 +1,19 @@
 ---
+import { videoObject } from "@schema/video-object";
+
 // https://www.youtube.com/watch?v=ZE8O1UCUIfY
 const videoId = "ZE8O1UCUIfY";
+
+const videoSchema = videoObject(Astro.site, videoId);
 ---
 
-<section class="video">
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(videoSchema)}
+/>
+
+<section class="video" aria-label="WrestleVerse gameplay video">
   <!-- The embed pulls ~1 MB of third-party JS, so it is mounted once the
        section comes into view rather than on initial page load. -->
   <div class="video__frame" data-video={videoId}></div>
