@@ -5,11 +5,11 @@ image: "./images/may-update/thumbnail.jpg"
 description: "WrestleVerse 26.5 introduces Match Scripts, a ground-up redesign of the Spots system for booking detailed finishes, moves, and match state."
 ---
 
-# The May Update
+## The May Update
 
 WrestleVerse 26.5 is now live on the App Store for iOS, iPadOS, and macOS! The focus of this month's update is something experimental, and probably the most ambitious feature we’ve ever worked on: Match Scripts.
 
-# Match Scripts
+## Match Scripts
 
 ### The motivation
 
@@ -40,7 +40,7 @@ We do not plan to replace Spots with Scripts until we have gathered and addresse
 * Auto Booker support for Scripts
 * More sophisticated segment outcomes based on the play-by-play action
 
-# Roster Multi-Select
+## Roster Multi-Select
 
 We've now also added the ability to select multiple wrestlers at once when booking a match or an angle.
 
@@ -48,7 +48,7 @@ This is also supported in any situation where you may need to select multiple wr
 
 ![Screenshot showing 3 wrestlers selected at once in the Roster screen](./images/may-update/multi_select.png)
 
-# Everything Else
+## Everything Else
 
 Here's every other little detail that's new in this update:
 

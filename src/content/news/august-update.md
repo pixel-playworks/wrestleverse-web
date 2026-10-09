@@ -5,11 +5,11 @@ image: "./images/august-update/thumbnail.jpg"
 description: "The Anniversary Update introduces Sandbox Mode: no retirement, 99-year contracts, and freedom from the mechanics players said restricted them most."
 ---
 
-# The August Update
+## The August Update
 
 WrestleVerse 26.8 is now live on the App Store for iOS, iPadOS, macOS, and the Play Store for Android! This monumental Anniversary Update combines several of our most requested features of all time, wrapped up into one big feature called Sandbox Mode.
 
-# Sandbox Mode
+## Sandbox Mode
 
 With Match & Angle Scripts (formerly Spots v4) reaching maturity, it was time for us to tackle the 2nd highest request from our December 2025 Player Survey:
 
@@ -55,7 +55,7 @@ In addition to those mechanics being disabled, we’ve also added 2 pieces of ad
 * players can now create new Free Agents at any time
 * players can edit wrestler stats and disposition at any time
 
-# #1 Contenders
+## #1 Contenders
 
 In our June 2026 Player Survey, the 2 standout requests were for a Social Feed, and a #1 Contender system:
 
@@ -67,7 +67,7 @@ We’ve now developed a Title Contenders Engine which is always running in the b
 
 ![Screenshot showing the #2 contender ranked because of their momentum, popularity, and card position, whereas the #3 contender is ranked because of their momentum, popularity and match record](./images/august-update/contenders_screenshot.png)
 
-# Everything Else
+## Everything Else
 
 Here's every other little detail that's new in this update on Apple platforms:
 * When selecting participants for a match, an icon is now shown next to wrestlers that are already booked in a match on the show
