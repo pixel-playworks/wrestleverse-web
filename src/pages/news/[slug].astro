@@ -50,7 +50,12 @@ const breadcrumbSchema = articleBreadcrumbs(Astro.site, title);
             <li><a href="/news/">News</a></li>
           </ol>
         </nav>
-        <h1 class="article-title">{title}</h1>
+        <h1
+          class="article-title"
+          style={`view-transition-name: news-title-${post.id}`}
+        >
+          {title}
+        </h1>
         <time class="article-date" datetime={date.toISOString()}
           >{formatNewsDate(date)}</time
         >
@@ -128,7 +133,9 @@ const breadcrumbSchema = articleBreadcrumbs(Astro.site, title);
 
   /* Matches the About page's h1 styling. */
   .article-title {
+    width: fit-content;
     max-width: 820px;
+    view-transition-class: news-title;
     margin-bottom: 32px;
     font-family: var(--font-display);
     font-size: clamp(3rem, 11vw, 8rem);

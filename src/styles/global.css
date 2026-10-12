@@ -74,6 +74,21 @@
   ::view-transition-new(root) {
     animation: var(--transition) both page-rise-in;
   }
+
+  /* A news card title morphs into the matching article heading (and back).
+     Titles without a match on the other page move with the rest of the page. */
+  ::view-transition-group(.news-title) {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(.news-title):only-child {
+    animation: 150ms ease-out both page-fade-out;
+  }
+
+  ::view-transition-new(.news-title):only-child {
+    animation: var(--transition) both page-rise-in;
+  }
 }
 
 @keyframes page-fade-out {
