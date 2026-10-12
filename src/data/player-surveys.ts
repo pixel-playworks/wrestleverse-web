@@ -1,9 +1,9 @@
 // Ranked-choice results from the WrestleVerse Player Surveys.
 // `counts` are the number of players who ranked the option as their
-// top, 2nd, 3rd and 4th choice, in that order.
+// top, 2nd, 3rd (and 4th, when asked) choice, in that order.
 export interface SurveyOption {
   label: string;
-  counts: [number, number, number, number];
+  counts: number[];
 }
 
 export interface RankedSurvey {
@@ -11,6 +11,16 @@ export interface RankedSurvey {
   survey: string;
   options: SurveyOption[];
 }
+
+export const december2025AutoBooker: RankedSurvey = {
+  question: "When using the Auto Booker, what would you want improved the most?",
+  survey: "December 2025 Player Survey",
+  options: [
+    { label: "Rivalries progression", counts: [14, 12, 9] },
+    { label: "Balanced use of roster", counts: [13, 10, 10] },
+    { label: "More variety", counts: [7, 12, 15] },
+  ],
+};
 
 export const december2025Roadmap: RankedSurvey = {
   question: "Rank these roadmap items by importance to you",

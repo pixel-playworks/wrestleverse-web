@@ -45,7 +45,7 @@ const describe = (label: string, counts: number[]) =>
     <span class="survey-chart__key-picks">Top picks</span>
     <span class="survey-chart__legend">
       {
-        ranks.map((rank, i) => (
+        ranks.slice(0, survey.options[0].counts.length).map((rank, i) => (
           <span class="survey-chart__legend-item">
             <span class={`survey-chart__swatch survey-chart__swatch--${i}`} />
             {rank}

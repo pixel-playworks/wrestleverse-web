@@ -4,6 +4,9 @@ date: "2026-02-24"
 image: "./images/february-update/thumbnail.jpg"
 ---
 
+import SurveyChart from "../../components/SurveyChart.astro";
+import { december2025AutoBooker } from "../../data/player-surveys";
+
 # The February Update
 
 WrestleVerse 26.2 is now live on the App Store for iOS and iPadOS! The headline feature in this month's update is an overhaul we've been wanting to do for a while, and that's the brand-new Auto Booker.
@@ -25,7 +28,9 @@ Based on various feedback over the years, we thought of a few possible focus are
 * More variety
 
 And in the December 2025 Player Survey, we asked our players what their strongest priorities were from that list:
-![Graph of survey results showing a roughly even distribution between the 3 focus areas](./images/february-update/survey_results_graph.png)
+
+<SurveyChart survey={december2025AutoBooker} />
+
 Although there were some slight preferences, the results were balanced overall, so we decided to tackle all three areas.
 
 ### The new engine
