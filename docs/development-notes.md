@@ -482,3 +482,21 @@ upgrading either package.
 - Environment variable conventions once external services are introduced.
 - Test strategy when interactions or business logic grow.
 - Adapter decisions if the site moves beyond static output.
+
+## Navigation Speed
+
+Astro builds a multi-page site, so every internal link is a real page load.
+That is by design: it keeps pages JS-free. To keep navigation fast:
+
+- `prefetch` in `astro.config.mjs` uses `prefetchAll` with the `viewport`
+  strategy. Internal links fetch their HTML as soon as they scroll into view,
+  so a click is served from cache. Opt a link out with
+  `data-astro-prefetch="false"`. External links are never prefetched.
+- `@view-transition { navigation: auto; }` in `global.css` cross-fades between
+  pages in supporting browsers (Chromium, Safari 18.2+). Other browsers
+  navigate normally. It sits behind `prefers-reduced-motion: no-preference`.
+- We do not use `<ClientRouter />` (SPA-style routing). It would require
+  re-running page scripts such as `configureCtaLinks()` and the Umami
+  tracker on `astro:page-load`, which is extra complexity for little gain.
+- To check: on `pnpm preview`, open DevTools → Network on `/news`. `/about`
+  and the visible articles should load before any click.
