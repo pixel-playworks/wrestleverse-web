@@ -458,6 +458,25 @@ Netlify builds and deploys the site on every pull request.
 - `NODE_VERSION` is pinned to `22` to match `package.json` engines.
 - Deploy previews are provided by Netlify's native Git integration. The repo must be imported/connected in the Netlify UI for previews to appear on PRs.
 
+## News Posts And Charts
+
+News posts can be `.md` or `.mdx`; the collection's glob loader matches both.
+Use `.mdx` only when a post needs a component, such as `SurveyChart`. Imports
+go directly after the frontmatter, and the post slug is unchanged by the
+extension.
+
+Player-survey results live in `src/data/player-surveys.ts` and render through
+`src/components/SurveyChart.astro`, not as screenshots. Each option's `counts`
+are its top/2nd/3rd/4th choice votes; the component sorts options by top picks
+and derives the response count from that column, so enter the survey's raw
+numbers and nothing else.
+
+`@astrojs/mdx` versions are tied to Astro versions, sometimes down to the patch:
+v5 is for Astro 6, v7 for Astro 7.0+, and v8 needs Astro 7.2.6+ (8.0.2+ needs
+7.2.10+ and a newer `@astrojs/markdown-satteri`). Run
+`npm view @astrojs/mdx@<version> peerDependencies` and `pnpm peers check` when
+upgrading either package.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.

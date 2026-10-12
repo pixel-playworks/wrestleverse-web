@@ -5,6 +5,9 @@ image: "./images/may-update/thumbnail.jpg"
 description: "WrestleVerse 26.5 introduces Match Scripts, a ground-up redesign of the Spots system for booking detailed finishes, moves, and match state."
 ---
 
+import SurveyChart from "../../components/SurveyChart.astro";
+import { december2025Roadmap } from "../../data/player-surveys";
+
 ## The May Update
 
 WrestleVerse 26.5 is now live on the App Store for iOS, iPadOS, and macOS! The focus of this month's update is something experimental, and probably the most ambitious feature we’ve ever worked on: Match Scripts.
@@ -23,7 +26,7 @@ The problem is that the system wasn’t really built to handle some of the creat
 
 Our December 2025 Player Survey then also showed that a new Spots system was in fact, the highest priority for our players:
 
-![Graph of survey results showing Spots v4 as the overwhelmingly highest ranked choice over Sandbox Mode, Custom Incident Events, The Visual Engine, and Multiplayer](./images/may-update/survey_results.png)
+<SurveyChart survey={december2025Roadmap} />
 
 ### The result
 
