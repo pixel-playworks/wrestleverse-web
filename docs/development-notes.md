@@ -492,6 +492,13 @@ That is by design: it keeps pages JS-free. To keep navigation fast:
   strategy. Internal links fetch their HTML as soon as they scroll into view,
   so a click is served from cache. Opt a link out with
   `data-astro-prefetch="false"`. External links are never prefetched.
+- `experimental.clientPrerender` upgrades prefetch to Speculation Rules
+  prerendering in Chromium: the next page is fully rendered in the background
+  and shown instantly. Other browsers fall back to plain prefetch. Because
+  prerendered pages run their scripts early, `Layout.astro` waits for
+  `prerenderingchange` before loading Umami, so unvisited pages are not
+  counted as views. Headless Chromium does not prerender, so verify in real
+  Chrome: DevTools → Application → Background services → Speculative loads.
 - `@view-transition { navigation: auto; }` in `global.css` cross-fades between
   pages in supporting browsers (Chromium, Safari 18.2+). Other browsers
   navigate normally. It sits behind `prefers-reduced-motion: no-preference`.

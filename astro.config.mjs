@@ -13,6 +13,11 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
+  experimental: {
+    // In Chromium, fully render prefetched pages in the background so they
+    // appear instantly on click. Other browsers fall back to prefetch.
+    clientPrerender: true,
+  },
   image: {
     // Generates a width-based `srcset`/`sizes` for every processed image,
     // including plain `<img>` tags produced from markdown.
