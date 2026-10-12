@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+# Local Claude Code config (editor/preview settings, not shared)
+.claude/

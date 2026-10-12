@@ -1,10 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
+  site: 'https://wrestleverse.app',
+  integrations: [mdx(), sitemap()],
   image: {
     // Generates a width-based `srcset`/`sizes` for every processed image,
     // including plain `<img>` tags produced from markdown.

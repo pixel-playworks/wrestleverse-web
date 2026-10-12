@@ -442,6 +442,14 @@ With pnpm 11, an unreviewed dependency install script fails installation by
 default. Keep this allowlist narrow: if a future install reports another
 package, review why it needs to run a script before approving it.
 
+## Content Collections and Markdown Headings
+
+News posts live in `src/content/news/*.md` and are rendered by `src/pages/news/[slug].astro`.
+
+- **Single H1 Convention**: The page template renders `<h1 class="article-title">{title}</h1>`. To maintain valid heading hierarchy and SEO best practices (exactly one `<h1>` per page), news markdown files must author section headings starting at `##` (`<h2>`) and subsections at `###` (`<h3>`).
+- **Markdown Processor**: In Astro v7, the fast Rust-based Sätteri processor is the default pipeline and requires zero configuration or extra dependencies when standard Markdown syntax is used.
+- **Enforcement**: The `.husky/pre-commit` hook rejects any `# ` heading in `src/content/news/*.md`, so a post that would render a second `<h1>` cannot be committed.
+
 ## Netlify Deploy Previews
 
 Netlify builds and deploys the site on every pull request.
@@ -463,13 +471,14 @@ are its top/2nd/3rd/4th choice votes; the component sorts options by top picks
 and derives the response count from that column, so enter the survey's raw
 numbers and nothing else.
 
-`@astrojs/mdx` majors track Astro majors: v5 is for Astro 6, while v6+ requires
-Astro 6.4+ or 7. Check `npm view @astrojs/mdx@<major> peerDependencies` before
+`@astrojs/mdx` versions are tied to Astro versions, sometimes down to the patch:
+v5 is for Astro 6, v7 for Astro 7.0+, and v8 needs Astro 7.2.6+ (8.0.2+ needs
+7.2.10+ and a newer `@astrojs/markdown-satteri`). Run
+`npm view @astrojs/mdx@<version> peerDependencies` and `pnpm peers check` when
 upgrading either package.
 
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
-- Content collection patterns if the project adds editorial content.
 - Test strategy when interactions or business logic grow.
 - Adapter decisions if the site moves beyond static output.

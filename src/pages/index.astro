@@ -1,17 +1,22 @@
 ---
 import Hero from "@components/Hero.astro";
 import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 import Layout from "@layouts/Layout.astro";
 import Reviews from "@components/Reviews.astro";
 import Slogan from "@components/Slogan.astro";
 import VideoEmbed from "@components/VideoEmbed.astro";
-import Footer from "@components/Footer.astro";
+import { APP_STORE_RATING } from "@scripts/store-links";
+import { videoGame } from "@schema/video-game";
+
+const videoGameSchema = videoGame(Astro.site, APP_STORE_RATING);
 ---
 
-<Layout>
+<Layout structuredData={[videoGameSchema]}>
   <Header />
   <main>
     <Hero />
+
     <Slogan />
     <Reviews />
     <VideoEmbed />

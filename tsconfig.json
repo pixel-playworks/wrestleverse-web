@@ -21,6 +21,9 @@
       "@scripts/*": [
         "./src/scripts/*"
       ],
+      "@schema/*": [
+        "./src/schema/*"
+      ],
     }
   },
   "include": [
