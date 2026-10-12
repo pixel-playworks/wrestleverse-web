@@ -5,9 +5,11 @@ import { formatRelativeDate } from "@scripts/format-date";
 
 interface Props {
   post: CollectionEntry<"news">;
+  /** Load the image eagerly; set for cards likely to be above the fold. */
+  priority?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, priority = false } = Astro.props;
 const { title, date, image } = post.data;
 ---
 
@@ -20,6 +22,7 @@ const { title, date, image } = post.data;
     width={348}
     height={348}
     class="news-card__image"
+    priority={priority}
   />
   <div class="news-card__overlay">
     <div class="news-card__text">

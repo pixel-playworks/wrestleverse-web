@@ -289,9 +289,15 @@ area while keeping it available to screen readers.
 
 ## Web Typography
 
-Custom web fonts used by global CSS live in `public/fonts/` and are referenced
-with root-relative URLs such as `/fonts/SFPro-Display-Bold.woff2`. Keep the
-`@font-face` declarations in `src/styles/global.css`, then map components
+Custom web fonts live in `src/assets/fonts/` and `src/styles/global.css`
+references them with relative URLs such as
+`../assets/fonts/SFPro-Display-Bold.woff2`. Vite then emits them to `/_astro/`
+with a content hash, so they get the long-lived cache headers described in
+[Navigation Performance](#navigation-performance). `Layout.astro` preloads the
+two faces every page renders above the fold (Display Medium for body text,
+Rounded Medium for the header) by importing the same file with `?url`; without
+the preload, the late font swap was a measurable layout shift on mobile. Keep
+the `@font-face` declarations in `src/styles/global.css`, then map components
 through the existing CSS variables:
 
 - `--font-display` for display headings and hero text.
@@ -329,6 +335,38 @@ For a lightweight body font that feels native on each platform, use:
   or browsers where that font is not installed.
 - For identical branded typography across devices, choose a separately
   licensed web font and serve optimized `woff2` files instead.
+
+## Navigation Performance
+
+Astro builds a multi-page site: every link click is a full document request,
+by design. There is no client router. This keeps pages light and Lighthouse at
+100, so navigation speed comes from making that request cheap rather than
+avoiding it:
+
+- **Speculation Rules prefetch** (`<script type="speculationrules">` in
+  `Layout.astro`): Chromium downloads the HTML of internal links in the
+  background, and a click is served from that prefetch (`deliveryType:
+  "navigational-prefetch"`, ~3 ms instead of a network round trip).
+  This is prefetch only, not `prerender`: a prerendered page runs its scripts,
+  so Umami would record pageviews for pages nobody opened.
+- **Why not Astro's `prefetch` config**: it uses `<link rel="prefetch">`, and
+  Chromium still revalidated those documents on click when HTML is served
+  with Netlify's default `Cache-Control: public, max-age=0, must-revalidate`
+  (and also without `must-revalidate`). That saves almost nothing.
+- **Inlined CSS** (`build.inlineStylesheets: 'always'`): there is no
+  render-blocking stylesheet request, and a prefetched page needs nothing else
+  before its first paint. It adds about 2 KB gzipped per page.
+- **Immutable hashed assets** (`public/_headers`): `/_astro/*` files are
+  content-hashed, so they are cached for a year. Without this, every click
+  revalidated the CSS, logo and fonts.
+- **Cross-document view transitions** (`@view-transition` in `global.css`):
+  pages cross-fade instead of cutting, with no JavaScript. Browsers without
+  support navigate normally, and `prefers-reduced-motion` turns it off.
+
+To measure a change, serve `dist/` with Netlify-like headers and read
+`performance.getEntriesByType("navigation")[0]` after a click. `deliveryType`
+and `responseStart` show whether the page came from the prefetch. Playwright's
+`page.route()` disables the HTTP cache, so don't use it in these tests.
 
 ## Security and External Links
 
@@ -456,6 +494,9 @@ Netlify builds and deploys the site on every pull request.
 
 - `netlify.toml` configures the build command (`astro build`) and publish directory (`dist`).
 - `NODE_VERSION` is pinned to `22` to match `package.json` engines.
+- `public/_headers` is copied to `dist/` and sets Netlify response headers
+  (Cloudflare Pages reads the same format). Don't give the same path two rules
+  that both set `Cache-Control`.
 - Deploy previews are provided by Netlify's native Git integration. The repo must be imported/connected in the Netlify UI for previews to appear on PRs.
 
 ## Notes To Add Later
