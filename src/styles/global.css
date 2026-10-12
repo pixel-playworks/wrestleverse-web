@@ -1,6 +1,6 @@
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SFPro-Display-Medium.woff2") format("woff2");
+  src: url("../assets/fonts/SFPro-Display-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SFPro-Display-Bold.woff2") format("woff2");
+  src: url("../assets/fonts/SFPro-Display-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "SF Pro Rounded";
-  src: url("/fonts/SFPro-Rounded-Medium.woff2") format("woff2");
+  src: url("../assets/fonts/SFPro-Rounded-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -98,4 +98,12 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Cross-fade between pages instead of a hard cut. Native cross-document view
+   transitions need no JavaScript; unsupported browsers navigate as normal. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }

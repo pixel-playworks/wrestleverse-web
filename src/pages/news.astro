@@ -37,7 +37,11 @@ const breadcrumbSchema = newsIndexBreadcrumbs(Astro.site);
       </section>
 
       <section class="news-grid" aria-label="Latest news">
-        {sortedPosts.map((post) => <NewsCard post={post} />)}
+        {
+          sortedPosts.map((post, index) => (
+            <NewsCard post={post} priority={index === 0} />
+          ))
+        }
       </section>
     </div>
   </main>

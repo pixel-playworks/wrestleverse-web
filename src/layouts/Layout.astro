@@ -4,6 +4,9 @@ import { getImage } from "astro:assets";
 import { organization } from "@schema/organization";
 import heroBg from "@assets/images/Hero_Desktop.jpeg";
 import brandLogo from "@assets/images/PrimaryRounded_Web.png";
+// Same hashed files `global.css` points at, so the preload is reused.
+import displayFont from "@assets/fonts/SFPro-Display-Medium.woff2?url";
+import roundedFont from "@assets/fonts/SFPro-Rounded-Medium.woff2?url";
 
 interface Props {
   title?: string;
@@ -29,6 +32,15 @@ const logoImage = await getImage({ src: brandLogo, format: "png", width: 512 });
 const organizationSchema = organization(Astro.site, logoImage.src);
 
 const jsonLd = [organizationSchema, ...structuredData];
+
+// Chromium browsers download the HTML of linked internal pages (~7 KB each)
+// in the background, so a click renders without waiting on the network.
+// Prefetch never runs the page, so analytics don't count unvisited pages.
+// Unlike `<link rel="prefetch">`, this is reused even when the host sends
+// `must-revalidate` on HTML (Netlify's default).
+const speculationRules = {
+  prefetch: [{ where: { href_matches: "/*" }, eagerness: "eager" }],
+};
 ---
 
 <!doctype html>
@@ -43,6 +55,22 @@ const jsonLd = [organizationSchema, ...structuredData];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Body text and the header use these on every page. Fetching them before
+         CSS asks for them stops text reflowing when they swap in. -->
+    <link
+      rel="preload"
+      href={displayFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={roundedFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="WrestleVerse" />
@@ -69,6 +97,11 @@ const jsonLd = [organizationSchema, ...structuredData];
         />
       ))
     }
+    <script
+      is:inline
+      type="speculationrules"
+      set:html={JSON.stringify(speculationRules)}
+    />
     <script
       is:inline
       defer
