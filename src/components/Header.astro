@@ -115,6 +115,8 @@ const isActiveLink = (href: string) =>
   .site-header {
     height: 96px;
     background: var(--color-bg);
+    /* Keeps the header out of the page transition so it doesn't move. */
+    view-transition-name: site-header;
   }
 
   .site-header__inner {
