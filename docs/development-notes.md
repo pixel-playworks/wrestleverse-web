@@ -499,9 +499,14 @@ That is by design: it keeps pages JS-free. To keep navigation fast:
   `prerenderingchange` before loading Umami, so unvisited pages are not
   counted as views. Headless Chromium does not prerender, so verify in real
   Chrome: DevTools → Application → Background services → Speculative loads.
-- `@view-transition { navigation: auto; }` in `global.css` cross-fades between
+- `@view-transition { navigation: auto; }` in `global.css` animates between
   pages in supporting browsers (Chromium, Safari 18.2+). Other browsers
   navigate normally. It sits behind `prefers-reduced-motion: no-preference`.
+  `::view-transition-old(root)` / `::view-transition-new(root)` set the
+  animation: a quick fade-out, then the new page rises in.
+- Any element with a `view-transition-name` animates separately from the
+  page. The header uses `site-header`, so it stays still and only the active
+  nav pill cross-fades. Each name must be unique on a page.
 - We do not use `<ClientRouter />` (SPA-style routing). It would require
   re-running page scripts such as `configureCtaLinks()` and the Umami
   tracker on `astro:page-load`, which is extra complexity for little gain.
