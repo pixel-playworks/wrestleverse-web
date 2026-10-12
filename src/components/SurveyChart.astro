@@ -1,0 +1,308 @@
+---
+import type { RankedSurvey } from "../data/player-surveys";
+
+interface Props {
+  survey: RankedSurvey;
+}
+
+const { survey } = Astro.props;
+
+const ranks = ["Top pick", "2nd", "3rd", "4th"];
+const rankWords = ["Top pick", "2nd choice", "3rd choice", "4th choice"];
+
+// Every respondent names exactly one top pick, so that column gives the response count.
+const responses = survey.options.reduce(
+  (sum, option) => sum + option.counts[0],
+  0,
+);
+
+// Sort by top picks, breaking ties with 2nd, then 3rd, then 4th choices.
+const options = [...survey.options].sort((a, b) => {
+  const rank = a.counts.findIndex((count, i) => count !== b.counts[i]);
+  return rank === -1 ? 0 : b.counts[rank] - a.counts[rank];
+});
+
+// All bars share one scale: the option ranked in the top four most often.
+const maxTotal = Math.max(
+  ...options.map((option) =>
+    option.counts.reduce((sum, count) => sum + count, 0),
+  ),
+);
+
+const describe = (label: string, counts: number[]) =>
+  `${label}. ${counts.map((count, i) => `${rankWords[i]}: ${count}`).join(", ")}.`;
+---
+
+<figure class="survey-chart">
+  <figcaption class="survey-chart__caption">
+    <span class="survey-chart__question">{survey.question}</span>
+    <span class="survey-chart__meta"
+      >{survey.survey}, {responses} responses</span
+    >
+  </figcaption>
+
+  <div class="survey-chart__key" aria-hidden="true">
+    <span class="survey-chart__key-picks">Top picks</span>
+    <span class="survey-chart__legend">
+      {
+        ranks.map((rank, i) => (
+          <span class="survey-chart__legend-item">
+            <span class={`survey-chart__swatch survey-chart__swatch--${i}`} />
+            {rank}
+          </span>
+        ))
+      }
+    </span>
+  </div>
+
+  <div class="survey-chart__rows">
+    {
+      options.map((option) => {
+        const total = option.counts.reduce((sum, count) => sum + count, 0);
+        return (
+          <div class="survey-chart__row">
+            <span class="survey-chart__label" aria-hidden="true">
+              {option.label}
+            </span>
+            <span class="survey-chart__picks" aria-hidden="true">
+              {option.counts[0]}
+              <span class="survey-chart__picks-unit">
+                {option.counts[0] === 1 ? " top pick" : " top picks"}
+              </span>
+            </span>
+            <span class="sr-only">{describe(option.label, option.counts)}</span>
+            <span
+              class="survey-chart__bar"
+              style={`--bar-width: ${(total / maxTotal) * 100}%`}
+              aria-hidden="true"
+            >
+              {option.counts.map((count, i) =>
+                count > 0 ? (
+                  <span
+                    class={`survey-chart__segment survey-chart__segment--${i}`}
+                    style={`flex-grow: ${count}`}
+                    data-tip={`${rankWords[i]}: ${count}`}
+                  />
+                ) : null,
+              )}
+            </span>
+          </div>
+        );
+      })
+    }
+  </div>
+</figure>
+
+<style>
+  /* Rank ramp: one lavender hue stepping down to navy, so the top pick reads brightest.
+     Validated as an ordinal ramp against the dark article surface. */
+  .survey-chart {
+    --rank-0: #b8c8ff;
+    --rank-1: #8597e6;
+    --rank-2: #5668c2;
+    --rank-3: #34468f;
+
+    max-width: 820px;
+    margin-block: 32px 40px;
+    border: 1px solid rgb(184 200 255 / 16%);
+    border-radius: var(--radius-panel);
+    padding: 28px;
+    background: rgb(255 255 255 / 4%);
+    box-shadow: 0 16px 40px rgb(0 0 0 / 24%);
+    font-family: var(--font-rounded);
+    font-weight: 500;
+  }
+
+  .survey-chart__caption {
+    display: grid;
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+
+  .survey-chart__question {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    line-height: 1.25;
+    color: var(--color-text);
+  }
+
+  .survey-chart__meta {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: rgb(255 255 255 / 60%);
+  }
+
+  .survey-chart__key,
+  .survey-chart__row {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 10rem) 5.5rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  .survey-chart__key {
+    margin-bottom: 14px;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    color: rgb(255 255 255 / 60%);
+  }
+
+  .survey-chart__key-picks {
+    grid-column: 2;
+    text-align: right;
+  }
+
+  .survey-chart__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .survey-chart__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .survey-chart__swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  .survey-chart__rows {
+    display: grid;
+    gap: 12px;
+  }
+
+  .survey-chart__label {
+    font-size: 1.0625rem;
+    line-height: 1.25;
+    color: rgb(255 255 255 / 84%);
+  }
+
+  .survey-chart__picks {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1;
+    text-align: right;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .survey-chart__picks-unit {
+    display: none;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .survey-chart__bar {
+    display: flex;
+    gap: 2px;
+    width: var(--bar-width);
+    height: 20px;
+  }
+
+  .survey-chart__segment {
+    position: relative;
+    flex-basis: 0;
+    min-width: 0;
+  }
+
+  .survey-chart__segment:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+
+  .survey-chart__swatch--0,
+  .survey-chart__segment--0 {
+    background: var(--rank-0);
+  }
+
+  .survey-chart__swatch--1,
+  .survey-chart__segment--1 {
+    background: var(--rank-1);
+  }
+
+  .survey-chart__swatch--2,
+  .survey-chart__segment--2 {
+    background: var(--rank-2);
+  }
+
+  .survey-chart__swatch--3,
+  .survey-chart__segment--3 {
+    background: var(--rank-3);
+  }
+
+  /* Hover detail; screen readers get the same values from each row's sr-only text. */
+  .survey-chart__segment::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    z-index: 1;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 40%);
+    font-size: 0.875rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--color-text);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.15s ease;
+  }
+
+  .survey-chart__segment:hover::after {
+    opacity: 1;
+  }
+
+  .survey-chart__segment:hover {
+    filter: brightness(1.12);
+  }
+
+  @media (max-width: 640px) {
+    .survey-chart {
+      padding: 20px 16px;
+    }
+
+    .survey-chart__key {
+      display: block;
+    }
+
+    .survey-chart__key-picks {
+      display: none;
+    }
+
+    .survey-chart__rows {
+      gap: 16px;
+    }
+
+    .survey-chart__row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      row-gap: 8px;
+    }
+
+    .survey-chart__bar {
+      grid-column: 1 / -1;
+    }
+
+    .survey-chart__picks {
+      font-family: var(--font-rounded);
+      font-size: 0.9375rem;
+      color: rgb(255 255 255 / 60%);
+    }
+
+    .survey-chart__picks-unit {
+      display: inline;
+    }
+  }
+</style>
