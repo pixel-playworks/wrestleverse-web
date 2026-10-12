@@ -69,11 +69,25 @@ const jsonLd = [organizationSchema, ...structuredData];
         />
       ))
     }
-    <script
-      is:inline
-      defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="fe8cb804-897e-4b8e-8d0a-c08c34d0a655"></script>
+    <script is:inline>
+      // Load Umami only once a prerendered page is actually shown, so pages
+      // the visitor never opens are not counted as views.
+      function loadUmami() {
+        const script = document.createElement("script");
+        script.defer = true;
+        script.src = "https://cloud.umami.is/script.js";
+        script.dataset.websiteId = "fe8cb804-897e-4b8e-8d0a-c08c34d0a655";
+        document.head.append(script);
+      }
+
+      if (document.prerendering) {
+        document.addEventListener("prerenderingchange", loadUmami, {
+          once: true,
+        });
+      } else {
+        loadUmami();
+      }
+    </script>
   </head>
   <body>
     <slot />

@@ -1,11 +1,23 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wrestleverse.app',
-  integrations: [sitemap()],
+  integrations: [mdx(), sitemap()],
+  // Fetch internal pages as soon as their links scroll into view, so clicking
+  // a nav link or news card loads from cache instead of waiting on the network.
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+  experimental: {
+    // In Chromium, fully render prefetched pages in the background so they
+    // appear instantly on click. Other browsers fall back to prefetch.
+    clientPrerender: true,
+  },
   image: {
     // Generates a width-based `srcset`/`sizes` for every processed image,
     // including plain `<img>` tags produced from markdown.

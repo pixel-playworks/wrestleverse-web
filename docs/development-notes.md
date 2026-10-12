@@ -458,8 +458,57 @@ Netlify builds and deploys the site on every pull request.
 - `NODE_VERSION` is pinned to `22` to match `package.json` engines.
 - Deploy previews are provided by Netlify's native Git integration. The repo must be imported/connected in the Netlify UI for previews to appear on PRs.
 
+## News Posts And Charts
+
+News posts can be `.md` or `.mdx`; the collection's glob loader matches both.
+Use `.mdx` only when a post needs a component, such as `SurveyChart`. Imports
+go directly after the frontmatter, and the post slug is unchanged by the
+extension.
+
+Player-survey results live in `src/data/player-surveys.ts` and render through
+`src/components/SurveyChart.astro`, not as screenshots. Each option's `counts`
+are its top/2nd/3rd/4th choice votes; the component sorts options by top picks
+and derives the response count from that column, so enter the survey's raw
+numbers and nothing else.
+
+`@astrojs/mdx` versions are tied to Astro versions, sometimes down to the patch:
+v5 is for Astro 6, v7 for Astro 7.0+, and v8 needs Astro 7.2.6+ (8.0.2+ needs
+7.2.10+ and a newer `@astrojs/markdown-satteri`). Run
+`npm view @astrojs/mdx@<version> peerDependencies` and `pnpm peers check` when
+upgrading either package.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
 - Test strategy when interactions or business logic grow.
 - Adapter decisions if the site moves beyond static output.
+
+## Navigation Speed
+
+Astro builds a multi-page site, so every internal link is a real page load.
+That is by design: it keeps pages JS-free. To keep navigation fast:
+
+- `prefetch` in `astro.config.mjs` uses `prefetchAll` with the `viewport`
+  strategy. Internal links fetch their HTML as soon as they scroll into view,
+  so a click is served from cache. Opt a link out with
+  `data-astro-prefetch="false"`. External links are never prefetched.
+- `experimental.clientPrerender` upgrades prefetch to Speculation Rules
+  prerendering in Chromium: the next page is fully rendered in the background
+  and shown instantly. Other browsers fall back to plain prefetch. Because
+  prerendered pages run their scripts early, `Layout.astro` waits for
+  `prerenderingchange` before loading Umami, so unvisited pages are not
+  counted as views. Headless Chromium does not prerender, so verify in real
+  Chrome: DevTools → Application → Background services → Speculative loads.
+- `@view-transition { navigation: auto; }` in `global.css` animates between
+  pages in supporting browsers (Chromium, Safari 18.2+). Other browsers
+  navigate normally. It sits behind `prefers-reduced-motion: no-preference`.
+  `::view-transition-old(root)` / `::view-transition-new(root)` set the
+  animation: a quick fade-out, then the new page rises in.
+- Any element with a `view-transition-name` animates separately from the
+  page. The header uses `site-header`, so it stays still and only the active
+  nav pill cross-fades. Each name must be unique on a page.
+- We do not use `<ClientRouter />` (SPA-style routing). It would require
+  re-running page scripts such as `configureCtaLinks()` and the Umami
+  tracker on `astro:page-load`, which is extra complexity for little gain.
+- To check: on `pnpm preview`, open DevTools → Network on `/news`. `/about`
+  and the visible articles should load before any click.
