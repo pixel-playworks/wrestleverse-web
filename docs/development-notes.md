@@ -506,18 +506,7 @@ That is by design: it keeps pages JS-free. To keep navigation fast:
   animation: a quick fade-out, then the new page rises in.
 - Any element with a `view-transition-name` animates separately from the
   page. The header uses `site-header`, so it stays still and only the active
-  nav pill cross-fades. Each name must be unique on a page, or the browser
-  skips the whole transition.
-- News card titles and article headings share `news-title-<post.id>`, so the
-  clicked card's title morphs into the heading (and back). Both use
-  `view-transition-class: news-title` so `global.css` can style them as a
-  group; titles with no match on the other page (`:only-child`) reuse the
-  page fade/rise. Both elements use `width: fit-content` so the morph tracks
-  the text, not the full column width.
-- To inspect a transition in Playwright, slow it with an adopted stylesheet
-  (`document.adoptedStyleSheets`) in `addInitScript`; `documentElement` does
-  not exist yet there, and CDP `Animation.setPlaybackRate` can cancel the
-  transition.
+  nav pill cross-fades. Each name must be unique on a page.
 - We do not use `<ClientRouter />` (SPA-style routing). It would require
   re-running page scripts such as `configureCtaLinks()` and the Umami
   tracker on `astro:page-load`, which is extra complexity for little gain.
