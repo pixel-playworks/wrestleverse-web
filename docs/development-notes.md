@@ -477,6 +477,20 @@ v5 is for Astro 6, v7 for Astro 7.0+, and v8 needs Astro 7.2.6+ (8.0.2+ needs
 `npm view @astrojs/mdx@<version> peerDependencies` and `pnpm peers check` when
 upgrading either package.
 
+## Upgrading Astro
+
+- Read the changelogs for `astro` and each `@astrojs/*` package between the
+  current and target versions, and check the docs through the Astro docs MCP
+  (`astro-docs`). MDX v8 delegates `.mdx` to the Markdown processor; this
+  project sets no `markdown.processor`, so the default Sätteri needs no config.
+- Keep `sharp` on the range Astro lists in its `optionalDependencies`
+  (`npm view astro@<version> optionalDependencies`); Astro 7.3 wants `^0.35`.
+- Verify by copying `dist` before the upgrade, rebuilding, and diffing the HTML
+  with asset hashes normalized. Only the `generator` meta tag should change.
+- `eslint-plugin-astro` v3 (Rust-compiler parser) requires Node
+  `^22.22.3 || ^24.16.0 || >=26.3.0` and `typescript-eslint` >= 8.61, so it is
+  not installed while local Node is 25.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
