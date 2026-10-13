@@ -1,0 +1,11 @@
+# Netlify defaults every file to `max-age=0, must-revalidate`, so Safari
+# re-checks each CSS, JS and font file on every page view. These files never
+# change at the same URL, so let browsers reuse them without asking.
+
+# Vite puts a content hash in every filename here.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Not hashed: rename the file if a font is ever replaced.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
