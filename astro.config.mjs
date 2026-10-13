@@ -7,6 +7,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://wrestleverse.app',
   integrations: [mdx(), sitemap()],
+  // Pages are served at `/about/`; Netlify 301-redirects `/about` there,
+  // costing a round trip per click. `always` makes `astro dev` 404 on
+  // slashless internal links so they get caught before deploy.
+  trailingSlash: 'always',
   // Fetch internal pages as soon as their links scroll into view, so clicking
   // a nav link or news card loads from cache instead of waiting on the network.
   prefetch: {

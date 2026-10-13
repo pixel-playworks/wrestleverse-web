@@ -528,5 +528,20 @@ That is by design: it keeps pages JS-free. To keep navigation fast:
 - We do not use `<ClientRouter />` (SPA-style routing). It would require
   re-running page scripts such as `configureCtaLinks()` and the Umami
   tracker on `astro:page-load`, which is extra complexity for little gain.
+- Link to pages with a trailing slash (`/about/`, `/news/${id}/`). Netlify
+  serves `dist/about/index.html` at `/about/` and 301-redirects `/about`
+  there, which costs a full round trip on every click.
+  `trailingSlash: 'always'` makes `astro dev` 404 on slashless links.
+- `public/_headers` gives `/_astro/*` (content-hashed) and `/fonts/*` a
+  one-year `immutable` cache. Netlify's default is `max-age=0,
+  must-revalidate` for every file, so without this Safari sends a 304 check
+  for each CSS, JS and font file on every page. Rename a font file if it
+  is replaced.
+- Safari has no `<link rel="prefetch">` or Speculation Rules, so Astro
+  prefetches with `fetch()`. HTML still uses Netlify's `max-age=0`, so a
+  click in Safari makes one conditional request (304) for the page itself.
+  Prefetch saves the download, not that round trip.
+- Measure on the deployed site, not localhost: `curl -sSI <url>` shows the
+  redirect and `cache-control`, and Safari's Network tab shows 304s.
 - To check: on `pnpm preview`, open DevTools → Network on `/news`. `/about`
   and the visible articles should load before any click.
