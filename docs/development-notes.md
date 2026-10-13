@@ -538,9 +538,15 @@ That is by design: it keeps pages JS-free. To keep navigation fast:
   for each CSS, JS and font file on every page. Rename a font file if it
   is replaced.
 - Safari has no `<link rel="prefetch">` or Speculation Rules, so Astro
-  prefetches with `fetch()`. HTML still uses Netlify's `max-age=0`, so a
-  click in Safari makes one conditional request (304) for the page itself.
-  Prefetch saves the download, not that round trip.
+  prefetches with `fetch()` into the HTTP cache. With Netlify's default
+  `max-age=0`, a click still waits on a 304 check (~250-700ms), so
+  `_headers` gives page HTML `max-age=300`: a page prefetched in the last
+  5 minutes opens with no request. Keep it short. HTML URLs are not
+  hashed, so a deploy cannot reach a browser's cached copy, and a stale
+  page can point at `/_astro` files a newer deploy removed. A longer TTL
+  adds little, since prefetch re-checks pages whenever links scroll into
+  view. Avoid overlapping `_headers` paths for the same header; Netlify
+  does not document how they combine.
 - Measure on the deployed site, not localhost: `curl -sSI <url>` shows the
   redirect and `cache-control`, and Safari's Network tab shows 304s.
 - To check: on `pnpm preview`, open DevTools → Network on `/news`. `/about`
