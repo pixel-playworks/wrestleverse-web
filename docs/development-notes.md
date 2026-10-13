@@ -487,9 +487,13 @@ upgrading either package.
   (`npm view astro@<version> optionalDependencies`); Astro 7.3 wants `^0.35`.
 - Verify by copying `dist` before the upgrade, rebuilding, and diffing the HTML
   with asset hashes normalized. Only the `generator` meta tag should change.
-- `eslint-plugin-astro` v3 (Rust-compiler parser) requires Node
-  `^22.22.3 || ^24.16.0 || >=26.3.0` and `typescript-eslint` >= 8.61, so it is
-  not installed while local Node is 25.
+- `eslint-plugin-astro` v3 (Rust-compiler parser) needs `typescript-eslint` and
+  `@typescript-eslint/parser` >= 8.61. Its engines list Node
+  `^22.22.3 || ^24.16.0 || >=26.3.0`, but lint runs fine on Node 25.
+- TypeScript 7 is blocked until `@astrojs/check` (peer `^5 || ^6`) and
+  `typescript-eslint` (peer `<6.1.0`) support it.
+- The `eslint-plugin-jsx-a11y` peer warning (wants ESLint <= 9) is expected;
+  the a11y rules still run through `eslint-plugin-astro`.
 
 ## Notes To Add Later
 
