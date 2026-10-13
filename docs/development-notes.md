@@ -477,6 +477,24 @@ v5 is for Astro 6, v7 for Astro 7.0+, and v8 needs Astro 7.2.6+ (8.0.2+ needs
 `npm view @astrojs/mdx@<version> peerDependencies` and `pnpm peers check` when
 upgrading either package.
 
+## Upgrading Astro
+
+- Read the changelogs for `astro` and each `@astrojs/*` package between the
+  current and target versions, and check the docs through the Astro docs MCP
+  (`astro-docs`). MDX v8 delegates `.mdx` to the Markdown processor; this
+  project sets no `markdown.processor`, so the default Sätteri needs no config.
+- Keep `sharp` on the range Astro lists in its `optionalDependencies`
+  (`npm view astro@<version> optionalDependencies`); Astro 7.3 wants `^0.35`.
+- Verify by copying `dist` before the upgrade, rebuilding, and diffing the HTML
+  with asset hashes normalized. Only the `generator` meta tag should change.
+- `eslint-plugin-astro` v3 (Rust-compiler parser) needs `typescript-eslint` and
+  `@typescript-eslint/parser` >= 8.61. Its engines list Node
+  `^22.22.3 || ^24.16.0 || >=26.3.0`, but lint runs fine on Node 25.
+- TypeScript 7 is blocked until `@astrojs/check` (peer `^5 || ^6`) and
+  `typescript-eslint` (peer `<6.1.0`) support it.
+- The `eslint-plugin-jsx-a11y` peer warning (wants ESLint <= 9) is expected;
+  the a11y rules still run through `eslint-plugin-astro`.
+
 ## Notes To Add Later
 
 - Environment variable conventions once external services are introduced.
@@ -510,5 +528,26 @@ That is by design: it keeps pages JS-free. To keep navigation fast:
 - We do not use `<ClientRouter />` (SPA-style routing). It would require
   re-running page scripts such as `configureCtaLinks()` and the Umami
   tracker on `astro:page-load`, which is extra complexity for little gain.
+- Link to pages with a trailing slash (`/about/`, `/news/${id}/`). Netlify
+  serves `dist/about/index.html` at `/about/` and 301-redirects `/about`
+  there, which costs a full round trip on every click.
+  `trailingSlash: 'always'` makes `astro dev` 404 on slashless links.
+- `public/_headers` gives `/_astro/*` (content-hashed) and `/fonts/*` a
+  one-year `immutable` cache. Netlify's default is `max-age=0,
+  must-revalidate` for every file, so without this Safari sends a 304 check
+  for each CSS, JS and font file on every page. Rename a font file if it
+  is replaced.
+- Safari has no `<link rel="prefetch">` or Speculation Rules, so Astro
+  prefetches with `fetch()` into the HTTP cache. With Netlify's default
+  `max-age=0`, a click still waits on a 304 check (~250-700ms), so
+  `_headers` gives page HTML `max-age=300`: a page prefetched in the last
+  5 minutes opens with no request. Keep it short. HTML URLs are not
+  hashed, so a deploy cannot reach a browser's cached copy, and a stale
+  page can point at `/_astro` files a newer deploy removed. A longer TTL
+  adds little, since prefetch re-checks pages whenever links scroll into
+  view. Avoid overlapping `_headers` paths for the same header; Netlify
+  does not document how they combine.
+- Measure on the deployed site, not localhost: `curl -sSI <url>` shows the
+  redirect and `cache-control`, and Safari's Network tab shows 304s.
 - To check: on `pnpm preview`, open DevTools → Network on `/news`. `/about`
   and the visible articles should load before any click.
