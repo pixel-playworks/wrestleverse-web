@@ -26,16 +26,6 @@ const breadcrumbSchema = newsIndexBreadcrumbs(Astro.site);
 
   <main class="news-page">
     <div class="news-shell">
-      <section class="news-intro" aria-labelledby="news-heading">
-        <p class="news-kicker">News</p>
-        <h1 id="news-heading">WrestleVerse Updates</h1>
-        <p class="news-lede">
-          Updates on the development of <em>WrestleVerse</em> on iOS, iPadOS,
-          macOS, and Android — new features, fixes, and future plans straight
-          from the developers.
-        </p>
-      </section>
-
       <section class="news-grid" aria-label="Latest news">
         {sortedPosts.map((post) => <NewsCard post={post} />)}
       </section>
