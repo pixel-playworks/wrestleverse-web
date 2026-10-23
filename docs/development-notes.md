@@ -330,6 +330,10 @@ For a lightweight body font that feels native on each platform, use:
 - For identical branded typography across devices, choose a separately
   licensed web font and serve optimized `woff2` files instead.
 
+Avoid `text-wrap: nowrap` on sentence-length copy: it overflows narrow mobile
+viewports. Use `text-wrap: balance` instead, which stays on one line when it
+fits and wraps into even lines when it does not.
+
 ## Security and External Links
 
 ### `rel="noopener"` and `rel="noreferrer"`
