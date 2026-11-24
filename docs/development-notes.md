@@ -471,6 +471,12 @@ are its top/2nd/3rd/4th choice votes; the component sorts options by top picks
 and derives the response count from that column, so enter the survey's raw
 numbers and nothing else.
 
+Frontmatter dates like `date: "2026-11-24"` are coerced to UTC midnight. For
+"today"/"yesterday" labels (`formatRelativeDate`), compare calendar days (the
+post's UTC date vs the viewer's local date), never round elapsed hours, or posts
+shift a day depending on the viewer's timezone and time of day. Test with e.g.
+`TZ=Europe/London npx tsx script.ts`.
+
 `@astrojs/mdx` versions are tied to Astro versions, sometimes down to the patch:
 v5 is for Astro 6, v7 for Astro 7.0+, and v8 needs Astro 7.2.6+ (8.0.2+ needs
 7.2.10+ and a newer `@astrojs/markdown-satteri`). Run
