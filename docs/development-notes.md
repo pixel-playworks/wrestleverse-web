@@ -471,6 +471,15 @@ are its top/2nd/3rd/4th choice votes; the component sorts options by top picks
 and derives the response count from that column, so enter the survey's raw
 numbers and nothing else.
 
+YouTube videos go in `src/data/videos.ts` and render through
+`src/components/VideoEmbed.astro`, which lazy-mounts a `youtube-nocookie`
+iframe and emits VideoObject JSON-LD. Copy `name`, `description` and
+`uploadDate` from the video's page (the oEmbed endpoint
+`https://www.youtube.com/oembed?url=<watch url>&format=json` gives the title;
+the watch page's HTML contains `"uploadDate"`). In posts use
+`<VideoEmbed video={...} inline />`; `inline` drops the homepage section
+padding and matches the 820px text width.
+
 Frontmatter dates like `date: "2026-11-24"` are coerced to UTC midnight. For
 "today"/"yesterday" labels (`formatRelativeDate`), compare calendar days (the
 post's UTC date vs the viewer's local date), never round elapsed hours, or posts

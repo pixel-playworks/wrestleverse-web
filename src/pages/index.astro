@@ -8,6 +8,7 @@ import Slogan from "@components/Slogan.astro";
 import VideoEmbed from "@components/VideoEmbed.astro";
 import { APP_STORE_RATING } from "@scripts/store-links";
 import { videoGame } from "@schema/video-game";
+import { gameplayVideo } from "../data/videos";
 
 const videoGameSchema = videoGame(Astro.site, APP_STORE_RATING);
 ---
@@ -19,7 +20,7 @@ const videoGameSchema = videoGame(Astro.site, APP_STORE_RATING);
 
     <Slogan />
     <Reviews />
-    <VideoEmbed />
+    <VideoEmbed video={gameplayVideo} />
   </main>
   <Footer />
 </Layout>
